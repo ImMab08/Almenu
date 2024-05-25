@@ -7,10 +7,10 @@ const Hero = () => {
     <>
       <main className="">
         <nav className="w-full h-auto laptop:h-[75px] bg-primary fixed top-0 z-50 shadow-xl flex justify-between items-center px-5 laptop:px-[65px]">
-          <div className="laptop:hidden w-[40px] h-[40px] relative">
+          <div className="w-[40px] h-[40px] relative mobileLG:w-[50px] mobileLG:h-[50px] laptop:hidden ">
             <Image layout="fill" objectFit="contain" src="/img/bars.svg" alt="" />
           </div>
-          <div className="w-[120px] h-[50px] relative">
+          <div className="w-[120px] h-[50px] mobileLG:w-[130px] mobileLG:h-[60px] laptop: laptop: relative">
             <a href="index.html">
               <Image layout="fill" objectFit="contain" src="/img/logo-almenu.png" alt="" />
             </a>
@@ -24,10 +24,10 @@ const Hero = () => {
 
         <section className="w-full h-screen laptop:flex justify-center items-center mt-[70px] laptop:mt-[50px] p-5 laptop:p-0">
           <div className="w-full h-auto laptop:w-3/5">
-            <h1 className="text-[1.8rem] laptop:text-[2rem] font-extrabold text-secondary leading-[12px] laptop:leading-10">Revolución</h1>
-            <h2 className="text-[2.8rem] laptop:text-[4rem] font-black mb-[5px] text-secondary leading-[50px]"><span className="">Digital</span> Para</h2>
-            <h3 className="text-3xl laptop:text-[3rem] font-extrabold pl-[20px] leading-[15px] laptop:leading-[50px] laptop:pl-[30px] text-secondary">Tu Negocio.</h3>
-            <p className="mt-8 text-sm laptop:mt-[25px] laptop:w-[500px]">
+            <h1 className="text-[2rem] mobileLG:text-[2.5rem] laptop:text-[2rem] leading-[22px] mobileLG:leading-[32px] laptop:leading-10 font-extrabold text-secondary ">Revolución</h1>
+            <h2 className="text-[3rem] mobileLG:text-[3.5rem] laptop:text-[4rem] leading-[50px] font-black mb-[5px] text-secondary "><span className="">Digital</span> Para</h2>
+            <h3 className="text-[2.25rem] mobileLG:text-[2.75rem] laptop:text-[3rem] leading-[20px] mobileLG:leading-[32px] laptop:leading-[50px] pl-[20px] laptop:pl-[30px] font-extrabold text-secondary">Tu Negocio.</h3>
+            <p className="mt-8 text-sm mobileLG:text-base laptop:text-lg laptop:mt-[25px] laptop:w-[500px] ">
               Optimiza y lleva al siguiente nivel tu restaurante con Almenú. Un
               software hecho a la medida para la gestión de de pequeños,
               medianos y grandes restaurantes.
@@ -68,8 +68,8 @@ const Hero = () => {
           </div>
         </section>
 
-        <section className="w-full h-screens flex flex-col justify-center p-5">
-          <div className="w-[300px] h-[300px] laptop:w-[350px] laptop:h-[350px] absolute top-[740px] left-[30px]  laptop:top-[450px] laptop:left-[450px]">
+        <section className="w-full laptop:h-screen flex flex-col justify-center p-5">
+          <div className="w-[300px] h-[300px] top-[790px] left-[30px] absolute mobileLG:left-[60px] laptop:w-[350px] laptop:h-[350px] laptop:top-[450px] laptop:left-[450px]">
             <Image layout="fill" objectFit="contain" src="/img/img-hero.png" alt="" />
           </div>
           <div class="w-full h-[300px] relative bg-secondary rounded-[20px] mt-[170px] shadow-2xl">
