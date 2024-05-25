@@ -6,27 +6,27 @@ const Hero = () => {
   return (
     <>
       <main className="">
-        <nav className="w-full h-auto laptop:h-[75px] bg-primary fixed top-0 z-50 shadow-xl flex justify-between items-center px-5 laptop:px-[65px]">
-          <div className="w-[40px] h-[40px] relative mobileLG:w-[50px] mobileLG:h-[50px] laptop:hidden ">
+        <nav className="w-full h-auto laptop:h-[75px] bg-primary fixed top-0 z-50 shadow-xl flex justify-between items-center px-5 tablet:px-[40px] tablet:py-[5px] laptop:px-[65px]">
+          <div className="w-[40px] h-[40px] relative mobileLG:w-[50px] mobileLG:h-[50px] tablet:w-[60px] tablet:h-[60px] laptop:hidden ">
             <Image layout="fill" objectFit="contain" src="/img/bars.svg" alt="" />
           </div>
-          <div className="w-[120px] h-[50px] mobileLG:w-[130px] mobileLG:h-[60px] laptop: laptop: relative">
+          <div className="w-[120px] h-[50px] mobileLG:w-[130px] mobileLG:h-[60px] tablet:w-[150px] tablet:h-[70px] laptop: laptop: relative">
             <a href="index.html">
               <Image layout="fill" objectFit="contain" src="/img/logo-almenu.png" alt="" />
             </a>
           </div>
-          <div className="container-links hidden tablet:flex justify-evenly items-center w-2/5">
+          <div className="container-links hidden laptop:flex justify-evenly items-center w-2/5">
             <a className="relative no-underline text-[16px] font-semibold text-secondary transition-colors hover:text-tertiary" href="">Sobre Nosotros</a>
             <a className="relative no-underline text-[16px] font-semibold text-secondary transition-colors hover:text-tertiary" href="">Planes y Suscripciones</a>
             <a className="relative no-underline text-[16px] font-semibold text-secondary transition-colors hover:text-tertiary" href="">Contacto</a>
           </div>
         </nav>
 
-        <section className="w-full h-screen laptop:flex justify-center items-center mt-[70px] laptop:mt-[50px] p-5 laptop:p-0">
+        <section className="w-full h-screen laptop:flex justify-center items-center mt-[70px] tablet:mt-[80px] laptop:mt-[50px] p-5 tablet:p-10 laptop:p-0">
           <div className="w-full h-auto laptop:w-3/5">
-            <h1 className="text-[2rem] mobileLG:text-[2.5rem] laptop:text-[2rem] leading-[22px] mobileLG:leading-[32px] laptop:leading-10 font-extrabold text-secondary ">Revolución</h1>
-            <h2 className="text-[3rem] mobileLG:text-[3.5rem] laptop:text-[4rem] leading-[50px] font-black mb-[5px] text-secondary "><span className="">Digital</span> Para</h2>
-            <h3 className="text-[2.25rem] mobileLG:text-[2.75rem] laptop:text-[3rem] leading-[20px] mobileLG:leading-[32px] laptop:leading-[50px] pl-[20px] laptop:pl-[30px] font-extrabold text-secondary">Tu Negocio.</h3>
+            <h1 className="text-[2rem] mobileLG:text-[2.5rem] tablet:text-[3.5rem] laptop:text-[2rem] leading-[22px] mobileLG:leading-[32px] tablet:leading-[72px] laptop:leading-10 font-extrabold text-secondary ">Revolución</h1>
+            <h2 className="text-[3rem] mobileLG:text-[3.5rem] tablet:text-[5.25rem] laptop:text-[4rem] leading-[50px] font-black mb-[5px] text-secondary "><span className="">Digital</span> Para</h2>
+            <h3 className="text-[2.25rem] mobileLG:text-[2.75rem] tablet:text-[4rem] laptop:text-[3rem] leading-[20px] mobileLG:leading-[32px] tablet:leading-[80px] laptop:leading-[50px] pl-[20px] tablet:pl-[32px] laptop:pl-[30px] font-extrabold text-secondary">Tu Negocio.</h3>
             <p className="mt-8 text-sm mobileLG:text-base laptop:text-lg laptop:mt-[25px] laptop:w-[500px] ">
               Optimiza y lleva al siguiente nivel tu restaurante con Almenú. Un
               software hecho a la medida para la gestión de de pequeños,
@@ -77,40 +77,40 @@ const Hero = () => {
           </div>
         </section>
 
-        <section class="w-full h-screen flex justify-center">
+        <section className="hidden w-full h-screen laptop:flex justify-center">
           <div class="relative w-full h-full">
             <Image layout="fill" objectFit="contain" src="/img/banner.png" alt="" />
           </div>
         </section>
 
-        <footer className="hidden w-full h-[200px] bg-footerBg shadow-xl laptop:flex flex-col justify-center items-center">
-          <div className="w-[90%] h-[80%] flex">
-            <div className="w-[30%] h-full relative">
-              <Image width={150} height={80} objectFit="contain" src="/img/logo-almenu.png" alt="" />
+        <footer className="w-full h-auto laptop:h-[200px] bg-footerBg shadow-xl flex flex-col justify-center items-center">
+          <div className="w-full h-full p-5 lapto:w-[90%] lapto:h-[80%] flex flex-col">
+            <div className="w-[128px] h-[70px] relative">
+              <Image layout="fill" objectFit="contain" src="/img/logo-almenu.png" alt="" />
             </div>
-            <div className="w-[70%] flex justify-around py-5">
+            <div className="w-[70%] flex flex-col justify-around py-5">
               <div className="flex flex-col">
                 <h3 className="text-lg font-bold">Almenú</h3>
-                <a className="my-[5px] text-[14px] no-underline cursor-pointer" href="">almenusoport@almenu.com</a>
-                <a className="my-[5px] text-[14px] no-underline cursor-pointer" href="">+57 123 456 7890</a>
+                <a className="my-[2px] laptop:my-[5px] text-[14px] no-underline cursor-pointer" href="">almenusoport@almenu.com</a>
+                <a className="my-[2px] laptop:my-[5px] text-[14px] no-underline cursor-pointer" href="">+57 123 456 7890</a>
               </div>
               <div class="flex flex-col">
                 <h3 className="text-lg font-bold">Soluciones</h3>
-                <a className="my-[5px] text-[14px] no-underline cursor-pointer" href="">Para negocios</a>
-                <a className="my-[5px] text-[14px] no-underline cursor-pointer" href="">Para restaurantes</a>
-                <a className="my-[5px] text-[14px] no-underline cursor-pointer" href="">Para empresas</a>
+                <a className="my-[2px] laptop:my-[5px] text-[14px] no-underline cursor-pointer" href="">Para negocios</a>
+                <a className="my-[2px] laptop:my-[5px] text-[14px] no-underline cursor-pointer" href="">Para restaurantes</a>
+                <a className="my-[2px] laptop:my-[5px] text-[14px] no-underline cursor-pointer" href="">Para empresas</a>
               </div>
               <div class="flex flex-col">
                 <h3 className="text-lg font-bold">Siguenos</h3>
-                <a className="my-[5px] text-[14px] no-underline cursor-pointer" href="">Términos y condiciones</a>
-                <a className="my-[5px] text-[14px] no-underline cursor-pointer" href="">Política y privacidad</a>
-                <a className="my-[5px] text-[14px] no-underline cursor-pointer" href=""></a>
+                <a className="my-[2px] laptop:my-[5px] text-[14px] no-underline cursor-pointer" href="">Términos y condiciones</a>
+                <a className="my-[2px] laptop:my-[5px] text-[14px] no-underline cursor-pointer" href="">Política y privacidad</a>
+                <a className="my-[2px] laptop:my-[5px] text-[14px] no-underline cursor-pointer" href=""></a>
               </div>
             </div>
           </div>
 
-          <div className="w-full h-full flex justify-center items-center">
-            <p className="text-[13px] font-medium">Copyright © Almenú 2024</p>
+          <div className="w-full h-full flex justify-center items-center p-2">
+            <p className="text-[14px] font-medium">Copyright © Almenú 2024</p>
           </div>
         </footer>
       </main>
