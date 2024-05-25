@@ -6,40 +6,41 @@ const Hero = () => {
   return (
     <>
       <main className="">
-        <nav className="w-full h-[75px] bg-primary fixed top-0 z-50 shadow-xl flex justify-between items-center px-[65px]">
-          <div className="w-[150px] h-[70px]">
+        <nav className="w-full h-auto laptop:h-[75px] bg-primary fixed top-0 z-50 shadow-xl flex justify-between items-center px-5 laptop:px-[65px]">
+          <div className="laptop:hidden w-[40px] h-[40px] relative">
+            <Image layout="fill" objectFit="contain" src="/img/bars.svg" alt="" />
+          </div>
+          <div className="w-[120px] h-[50px] relative">
             <a href="index.html">
-              <Image width={150} height={70} className=" object-contain" src="/img/logo-almenu.png" alt="" />
+              <Image layout="fill" objectFit="contain" src="/img/logo-almenu.png" alt="" />
             </a>
           </div>
-          <div className="container-links flex justify-evenly items-center w-2/5">
+          <div className="container-links hidden tablet:flex justify-evenly items-center w-2/5">
             <a className="relative no-underline text-[16px] font-semibold text-secondary transition-colors hover:text-tertiary" href="">Sobre Nosotros</a>
             <a className="relative no-underline text-[16px] font-semibold text-secondary transition-colors hover:text-tertiary" href="">Planes y Suscripciones</a>
             <a className="relative no-underline text-[16px] font-semibold text-secondary transition-colors hover:text-tertiary" href="">Contacto</a>
           </div>
         </nav>
 
-        <section className="w-full h-screen flex justify-center items-center mt-[50px]">
-          <div className="w-3/5 h-auto">
-            <h1 className="text-[2rem] font-black text-secondary leading-10">Revolución</h1>
-            <h2 className="text-[4rem] font-bold mb-[5px] text-secondary leading-[50px]">
-              <span className="">Digital</span> Para
-            </h2>
-            <h3 className="text-[3rem] font-extrabold leading-[50px] pl-[30px] text-secondary">Tu Negocio.</h3>
-            <p className="mt-[25px] w-[500px]">
+        <section className="w-full h-screen laptop:flex justify-center items-center mt-[70px] laptop:mt-[50px] p-5 laptop:p-0">
+          <div className="w-full h-auto laptop:w-3/5">
+            <h1 className="text-[1.8rem] laptop:text-[2rem] font-extrabold text-secondary leading-[12px] laptop:leading-10">Revolución</h1>
+            <h2 className="text-[2.8rem] laptop:text-[4rem] font-black mb-[5px] text-secondary leading-[50px]"><span className="">Digital</span> Para</h2>
+            <h3 className="text-3xl laptop:text-[3rem] font-extrabold pl-[20px] leading-[15px] laptop:leading-[50px] laptop:pl-[30px] text-secondary">Tu Negocio.</h3>
+            <p className="mt-8 text-sm laptop:mt-[25px] laptop:w-[500px]">
               Optimiza y lleva al siguiente nivel tu restaurante con Almenú. Un
               software hecho a la medida para la gestión de de pequeños,
               medianos y grandes restaurantes.
             </p>
-            <div className="aboutMore w-[130px] h-auto flex items-center cursor-pointer mt-[30px]">
-              <a className="bg-primary text-secondary no-underline text-base transition" href="">Conoce más</a>
+            <div className="aboutMore w-[130px] h-auto flex items-center cursor-pointer mt-5 laptop:mt-[30px]">
+              <a className="bg-primary text-secondary no-underline text-sm laptop:text-base transition" href="">Conoce más</a>
               <svg id="right-icon" width="25" height="25" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M10 7L15 12L10 17" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
               </svg>
             </div>
           </div>
 
-          <div className="w-[auto] h-[350px] p-[25px] bg-primary flex flex-col justify-between items-center rounded-3xl shadow-2xl">
+          <div className="w-[auto] h-[350px] p-[25px] bg-primary flex flex-col justify-between items-center rounded-3xl shadow-2xl mt-5 laptop:mt-0">
             <div className="flex justify-between items-center">
               <h2 className="text-[2rem] font-extrabold text-secondary">Iniciar Sesión</h2>
             </div>
@@ -67,11 +68,11 @@ const Hero = () => {
           </div>
         </section>
 
-        <section className="w-full h-screen flex justify-center">
-          <div className="w-[350px] h-[350px] absolute top-[450px] left-[450px]">
-            <Image width={350} height={350} className="object-contain" src="/img/img-hero.png" alt="" />
+        <section className="w-full h-screens flex flex-col justify-center p-5">
+          <div className="w-[300px] h-[300px] laptop:w-[350px] laptop:h-[350px] absolute top-[740px] left-[30px]  laptop:top-[450px] laptop:left-[450px]">
+            <Image layout="fill" objectFit="contain" src="/img/img-hero.png" alt="" />
           </div>
-          <div class="w-[75%] h-[300px] relative bg-secondary rounded-[20px] mt-[170px] shadow-2xl">
+          <div class="w-full h-[300px] relative bg-secondary rounded-[20px] mt-[170px] shadow-2xl">
 
           </div>
         </section>
@@ -82,7 +83,7 @@ const Hero = () => {
           </div>
         </section>
 
-        <footer className="w-full h-[200px] bg-footerBg shadow-xl flex flex-col justify-center items-center">
+        <footer className="hidden w-full h-[200px] bg-footerBg shadow-xl laptop:flex flex-col justify-center items-center">
           <div className="w-[90%] h-[80%] flex">
             <div className="w-[30%] h-full relative">
               <Image width={150} height={80} objectFit="contain" src="/img/logo-almenu.png" alt="" />
