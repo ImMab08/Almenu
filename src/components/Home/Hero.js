@@ -16,31 +16,64 @@ const Hero = () => {
             </a>
           </div>
           <div className="container-links hidden laptop:flex justify-evenly items-center w-3/5 ">
-            <a className="relative no-underline text-[16px] laptop:text-[18px] font-semibold text-secondary transition-colors hover:text-tertiary" href="">Sobre Nosotros</a>
-            <a className="relative no-underline text-[16px] laptop:text-[18px] font-semibold text-secondary transition-colors hover:text-tertiary" href="">Planes y Suscripciones</a>
-            <a className="relative no-underline text-[16px] laptop:text-[18px] font-semibold text-secondary transition-colors hover:text-tertiary" href="">Contacto</a>
+            <a className="relative no-underline text-[16px] desktopLG:text-[18px] font-semibold text-secondary transition-colors hover:text-tertiary" href="">Sobre Nosotros</a>
+            <a className="relative no-underline text-[16px] desktopLG:text-[18px] font-semibold text-secondary transition-colors hover:text-tertiary" href="">Planes y Suscripciones</a>
+            <a className="relative no-underline text-[16px] desktopLG:text-[18px] font-semibold text-secondary transition-colors hover:text-tertiary" href="">Contacto</a>
           </div>
         </nav>
 
         <section className="w-full h-screen tablet:flex tablet:flex-col laptop:flex-row  justify-center items-center mt-[70px] tablet:mt-[80px] laptop:mt-10 p-5 tablet:p-10 laptop:p-10">
-          <div className="w-full h-auto laptop:w-3/5">
-            <h1 className="text-[2rem] mobileLG:text-[2.5rem] tablet:text-[3.5rem] laptop:text-[3rem] desktop:text-[4rem] leading-[22px] mobileLG:leading-[32px] tablet:leading-[72px] laptop:leading-[52px] desktop:leading-[72px] font-extrabold text-secondary ">Revolución</h1>
-            <h2 className="text-[3rem] mobileLG:text-[3.5rem] tablet:text-[5.25rem] laptop:text-[4.25rem] desktop:text-[5rem] leading-[50px] font-black mb-[5px] text-secondary "><span className="">Digital</span> Para</h2>
-            <h3 className="text-[2.25rem] mobileLG:text-[2.75rem] tablet:text-[4rem] laptop:text-[3rem] leading-[20px] desktop:text-[4rem] mobileLG:leading-[32px] tablet:leading-[80px] laptop:leading-[50px] desktop:leading-[72px] pl-[20px] tablet:pl-[32px] laptop:pl-[30px] font-extrabold text-secondary">Tu Negocio.</h3>
-            <p className="mt-8 text-sm mobileLG:text-base laptop:text-lg desktop:text-xl laptop:mt-[25px] laptop:w-[500px] ">
+          <div className="w-full h-[80%] flex flex-col justify-center tablet:block tablet:h-auto laptop:w-3/5">
+            <h1 className="text-[2rem] mobileLG:text-[2.5rem] tablet:text-[3.5rem] laptop:text-[3rem] desktopLG:text-[4rem] leading-[22px] mobileLG:leading-[32px] tablet:leading-[72px] laptop:leading-[52px] desktopLG:leading-[72px] font-extrabold text-secondary ">Revolución</h1>
+            <h2 className="text-[3rem] mobileLG:text-[3.5rem] tablet:text-[5.25rem] laptop:text-[4.25rem] desktopLG:text-[5rem] leading-[50px] font-black mb-[5px] text-secondary "><span className="">Digital</span> Para</h2>
+            <h3 className="text-[2.25rem] mobileLG:text-[2.75rem] tablet:text-[4rem] laptop:text-[3rem] leading-[20px] desktopLG:text-[4rem] mobileLG:leading-[32px] tablet:leading-[80px] laptop:leading-[50px] desktopLG:leading-[72px] pl-[20px] tablet:pl-[32px] laptop:pl-[30px] font-extrabold text-secondary">Tu Negocio.</h3>
+            <p className="mt-8 text-sm mobileLG:text-base laptop:text-lg desktopLG:text-xl laptop:mt-[25px] laptop:w-[500px] ">
               Optimiza y lleva al siguiente nivel tu restaurante con Almenú. Un
               software hecho a la medida para la gestión de de pequeños,
               medianos y grandes restaurantes.
             </p>
-            <div className="aboutMore w-[130px] h-auto flex items-center cursor-pointer mt-5 laptop:mt-[30px]">
-              <a className="bg-primary text-secondary no-underline text-sm laptop:text-base transition" href="">Conoce más</a>
-              <svg id="right-icon" width="25" height="25" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <div className="aboutMore w-[140px] h-auto flex items-center cursor-pointer mt-5 laptop:mt-[30px]">
+              <a className="bg-primary text-secondary no-underline text-base laptop:text-base transition" href="">Conoce más</a>
+              <svg id="right-icon" width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M10 7L15 12L10 17" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
               </svg>
             </div>
           </div>
 
-          <div className="w-[auto] h-[350px] tablet:w-[400px] p-[25px] bg-primary flex flex-col justify-between items-center rounded-3xl shadow-2xl mt-5 laptop:mt-0">
+          <div className="hidden desktop:block">
+            <p className="text-center">¿Ya tienes una cuenta?</p>
+            <div className="w-[auto] h-[350px] tablet:w-[400px] p-[25px] bg-primary flex flex-col justify-between items-center rounded-3xl shadow-2xl mt-5 laptop:mt-0">
+              <div className="flex justify-between items-center">
+                <h2 className="text-[2rem] font-extrabold text-secondary">Iniciar Sesión</h2>
+              </div>
+
+              <form action="">
+                <div className="input-field">
+                  <input className="input" type="text" placeholder=" " required />
+                  <label className="label_name">Correo electronico</label>
+                </div>
+
+                <div className="input-field">
+                  <input className="input" type="text" placeholder=" " required />
+                  <label className="label_name">Contraseña</label>
+                </div>
+
+                <div className="button">
+                  <a href="home.html">Iniciar sesión</a>
+                </div>
+              </form>
+
+              <div className="w-full flex justify-between gap-[20px]">
+                <a className="text-[14px] text-secondary no-underline hover:text-tertiary" href="">Olvidé mi contraseña</a>
+                <a className="text-[14px] text-secondary no-underline hover:text-tertiary" href="register.html">Registrarme</a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="w-full h-screen desktop:hidden px-2">
+          <p className="text-center">¿Ya tienes una cuenta?</p>
+          <div className="w-[auto] h-[450px] tablet:w-[400px] p-[25px] bg-primary flex flex-col justify-between items-center rounded-3xl shadow-2xl mt-5 laptop:mt-0">
             <div className="flex justify-between items-center">
               <h2 className="text-[2rem] font-extrabold text-secondary">Iniciar Sesión</h2>
             </div>
@@ -50,12 +83,10 @@ const Hero = () => {
                 <input className="input" type="text" placeholder=" " required />
                 <label className="label_name">Correo electronico</label>
               </div>
-
               <div className="input-field">
                 <input className="input" type="text" placeholder=" " required />
                 <label className="label_name">Contraseña</label>
               </div>
-
               <div className="button">
                 <a href="home.html">Iniciar sesión</a>
               </div>
@@ -68,8 +99,8 @@ const Hero = () => {
           </div>
         </section>
 
-        <section className="w-full tablet:h-screen flex flex-col justify-center p-5 tablet:p-10 laptop:p-10">
-          <div className="w-[300px] h-[300px] top-[790px] left-[30px] absolute mobileLG:left-[60px] tablet:w-[350px] tablet:h-[350px] tablet:top-[920px] tablet:left-[350px] laptop:w-[380px] laptop:h-[400px] laptop:top-[480px] laptop:left-[450px]">
+        <section className="w-full h-screen flex flex-col justify-center p-5 tablet:p-10 laptop:p-10">
+          <div className="w-[300px] h-[300px] top-[1560px] left-[30px] absolute mobileLG:left-[60px] tablet:w-[350px] tablet:h-[350px] tablet:top-[920px] tablet:left-[350px] laptop:w-[380px] laptop:h-[300px] laptop:top-[480px] laptop:left-[450px]">
             <Image layout="fill" objectFit="contain" src="/img/img-hero.png" alt="" />
           </div>
           <div class="w-full h-[300px]  relative bg-secondary rounded-[20px] mt-[170px] laptop:mt-[100px]  shadow-2xl">
