@@ -4,10 +4,10 @@ import Link from "next/link";
 
 const Register = () => {
   return (
-    <main className="w-full w-full laptop:h-screen laptop:flex justify-center items-center">
+    <main className="w-full h-full laptop:h-screen laptop:flex justify-center items-center">
       <section className="w-full h-full laptop:h-full laptop:flex">
         <div className="w-full laptop:w-2/5 h-full bg-secondary relative">
-          <div className="w-full h-full flex flex-col p-[30px]">
+          <div className="w-full h-full flex flex-col p-5">
             <h1 className="text-primary text-[2rem] laptop:text-[2.5rem] leading-[2rem] laptop:leading-[2.8rem] font-bold laptop:font-extrabold">Solamente Con Registrarte Podrás</h1>
             <div className="mt-[15px] ml-[10px]">
               <div className=" flex items-center mt-1 laptop:mt-0">
