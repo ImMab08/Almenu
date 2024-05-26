@@ -71,7 +71,7 @@ const Hero = () => {
           </div>
         </section>
 
-        <section className="w-full h-screen desktop:hidden px-2">
+        {/* <section className="w-full h-screen desktop:hidden px-2">
           <p className="text-center">¿Ya tienes una cuenta?</p>
           <div className="w-[auto] h-[450px] tablet:w-[400px] p-[25px] bg-primary flex flex-col justify-between items-center rounded-3xl shadow-2xl mt-5 laptop:mt-0">
             <div className="flex justify-between items-center">
@@ -97,13 +97,13 @@ const Hero = () => {
               <a className="text-[14px] text-secondary no-underline hover:text-tertiary" href="register.html">Registrarme</a>
             </div>
           </div>
-        </section>
+        </section> */}
 
         <section className="w-full h-screen flex flex-col justify-center p-5 tablet:p-10 laptop:p-10">
-          <div className="w-[300px] h-[300px] top-[1560px] left-[30px] absolute mobileLG:left-[60px] tablet:w-[350px] tablet:h-[350px] tablet:top-[920px] tablet:left-[350px] laptop:w-[380px] laptop:h-[300px] laptop:top-[480px] laptop:left-[450px]">
+          <div className="w-[300px] h-[300px] top-1 left-[30px] relative mobileLG:left-[60px] tablet:w-[350px] tablet:h-[350px] tablet:top-[10px] tablet:left-[350px] laptop:w-[450px] laptop:h-[350px] laptop:top-1 laptop:left-[450px] z-[1]">
             <Image layout="fill" objectFit="contain" src="/img/img-hero.png" alt="" />
           </div>
-          <div class="w-full h-[300px]  relative bg-secondary rounded-[20px] mt-[170px] laptop:mt-[100px]  shadow-2xl">
+          <div class="w-full h-[300px] relative z-10 bg-secondary rounded-[20px]  shadow-2xl">
 
           </div>
         </section>
