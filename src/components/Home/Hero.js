@@ -59,13 +59,13 @@ const Hero = () => {
                 </div>
 
                 <div className="button">
-                  <a href="home.html">Iniciar sesión</a>
+                  <Link href="/menu-user">Iniciar sesión</Link>
                 </div>
               </form>
 
               <div className="w-full flex justify-between gap-[20px]">
-                <a className="text-[14px] text-secondary no-underline hover:text-tertiary" href="">Olvidé mi contraseña</a>
-                <a className="text-[14px] text-secondary no-underline hover:text-tertiary" href="register.html">Registrarme</a>
+                <Link className="text-[14px] text-secondary no-underline hover:text-tertiary" href="/">Olvidé mi contraseña</Link>
+                <Link className="text-[14px] text-secondary no-underline hover:text-tertiary" href="/register">Registrarme</Link>
               </div>
             </div>
           </div>

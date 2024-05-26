@@ -32,7 +32,7 @@ const Sliderbar = () => {
           </div>
           <div className="flex items-center my-[10px]">
             <Image width={22} height={22} className="object-contain mr-[10px]" src="/img/logout.svg" alt="Cerrar Sesión" />
-            <a className=" text-base decoration no-underline text-title" href="index.html">Cerrar Sesión</a>
+            <a className=" text-base decoration no-underline text-title" href="/">Cerrar Sesión</a>
           </div>
         </div>
       </section>
