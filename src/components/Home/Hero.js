@@ -59,7 +59,7 @@ const Hero = () => {
                 </div>
 
                 <div className="button">
-                  <Link href="/menu-user">Iniciar sesión</Link>
+                  <Link href="/board">Iniciar sesión</Link>
                 </div>
               </form>
 
