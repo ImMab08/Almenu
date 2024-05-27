@@ -1,1 +1,1 @@
-export * from'./Inventario
+export * from './Inventario'
