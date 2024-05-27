@@ -1,1 +1,1 @@
-import * from './Inicio'
+export * from './Inicio'

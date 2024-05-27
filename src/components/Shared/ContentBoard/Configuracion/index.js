@@ -1,1 +1,1 @@
-import * from './Configuracion'
+export * from './Configuracion'
