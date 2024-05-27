@@ -1,10 +1,12 @@
 import React from "react";
 import Image from "next/image";
 
-export default function Configuracion () {
+import { Configuracion } from "@/components/Shared/ContentBoard/Configuracion/Configuracion";
+
+export default function page () {
   return (
     <section className="w-full h-screen flex">
-      <p>Aquí va el Configuracion</p>
+      <Configuracion />
     </section>
   );
 };
