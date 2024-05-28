@@ -29,7 +29,7 @@ export function DashBoard(props) {
 
   return (
     <main className="w-full h-screen flex">
-      <section className="pt-2">
+      <section className="pt-1">
         <div className="w-full h-[10%] flex justify-center">
           <Image width={120} height={120} className="object-contain" src="/img/logo-almenu.png" alt="Logo Almenu" />
         </div>
@@ -42,6 +42,7 @@ export function DashBoard(props) {
           {UserSettings}
         </div>
       </section>
+      
     </main>
   );
 };
