@@ -4,6 +4,8 @@ import Link from "next/link";
 
 import { HeroNav } from "./HeroNav";
 
+import { IconRightArrow } from "./Icons";
+
 const Hero = () => {
   return (
     <>
@@ -24,9 +26,7 @@ const Hero = () => {
             </p>
             <div className="aboutMore w-[140px] h-auto flex items-center cursor-pointer mt-5 laptop:mt-[30px]">
               <a className="bg-primary text-secondary no-underline text-base laptop:text-base transition" href="">Conoce más</a>
-              <svg id="right-icon" width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M10 7L15 12L10 17" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-              </svg>
+              <IconRightArrow />
             </div>
           </div>
 
@@ -49,7 +49,7 @@ const Hero = () => {
                 </div>
 
                 <div className="button">
-                  <Link href="/board">Iniciar sesión</Link>
+                  <Link href="/inicio">Iniciar sesión</Link>
                 </div>
               </form>
 
@@ -93,13 +93,13 @@ const Hero = () => {
           <div className="w-[300px] h-[300px] top-1 left-[30px] relative mobileLG:left-[60px] tablet:w-[350px] tablet:h-[350px] tablet:top-[10px] tablet:left-[350px] laptop:w-[450px] laptop:h-[350px] laptop:top-1 laptop:left-[450px] z-[1]">
             <Image layout="fill" objectFit="contain" src="/img/img-hero.png" alt="" />
           </div>
-          <div class="w-full h-[300px] relative z-10 bg-secondary rounded-[20px]  shadow-2xl">
+          <div className="w-full h-[300px] relative z-10 bg-secondary rounded-[20px]  shadow-2xl">
 
           </div>
         </section>
 
         <section className="hidden w-full h-screen laptop:flex justify-center">
-          <div class="relative w-full h-full">
+          <div className="relative w-full h-full">
             <Image layout="fill" objectFit="contain" src="/img/banner.png" alt="" />
           </div>
         </section>
@@ -115,13 +115,13 @@ const Hero = () => {
                 <a className="my-[2px] laptop:my-[5px] text-[14px] laptop:text-base no-underline cursor-pointer" href="">almenusoport@almenu.com</a>
                 <a className="my-[2px] laptop:my-[5px] text-[14px] laptop:text-base no-underline cursor-pointer" href="">+57 123 456 7890</a>
               </div>
-              <div class="flex flex-col">
+              <div className="flex flex-col">
                 <h3 className="text-lg desktop:text-xl font-bold">Soluciones</h3>
                 <a className="my-[2px] laptop:my-[5px] text-[14px] laptop:text-base no-underline cursor-pointer" href="">Para negocios</a>
                 <a className="my-[2px] laptop:my-[5px] text-[14px] laptop:text-base no-underline cursor-pointer" href="">Para restaurantes</a>
                 <a className="my-[2px] laptop:my-[5px] text-[14px] laptop:text-base no-underline cursor-pointer" href="">Para empresas</a>
               </div>
-              <div class="flex flex-col">
+              <div className="flex flex-col">
                 <h3 className="text-lg desktop:text-xl font-bold">Siguenos</h3>
                 <a className="my-[2px] laptop:my-[5px] text-[14px] laptop:text-base no-underline cursor-pointer" href="">Términos y condiciones</a>
                 <a className="my-[2px] laptop:my-[5px] text-[14px] laptop:text-base no-underline cursor-pointer" href="">Política y privacidad</a>

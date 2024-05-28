@@ -223,3 +223,34 @@ input:not(:placeholder-shown) ~ label {
   background-color: var(--tertiary-color);
   transform: scale(1.1);
 }
+
+/* Dynamic Text */
+
+.boardLayout {
+  .titleHome,
+  .titleStock,
+  .titleStats,
+  .titleSettings {
+    display: none;
+  }
+}
+.boardLayout:has(.isHome) {
+  .titleHome {
+    display: flex;
+  }
+}
+.boardLayout:has(.isStock) {
+  .titleStock {
+    display: flex;
+  }
+}
+.boardLayout:has(.isStats) {
+  .titleStats {
+    display: flex;
+  }
+}
+.boardLayout:has(.isSettings) {
+  .titleSettings {
+    display: flex;
+  }
+}

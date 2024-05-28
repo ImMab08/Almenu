@@ -6,8 +6,8 @@ import { Navboard } from "@/components/Shared/Navboard/Navboard";
 
 export default function page () {
   return (
-    <section className="w-auto h-screen flex flex-col">
-      <div className=" w-full h-[12%]">
+    <section className="w-auto h-screen flex flex-col boardLayout">
+      <div className=" w-full h-[12%] isStock">
         <Navboard />
       </div>
       <Inventario />

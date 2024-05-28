@@ -4,28 +4,44 @@ import Link from "next/link";
 import { menus } from "./config";
 import { userSettings } from "./config";
 
-export function DashBoard(props) {
-  const Menus = menus.map(({url, text, image, alt}) =>
-    <div className="flex items-center my-[10px]" key={url}>
-      <div className="w-[22px] h-[22px] relative mr-2">
-        <Image layout="fill" objectFit="contain" src={image} alt={alt} />
-      </div>
-      <Link className="text-base decoration no-underline text-title" href={url}>
-        {text}
-      </Link>
-    </div>
-  )
+import { IconHome, IconStock, IconLogout, IconStats, IconSettings } from "./icons";
 
-  const UserSettings = userSettings.map(({url, text, image, alt}) =>
-    <div className="flex items-center my-[10px]" key={url}>
-      <div className="w-[22px] h-[22px] relative mr-2">
-        <Image layout="fill" objectFit="contain" src={image} alt={alt} />
+const iconMap = {
+  IconHome: IconHome,
+  IconStock: IconStock,
+  IconStats: IconStats,
+  IconSettings: IconSettings,
+  IconLogout: IconLogout
+};
+
+export function DashBoard(props) {
+  const Menus = menus.map(({url, text, icon}) => {
+    const IconComponent = iconMap[icon];
+    return (
+      <div className="flex items-center my-[10px]" key={url}>
+        <Link className="flex text-base decoration no-underline text-title" href={url}>
+          <div className="mr-2">
+            {IconComponent ? <IconComponent /> : null}
+          </div>
+          {text}
+        </Link>
       </div>
-      <Link className="text-base decoration no-underline text-title" href={url}>
-        {text}
-      </Link>
-    </div>
-  )
+    )
+  });
+
+  const UserSettings = userSettings.map(({url, text, icon}) => {
+    const IconComponent = iconMap[icon];
+    return (
+      <div className="flex items-center my-[10px]" key={url}>
+        <Link className="flex text-base decoration no-underline text-title" href={url}>
+          <div className="mr-2">
+            {IconComponent ? <IconComponent /> : null}
+          </div>
+          {text}
+        </Link>
+      </div>
+    )
+  });
 
   return (
     <main className="w-full h-screen flex">
