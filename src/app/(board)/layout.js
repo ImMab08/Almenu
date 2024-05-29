@@ -1,5 +1,4 @@
 import { DashBoard } from "@/components/Shared/Dashboard";
-import Navboard from "@/components/Shared/Navboard/Navboard";
 
 export default function Layout({ children }) {
   return (

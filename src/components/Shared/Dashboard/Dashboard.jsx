@@ -1,9 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import { menus } from "./config";
-import { userSettings } from "./config";
-
+import { menus, userSettings } from "./config";
 import { IconHome, IconStock, IconLogout, IconStats, IconSettings } from "./icons";
 
 const iconMap = {
