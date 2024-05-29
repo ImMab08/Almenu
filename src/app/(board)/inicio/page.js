@@ -1,15 +1,10 @@
 import React from "react";
-import Image from "next/image";
 
-import { Inicio } from "@/components/Shared/ContentBoard/Inicio/Inicio";
-import { Navboard } from "@/components/Shared/Navboard";
+import { Inicio } from "@/components/Shared/ContentBoard/Inicio";
 
 export default function page () {
   return (
-    <section className="w-full h-screen flex flex-col boardLayout">
-      <div className="w-full h-[12%] isHome" >
-        <Navboard/>
-      </div>
+    <section className="w-full flex-1 flex-col ">
       <Inicio />
     </section>
   );

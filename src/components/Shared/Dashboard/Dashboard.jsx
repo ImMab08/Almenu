@@ -1,8 +1,10 @@
+'use client'
+import React, { useState } from 'react';
 import Image from "next/image";
 import Link from "next/link";
 
 import { menus, userSettings } from "./config";
-import { IconHome, IconStock, IconLogout, IconStats, IconSettings } from "./icons";
+import { IconHome, IconStock, IconLogout, IconStats, IconSettings, IconRightButton, IconLeftButton } from "./icons";
 
 const iconMap = {
   IconHome: IconHome,
@@ -13,15 +15,23 @@ const iconMap = {
 };
 
 export function DashBoard(props) {
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  const toggleMenu = () => {
+    setIsExpanded(!isExpanded);
+  };
+
   const Menus = menus.map(({url, text, icon}) => {
     const IconComponent = iconMap[icon];
     return (
-      <div className="flex items-center my-[10px]" key={url}>
+      <div className={`flex items-center my-[10px] ${isExpanded ? 'w-48' : 'w-12'} transition-all duration-300`} key={url}>
         <Link className="flex text-base decoration no-underline text-title" href={url}>
-          <div className="mr-2">
+          <div className="ml-[13px] mr-2">
             {IconComponent ? <IconComponent /> : null}
           </div>
-          {text}
+          {isExpanded && (
+            <span className={isExpanded ? 'text-visible' : 'text-hidden'}>{text}</span>
+          )}
         </Link>
       </div>
     )
@@ -30,12 +40,14 @@ export function DashBoard(props) {
   const UserSettings = userSettings.map(({url, text, icon}) => {
     const IconComponent = iconMap[icon];
     return (
-      <div className="flex items-center my-[10px]" key={url}>
+      <div className={`flex items-center my-[10px] ${isExpanded ? 'w-48' : 'w-12'} transition-all duration-300`} key={url}>
         <Link className="flex text-base decoration no-underline text-title" href={url}>
-          <div className="mr-2">
+          <div className="ml-[13px] mr-2">
             {IconComponent ? <IconComponent /> : null}
           </div>
-          {text}
+          {isExpanded && (
+            <span className={isExpanded ? 'text-visible' : 'text-hidden'}>{text}</span>
+          )}
         </Link>
       </div>
     )
@@ -45,7 +57,13 @@ export function DashBoard(props) {
     <main className="w-full h-screen flex">
       <section className="pt-1">
         <div className="w-full h-[10%] flex justify-center">
-          <Image width={120} height={120} className="object-contain" src="/img/logo-almenu.png" alt="Logo Almenu" />
+          <Image 
+            width={isExpanded ? 120 : 40} 
+            height={120} 
+            className="object-contain transition-all duration-300" 
+            src={isExpanded ? "/img/logo-almenu.png" : "/img/logo.png"} 
+            alt="Logo Almenu" 
+          />
         </div>
 
         <div className="w-full h-[70%] p-5">
@@ -56,7 +74,13 @@ export function DashBoard(props) {
           {UserSettings}
         </div>
       </section>
-      
+
+      <button 
+        className={`absolute bottom-4 ${isExpanded ? 'left-[233px]' : 'left-[88px]'} bg-primary w-[35px] h-[35px] shadow-lg rounded-r-xl button-transition`} 
+        onClick={toggleMenu}
+      >
+        {isExpanded ? <IconLeftButton /> : <IconRightButton />}
+      </button>
     </main>
   );
 };

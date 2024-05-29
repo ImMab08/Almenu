@@ -1,15 +1,10 @@
 import React from "react";
-import Image from "next/image";
 
-import { Configuracion } from "@/components/Shared/ContentBoard/Configuracion/Configuracion";
-import { Navboard } from "@/components/Shared/Navboard";
+import { Configuracion } from "@/components/Shared/ContentBoard/Configuracion";
 
 export default function page () {
   return (
-    <section className="w-full h-screen flex flex-col boardLayout">
-      <div className="w-full h-[12%] isSettings">
-        <Navboard />
-      </div>
+    <section className="w-full flex-1 flex-col ">
       <Configuracion />
     </section>
   );

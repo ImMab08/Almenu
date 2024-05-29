@@ -1,13 +1,13 @@
 'use client'
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
-import { navItems } from './config';
-import { IconBars, IconClose } from './icons';
+import { IconBars } from './icons';
+import { HeroItemsNav } from './HeroItemsNav';
+import { HeroMobileNav } from './HeroMobileNav';
+import { navItems, navItemsMobile } from './config'; // Importa los conjuntos de elementos de navegación
 
-export function HeroNav(props) {
+export function HeroNav() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const menuRef = useRef(null);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -16,40 +16,6 @@ export function HeroNav(props) {
   const closeMenu = () => {
     setIsMenuOpen(false);
   };
-
-  const handleClickOutside = useCallback((event) => {
-    if (menuRef.current && !menuRef.current.contains(event.target)) {
-      closeMenu();
-    }
-  }, []);
-
-  const handleSwipe = useCallback((event) => {
-    const touch = event.touches[0];
-    if (touch.clientX < 50) {  // Umbral para considerar un deslizamiento
-      closeMenu();
-    }
-  }, []);
-
-  useEffect(() => {
-    if (isMenuOpen) {
-      document.addEventListener('click', handleClickOutside);
-      document.addEventListener('touchstart', handleSwipe);
-    } else {
-      document.removeEventListener('click', handleClickOutside);
-      document.removeEventListener('touchstart', handleSwipe);
-    }
-
-    return () => {
-      document.removeEventListener('click', handleClickOutside);
-      document.removeEventListener('touchstart', handleSwipe);
-    };
-  }, [isMenuOpen, handleClickOutside, handleSwipe]);
-
-  const Items = navItems.map(({ url, text }) => (
-    <Link key={url} className="relative no-underline text-[16px] desktopLG:text-[18px] font-semibold text-secondary transition-colors hover:text-tertiary" href={url}>
-      {text}
-    </Link>
-  ));
 
   return (
     <div className="w-full h-auto laptop:h-[80px] bg-primary fixed top-0 z-50 shadow-xl flex justify-between items-center px-5 tablet:px-[40px] tablet:py-[5px] laptop:px-16">
@@ -63,31 +29,12 @@ export function HeroNav(props) {
       </div>
 
       <div className="container-links hidden laptop:flex justify-evenly items-center w-3/5">
-        {Items}
+        <HeroItemsNav items={navItems} />
       </div>
 
-      {/* Overlay background */}
       {isMenuOpen && (
-        <div
-          className="fixed inset-0 bg-black opacity-50"
-          onClick={closeMenu}
-        ></div>
+        <HeroMobileNav closeMenu={closeMenu} items={navItemsMobile} />
       )}
-
-      {/* Mobile Menu */}
-      <div
-        ref={menuRef}
-        className={`fixed inset-y-0 left-0 w-64 bg-white shadow-md transform ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'} transition-transform duration-300 ease-in-out laptop:hidden`}
-      >
-        <div className="p-4 flex flex-col space-y-4">
-          <div className="flex justify-end">
-            <button onClick={closeMenu} className="focus:outline-none">
-              <IconClose />
-            </button>
-          </div>
-          {Items}
-        </div>
-      </div>
     </div>
   );
-};
+}

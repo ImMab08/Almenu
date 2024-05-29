@@ -1,15 +1,10 @@
 import React from "react";
-import Image from "next/image";
 
-import { Inventario } from "@/components/Shared/ContentBoard/Inventario/Inventario";
-import { Navboard } from "@/components/Shared/Navboard/Navboard";
+import { Inventario } from "@/components/Shared/ContentBoard/Inventario";
 
 export default function page () {
   return (
-    <section className="w-auto h-screen flex flex-col boardLayout">
-      <div className=" w-full h-[12%] isStock">
-        <Navboard />
-      </div>
+    <section className="w-full flex-1 flex-col ">
       <Inventario />
     </section>
   );
