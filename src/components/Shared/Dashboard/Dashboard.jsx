@@ -25,7 +25,7 @@ export function DashBoard(props) {
     const IconComponent = iconMap[icon];
     return (
       <div className={`flex items-center my-[10px] ${isExpanded ? 'w-48' : 'w-12'} transition-all duration-300`} key={url}>
-        <Link className="flex text-base decoration no-underline text-title" href={url}>
+        <Link className="flex text-[16px] decoration no-underline text-title" href={url}>
           <div className="ml-[13px] mr-2">
             {IconComponent ? <IconComponent /> : null}
           </div>
@@ -41,7 +41,7 @@ export function DashBoard(props) {
     const IconComponent = iconMap[icon];
     return (
       <div className={`flex items-center my-[10px] ${isExpanded ? 'w-48' : 'w-12'} transition-all duration-300`} key={url}>
-        <Link className="flex text-base decoration no-underline text-title" href={url}>
+        <Link className="flex text-[16px] decoration no-underline text-title" href={url}>
           <div className="ml-[13px] mr-2">
             {IconComponent ? <IconComponent /> : null}
           </div>
@@ -54,7 +54,7 @@ export function DashBoard(props) {
   });
 
   return (
-    <main className="w-full h-screen flex">
+    <section className='w-full h-screen flex'>
       <section className="pt-1">
         <div className="w-full h-[10%] flex justify-center">
           <Image 
@@ -76,11 +76,11 @@ export function DashBoard(props) {
       </section>
 
       <button 
-        className={`absolute bottom-4 ${isExpanded ? 'left-[233px]' : 'left-[88px]'} bg-primary w-[35px] h-[35px] shadow-lg rounded-r-xl button-transition`} 
+        className={`pl-[5px] absolute bottom-4 ${isExpanded ? 'left-[232px]' : 'left-[88px]'} bg-primary w-[35px] h-[35px] shadow-lg rounded-r-xl button-transition`} 
         onClick={toggleMenu}
       >
         {isExpanded ? <IconLeftButton /> : <IconRightButton />}
       </button>
-    </main>
+    </section>
   );
 };
