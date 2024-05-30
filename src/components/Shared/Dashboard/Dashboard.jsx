@@ -24,8 +24,8 @@ export function DashBoard(props) {
   const Menus = menus.map(({url, text, icon}) => {
     const IconComponent = iconMap[icon];
     return (
-      <div className={`flex items-center my-[10px] ${isExpanded ? 'w-48' : 'w-12'} transition-all duration-300`} key={url}>
-        <Link className="flex text-[16px] decoration no-underline text-title" href={url}>
+      <div className={`flex items-center my-[10px] hover:bg-blue-500 py-1 rounded-md ${isExpanded ? 'w-48' : 'w-12'} transition-all duration-300`} key={url}>
+        <Link className="flex text-[16px] decoration no-underline  rounded-xl text-title" href={url}>
           <div className="ml-[13px] mr-2">
             {IconComponent ? <IconComponent /> : null}
           </div>
@@ -40,8 +40,8 @@ export function DashBoard(props) {
   const UserSettings = userSettings.map(({url, text, icon}) => {
     const IconComponent = iconMap[icon];
     return (
-      <div className={`flex items-center my-[10px] ${isExpanded ? 'w-48' : 'w-12'} transition-all duration-300`} key={url}>
-        <Link className="flex text-[16px] decoration no-underline text-title" href={url}>
+      <div className={`flex items-center my-[10px] hover:bg-blue-500 py-1 rounded-md ${isExpanded ? 'w-48' : 'w-12'} transition-all duration-300`} key={url}>
+        <Link className="flex text-[16px] decoration no-underline  text-title" href={url}>
           <div className="ml-[13px] mr-2">
             {IconComponent ? <IconComponent /> : null}
           </div>
@@ -66,17 +66,17 @@ export function DashBoard(props) {
           />
         </div>
 
-        <div className="w-full h-[70%] p-5">
+        <div className="w-full h-[70%] p-3">
           {Menus}
         </div>
 
-        <div className="w-full h-[20%] p-5">
+        <div className="w-full h-[20%] p-3">
           {UserSettings}
         </div>
       </section>
 
       <button 
-        className={`pl-[5px] absolute bottom-4 ${isExpanded ? 'left-[232px]' : 'left-[88px]'} bg-primary w-[35px] h-[35px] shadow-lg rounded-r-xl button-transition`} 
+        className={`pl-[5px] absolute bottom-4 ${isExpanded ? 'left-[216px]' : 'left-[72px]'} bg-primary w-[35px] h-[35px] shadow-lg rounded-r-xl transition-all duration-300`} 
         onClick={toggleMenu}
       >
         {isExpanded ? <IconLeftButton /> : <IconRightButton />}
