@@ -8,7 +8,7 @@ export function Inicio () {
     <section className="w-full h-full flex">
       <div className="w-[70%] h-full p-5 grid grid-cols-6 gap-5"> 
 
-        <div className=" w-[100px] h-[100px] p-2 flex flex-col items-center bg-gray-400 rounded-lg cursor-pointer">
+        <div className=" w-[100px] h-[100px] p-2 flex flex-col items-center bg-gray-300 rounded-lg cursor-pointer">
           <p>Mesa 1</p>
           <IconTable />
         </div>

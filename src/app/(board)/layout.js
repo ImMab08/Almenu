@@ -11,7 +11,7 @@ export default function Layout({ children, Header }) {
         <nav className="w-full h-[10.7%]">
           <Navboard Header={Header} />
         </nav>
-        <section className="w-full h-[89.3%] bg-gray-200">
+        <section className="w-full h-[89.3%] bg-gray-200 overflow-auto">
           {children}
         </section>
       </section>
