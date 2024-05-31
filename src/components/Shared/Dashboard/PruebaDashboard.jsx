@@ -60,3 +60,28 @@ export function DashBoard(props) {
     </main>
   );
 };
+
+<div className="w-full h-full p-5 tablet:p-10 laptop:p-10 flex flex-col laptop:flex-row laptop:justify-between">
+<div className="w-[128px] h-[70px] relative laptop:w-[140px] laptop:h-[70px]">
+  <Image layout="fill" objectFit="contain" src="/img/logo-almenu.png" alt="" />
+</div>
+<div className="w-full flex flex-col laptop:w-[80%] tablet:grid tablet:grid-cols-3 justify-around pt-5">
+  <div className="flex flex-col">
+    <h3 className="text-lg desktop:text-xl font-bold">Almenú</h3>
+    <a className="my-[2px] laptop:my-[5px] text-[14px] laptop:text-base no-underline cursor-pointer" href="">almenusoport@almenu.com</a>
+    <a className="my-[2px] laptop:my-[5px] text-[14px] laptop:text-base no-underline cursor-pointer" href="">+57 123 456 7890</a>
+  </div>
+  <div className="flex flex-col">
+    <h3 className="text-lg desktop:text-xl font-bold">Soluciones</h3>
+    <a className="my-[2px] laptop:my-[5px] text-[14px] laptop:text-base no-underline cursor-pointer" href="">Para negocios</a>
+    <a className="my-[2px] laptop:my-[5px] text-[14px] laptop:text-base no-underline cursor-pointer" href="">Para restaurantes</a>
+    <a className="my-[2px] laptop:my-[5px] text-[14px] laptop:text-base no-underline cursor-pointer" href="">Para empresas</a>
+  </div>
+  <div className="flex flex-col">
+    <h3 className="text-lg desktop:text-xl font-bold">Siguenos</h3>
+    <a className="my-[2px] laptop:my-[5px] text-[14px] laptop:text-base no-underline cursor-pointer" href="">Términos y condiciones</a>
+    <a className="my-[2px] laptop:my-[5px] text-[14px] laptop:text-base no-underline cursor-pointer" href="">Política y privacidad</a>
+    <a className="my-[2px] laptop:my-[5px] text-[14px] laptop:text-base no-underline cursor-pointer" href=""></a>
+  </div>
+</div>
+</div>

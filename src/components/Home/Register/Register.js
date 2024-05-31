@@ -2,10 +2,21 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-import { IconCheck } from "./Icons";
-import { IconRedirectArrow } from "./Icons";
+import { IconCheck, IconRedirectArrow } from "../Icons";
+
+import { inputRegister } from "./config";
 
 const Register = () => {
+
+  const InputRegiser = inputRegister.map(({title}) => {
+    return (
+      <div key={title} className="input-field">
+        <input className="input" type="text" placeholder=" " required />
+        <label className="label_name">{title}</label>
+      </div>
+    )
+  })
+
   return (
     <main className="w-full h-full laptop:h-screen laptop:flex justify-center items-center">
       <section className="w-full h-full laptop:h-full laptop:flex">
@@ -100,36 +111,7 @@ const Register = () => {
             </div>
 
             <form action="">
-              <div className="input-field">
-                <input className="input" type="text" placeholder=" " required />
-                <label className="label_name">Nombre(s)</label>
-              </div>
-
-              <div className="input-field">
-                <input className="input" type="text" placeholder=" " required />
-                <label className="label_name">Apellido(s)</label>
-              </div>
-
-              <div className="input-field">
-                <input className="input" type="text" placeholder=" " required />
-                <label className="label_name">Celular</label>
-              </div>
-
-              <div className="input-field">
-                <input className="input" type="text" placeholder=" " required />
-                <label className="label_name">Correo electronico</label>
-              </div>
-
-              <div className="input-field">
-                <input className="input" type="text" placeholder=" " required />
-                <label className="label_name">Contraseña</label>
-              </div>
-
-              <div className="input-field">
-                <input className="input" type="text" placeholder=" " required />
-                <label className="label_name">Confirmar contraseña</label>
-              </div>
-
+                {InputRegiser}
               <div className="button-register">
                 <a href="">Registrarme</a>
               </div>
