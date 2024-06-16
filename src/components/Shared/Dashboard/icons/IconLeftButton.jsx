@@ -11,9 +11,9 @@ export function IconLeftButton(props) {
       <path
         d="M15 7L10 12L15 17"
         stroke="#0b2131"
-        stroke-width="1.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );

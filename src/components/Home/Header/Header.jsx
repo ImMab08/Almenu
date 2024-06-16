@@ -1,21 +1,23 @@
-'use client'
-import { useState } from 'react';
+
 import Image from 'next/image';
+
 import { IconBars } from './icons';
+
 import { HeroItemsNav } from './HeroItemsNav';
 import { HeroMobileNav } from './HeroMobileNav';
-import { navItems, navItemsMobile } from './config'; // Importa los conjuntos de elementos de navegación
+import { navItems, navItemsMobile } from './config';
 
-export function HeroNav() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+import { useMenuMobile } from '@/hooks/menu-mobile';
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
+function Header() {
 
-  const closeMenu = () => {
-    setIsMenuOpen(false);
-  };
+  const [
+    isOpen,
+    toggleMenu,
+  ] = useMenuMobile(state => [
+    state.isOpen,
+    state.toggleMenu,
+  ]);
 
   return (
     <div className="w-full h-auto laptop:h-[80px] bg-primary fixed top-0 z-50 shadow-xl flex justify-between items-center px-5 tablet:px-[40px] tablet:py-[5px] laptop:px-16">
@@ -32,9 +34,11 @@ export function HeroNav() {
         <HeroItemsNav items={navItems} />
       </div>
 
-      {isMenuOpen && (
-        <HeroMobileNav closeMenu={closeMenu} items={navItemsMobile} />
+      {isOpen && (
+        <HeroMobileNav items={navItemsMobile} />
       )}
     </div>
   );
-}
+};
+
+export { Header };

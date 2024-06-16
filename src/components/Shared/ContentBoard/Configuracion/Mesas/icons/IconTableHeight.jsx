@@ -8,7 +8,7 @@ export function IconTableHeight(props) {
       fill="none"
     >
       <rect width="287" height="202" />
-      <g clip-path="url(#clip0_0_1)">
+      <g clipPath="url(#clip0_0_1)">
         <circle
           cx="142.133"
           cy="181.035"

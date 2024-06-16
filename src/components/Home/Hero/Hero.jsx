@@ -1,13 +1,14 @@
+'use client'
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-import { HeroNav } from "./HeroNav";
 import { plans } from "./config";
 
-import { IconRightArrow, IconMapa, IconMapaMobile, IconCheckPlans,  } from "./Icons";
+import { IconRightArrow, IconMapa, IconMapaMobile, IconCheckPlans } from "./Icons";
+import Counter from "./CountNumber";
 
-const Hero = () => {
+function Hero () {
   const Plans = plans.map(({title, description, price, priceSpan, button, benefitsOne, benefitsTwo, benefitsThree}) => {
     return (
       <div key={title} className="bg-white rounded-lg shadow-2xl overflow-hidden">
@@ -45,9 +46,6 @@ const Hero = () => {
   return (
     <>
       <main className="">
-        <nav className="w-full h-full">
-          <HeroNav />
-        </nav>
 
         <section className="w-full h-screen tablet:flex tablet:flex-col laptop:flex-row  justify-center items-center mt-[70px] tablet:mt-[80px] laptop:mt-10 p-5 tablet:p-10 laptop:p-10">
           <div className="w-full h-[80%] flex flex-col justify-center tablet:block tablet:h-auto laptop:w-3/5">
@@ -128,7 +126,7 @@ const Hero = () => {
           <IconMapa />
           <div className="w-full h-[80%] flex flex-col justify-center items-center tablet:block tablet:h-auto laptop:w-3/5">
             <h2 className="desktop:text-[2rem] ml-20 font-extrabold text-secondary leading-[5px]">¡Con más de</h2>
-            <h2 className="desktop:text-[3.5rem] text-center font-extrabold text-secondary leading-[75px]"> <span>+ 2.000</span> clientes</h2>
+            <Counter />
             <h2 className="desktop:text-[2rem] text-center font-extrabold text-secondary leading-3">En toda Colombia!</h2>
           </div>
         </section>
@@ -184,40 +182,9 @@ const Hero = () => {
             <Image layout="fill" objectFit="contain" src="/img/banner.png" alt="" />
           </div>
         </section>
-
-        <footer className="w-full h-auto bg-footerBg shadow-xl flex flex-col justify-center items-center">
-          <div className="w-full h-full p-5 tablet:p-10 laptop:p-10 flex flex-col laptop:flex-row laptop:justify-between">
-            <div className="w-[128px] h-[70px] relative laptop:w-[140px] laptop:h-[70px]">
-              <Image layout="fill" objectFit="contain" src="/img/logo-almenu.png" alt="" />
-            </div>
-            <div className="w-full flex flex-col laptop:w-[80%] tablet:grid tablet:grid-cols-3 justify-around pt-5">
-              <div className="flex flex-col">
-                <h3 className="text-lg desktop:text-xl font-bold">Almenú</h3>
-                <a className="my-[2px] laptop:my-[5px] text-[14px] laptop:text-base no-underline cursor-pointer" href="">almenusoport@almenu.com</a>
-                <a className="my-[2px] laptop:my-[5px] text-[14px] laptop:text-base no-underline cursor-pointer" href="">+57 123 456 7890</a>
-              </div>
-              <div className="flex flex-col">
-                <h3 className="text-lg desktop:text-xl font-bold">Soluciones</h3>
-                <a className="my-[2px] laptop:my-[5px] text-[14px] laptop:text-base no-underline cursor-pointer" href="">Para negocios</a>
-                <a className="my-[2px] laptop:my-[5px] text-[14px] laptop:text-base no-underline cursor-pointer" href="">Para restaurantes</a>
-                <a className="my-[2px] laptop:my-[5px] text-[14px] laptop:text-base no-underline cursor-pointer" href="">Para empresas</a>
-              </div>
-              <div className="flex flex-col">
-                <h3 className="text-lg desktop:text-xl font-bold">Siguenos</h3>
-                <a className="my-[2px] laptop:my-[5px] text-[14px] laptop:text-base no-underline cursor-pointer" href="">Términos y condiciones</a>
-                <a className="my-[2px] laptop:my-[5px] text-[14px] laptop:text-base no-underline cursor-pointer" href="">Política y privacidad</a>
-                <a className="my-[2px] laptop:my-[5px] text-[14px] laptop:text-base no-underline cursor-pointer" href=""></a>
-              </div>
-            </div>
-          </div>
-
-          <div className="w-full h-full flex justify-center items-center p-2">
-            <p className="text-[14px] font-medium">Copyright © Almenú 2024</p>
-          </div>
-        </footer>
       </main>
     </>
   );
 };
 
-export default Hero;
+export { Hero };
