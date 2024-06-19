@@ -1,28 +1,45 @@
-import Image from 'next/image'
-import React from 'react'
+import Image from "next/image";
+import React from "react";
 
-import { links, FooterLinks } from './config'
+import { links, icons, FooterLinks } from "./config";
+import Link from "next/link";
 
 function Footer() {
-
   return (
-    <footer className="w-full h-auto bg-footerBg shadow-xl flex flex-col justify-center items-center">
-      <div className="w-full h-full p-5 tablet:p-10 laptop:p-10 flex flex-col laptop:flex-row laptop:justify-between">
-        <div className="w-[128px] h-[70px] relative laptop:w-[140px] laptop:h-[70px]">
-          <Image layout="fill" objectFit="contain" src="/img/logo-almenu.png" alt="" />
+    <footer className="w-full h-auto bg-footerBg shadow-xl flex flex-col px-5 laptop:px-20">
+      <div className="w-full h-full flex flex-col py-10 laptop:flex-row">
+        <div className="laptop:w-[40%]">
+          <Image
+            width={128}
+            height={60}
+            className="object-cover"
+            src="/img/logo-almenu.png"
+            alt=""
+          />
         </div>
-        <div className="w-full flex flex-col laptop:w-[80%] tablet:flex-row tablet:justify-between mx-auto my-5">
+        <div className="w-full mt-10 laptop:mt-0 flex flex-col laptop:w-[60%] tablet:flex-row tablet:justify-between mx-auto ">
           {links.map((section, index) => (
-            <FooterLinks key={index} title={section.title} links={section.links} />
+            <FooterLinks
+              key={index}
+              title={section.title}
+              links={section.links}
+            />
           ))}
         </div>
       </div>
 
-      <div className="w-full h-full flex justify-center items-center p-2">
-        <p className="text-[14px] font-medium">Copyright © Almenú 2024</p>
+      <div className="w-full h-full laptop:flex justify-between items-center py-5 border-t-2">
+        <p className="laptop:w-[30%] mb-2 laptop:mb-0 text-xs font-medium">Copyright © Almenú 2024</p>
+        <div className="laptop:w-[70%] flex laptop:justify-end items-center space-x-4">
+          {icons.map((link, index) => (
+            <Link className="bg-secondary rounded-full p-[2px]" key={index} href={link.href}>
+              {link.icon}
+            </Link>
+          ))}
+        </div>
       </div>
     </footer>
-  )
+  );
 }
 
-export { Footer }
+export { Footer };
