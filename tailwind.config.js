@@ -12,7 +12,8 @@ module.exports = {
         secondary: "#1995ed",
         tertiary: "#32CD32",
         title: "#0b2131",
-        footerBg: "#f5f7fa",
+        bgMain: "#1995ed",
+        bgFooter: "#f5f5f5",
       },
       screens: {
         'mobileLG': '425px',

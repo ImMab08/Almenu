@@ -1,70 +1,92 @@
-'use client'
+"use client";
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 
 import { plans } from "./config";
 
-import { IconRightArrow, IconMapa, IconMapaMobile, IconCheckPlans } from "./Icons";
+import {
+  IconRightArrow,
+  IconMapa,
+  IconMapaMobile,
+  IconCheckPlans,
+} from "./Icons";
 import Counter from "./CountNumber";
 
-function Hero () {
-  const Plans = plans.map(({title, description, price, priceSpan, button, benefitsOne, benefitsTwo, benefitsThree}) => {
-    return (
-      <div key={title} className="bg-white rounded-lg shadow-2xl overflow-hidden">
-        <div className="p-6 md:p-8">
-          <h3 className="text-2xl font-bold">{title}</h3>
-          <p className="text-gray-500 mt-2">{description}</p>
-          <div className="flex mt-5 justify-center">
-            <p className="text-black text-4xl font-bold">{price}</p>
-            <p className="text-gray-500 text-sm leading-[50px]">{priceSpan}</p>
+function Hero() {
+  const Plans = plans.map(
+    ({
+      title,
+      description,
+      price,
+      priceSpan,
+      button,
+      benefitsOne,
+      benefitsTwo,
+      benefitsThree,
+    }) => {
+      return (
+        <div
+          key={title}
+          className="bg-white rounded-lg shadow-2xl overflow-hidden"
+        >
+          <div className="p-6 md:p-8">
+            <h3 className="text-2xl font-bold">{title}</h3>
+            <p className="text-gray-500 mt-2">{description}</p>
+            <div className="flex mt-5 justify-center">
+              <p className="text-black text-4xl font-bold">{price}</p>
+              <p className="text-gray-500 text-sm leading-[50px]">
+                {priceSpan}
+              </p>
+            </div>
+            <div className="mt-4">
+              <button className="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-secondary text-primary-foreground h-11 rounded-md px-8 w-full ">
+                {button}
+              </button>
+            </div>
+            <ul className="space-y-2 mt-6">
+              <li className="flex items-center">
+                <IconCheckPlans />
+                {benefitsOne}
+              </li>
+              <li className="flex items-center">
+                <IconCheckPlans />
+                {benefitsTwo}
+              </li>
+              <li className="flex items-center">
+                <IconCheckPlans />
+                {benefitsThree}
+              </li>
+            </ul>
           </div>
-          <div className="mt-4">
-            <button className="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-secondary text-primary-foreground h-11 rounded-md px-8 w-full ">
-              {button}
-            </button>
-          </div>
-          <ul className="space-y-2 mt-6">
-            <li className="flex items-center">
-              <IconCheckPlans />
-              {benefitsOne}
-            </li>
-            <li className="flex items-center">
-              <IconCheckPlans />
-              {benefitsTwo}
-            </li>
-            <li className="flex items-center">
-              <IconCheckPlans />
-              {benefitsThree}
-            </li>
-          </ul>
         </div>
-      </div>
-    )
-  });
+      );
+    }
+  );
 
   return (
     <>
       <main className="">
-
-        <section className="w-full h-screen tablet:flex tablet:flex-col laptop:flex-row  justify-center items-center mt-[70px] tablet:mt-[80px] laptop:mt-10 p-5 tablet:p-10 laptop:p-10">
-          <div className="w-full h-[80%] flex flex-col justify-center tablet:block tablet:h-auto laptop:w-3/5">
-            <h1 className="text-[2rem] mobileLG:text-[2.5rem] tablet:text-[3.5rem] laptop:text-[3rem] desktopLG:text-[4rem] leading-[22px] mobileLG:leading-[32px] tablet:leading-[72px] laptop:leading-[52px] desktopLG:leading-[72px] font-extrabold text-secondary ">Revolución</h1>
-            <h2 className="text-[3rem] mobileLG:text-[3.5rem] tablet:text-[5.25rem] laptop:text-[4.25rem] desktopLG:text-[5rem] leading-[50px] font-black mb-[5px] text-secondary "><span className="">Digital</span> Para</h2>
-            <h3 className="text-[2.25rem] mobileLG:text-[2.75rem] tablet:text-[4rem] laptop:text-[3rem] leading-[20px] desktopLG:text-[4rem] mobileLG:leading-[32px] tablet:leading-[80px] laptop:leading-[50px] desktopLG:leading-[72px] pl-[20px] tablet:pl-[32px] laptop:pl-[30px] font-extrabold text-secondary">Tu Negocio.</h3>
-            <p className="mt-8 text-sm mobileLG:text-base laptop:text-lg desktopLG:text-xl laptop:mt-[25px] laptop:w-[500px] ">
+        <section className="hero overlay w-full h-screen bg-bgMain tablet:flex tablet:flex-col laptop:flex-row justify-center items-center mt-[60px] tablet:mt-[80px] laptop:mt-10 p-5 tablet:p-10 laptop:p-10">
+          <div className="w-full h-[80%] flex flex-col justify-center tablet:block tablet:h-auto laptop:w-3/5 relative z-10">
+            <h1 className="text-[2rem] mobileLG:text-[2.5rem] tablet:text-[3.5rem] laptop:text-[3rem] desktopLG:text-[4rem] leading-[22px] mobileLG:leading-[32px] tablet:leading-[72px] laptop:leading-[52px] desktopLG:leading-[72px] font-extrabold text-primary ">Revolución</h1>
+            <h2 className="text-[3rem] mobileLG:text-[3.5rem] tablet:text-[5.25rem] laptop:text-[4.25rem] desktopLG:text-[5rem] leading-[50px] font-black mb-[5px] text-primary ">
+              <span className="">Digital</span> Para
+            </h2>
+            <h3 className="text-[2.25rem] mobileLG:text-[2.75rem] tablet:text-[4rem] laptop:text-[3rem] leading-[20px] desktopLG:text-[4rem] mobileLG:leading-[32px] tablet:leading-[80px] laptop:leading-[50px] desktopLG:leading-[72px] pl-[20px] tablet:pl-[32px] laptop:pl-[30px] font-extrabold text-primary">Tu Negocio.</h3>
+            <p className="text-primary mt-8 text-sm mobileLG:text-base laptop:text-lg desktopLG:text-xl laptop:mt-[25px] laptop:w-[500px] ">
               Optimiza y lleva al siguiente nivel tu restaurante con Almenú. Un
               software hecho a la medida para la gestión de de pequeños,
               medianos y grandes restaurantes.
             </p>
-            <div className="aboutMore w-[140px] h-auto flex items-center cursor-pointer mt-5 laptop:mt-[30px]">
-              <a className="bg-primary text-secondary no-underline text-base laptop:text-base transition" href="">Conoce más</a>
+            <div className="aboutMore w-[140px] h-auto flex items-center cursor-pointer mt-5">
+              <a className="bg-secondary text-primary no-underline hover:underline text-base laptop:text-base transition" href="">Conoce más</a>
               <IconRightArrow />
             </div>
           </div>
 
-          <div className="hidden desktop:block">
-            <p className="text-center">¿Ya tienes una cuenta?</p>
+          <div className="hidden desktop:block relative z-10">
+            <p className="text-center text-primary">¿Ya tienes una cuenta?</p>
             <div className="w-[auto] h-[350px] tablet:w-[400px] p-[25px] bg-primary flex flex-col justify-between items-center rounded-3xl shadow-2xl mt-5 laptop:mt-0">
               <div className="flex justify-between items-center">
                 <h2 className="text-[2rem] font-extrabold text-secondary">Iniciar Sesión</h2>
@@ -72,12 +94,12 @@ function Hero () {
 
               <form action="">
                 <div className="input-field">
-                  <input className="input" type="text" placeholder=" " required />
+                  <input className="input" type="text" placeholder=" " required/>
                   <label className="label_name">Correo electronico</label>
                 </div>
 
                 <div className="input-field">
-                  <input className="input" type="text" placeholder=" " required />
+                  <input className="input" type="password" placeholder=" " required/>
                   <label className="label_name">Contraseña</label>
                 </div>
 
@@ -93,6 +115,15 @@ function Hero () {
             </div>
           </div>
         </section>
+
+        {/* <div class="custom-shape-divider-top-1718826329">
+          <svg data-name="Layer 1" viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path
+              d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
+              class="shape-fill"
+            ></path>
+          </svg>
+        </div> */}
 
         {/* <section className="w-full h-screen desktop:hidden px-2">
           <p className="text-center">¿Ya tienes una cuenta?</p>
@@ -122,7 +153,7 @@ function Hero () {
           </div>
         </section> */}
 
-        <section className="hidden w-full h-screen laptop:flex items-center justify-center px-[70px]">
+        {/* <section className="hidden w-full h-screen laptop:flex items-center justify-center px-[70px]">
           <IconMapa />
           <div className="w-full h-[80%] flex flex-col justify-center items-center tablet:block tablet:h-auto laptop:w-3/5">
             <h2 className="desktop:text-[2rem] ml-20 font-extrabold text-secondary leading-[5px]">¡Con más de</h2>
@@ -134,7 +165,7 @@ function Hero () {
         <section className="laptop:hidden w-full h-screen items-center justify-center px-[20px]">
           <div className="w-full h-auto flex flex-col justify-center items-center">
             <h2 className="text-[1.8rem] mr-[7.5rem] font-extrabold text-secondary leading-3">¡Con más de</h2>
-            <h2 className="text-[2.3rem] text-center font-extrabold text-secondary leading-[50px]"> <span>+ 2.000</span> clientes</h2>
+            <h2 className="text-[2.3rem] text-center font-extrabold text-secondary leading-[50px]">{" "}<span>+ 2.000</span> clientes</h2>
             <h2 className="text-[1.8rem] mr-[2rem] text-center font-extrabold text-secondary leading-3">En toda Colombia!</h2>
           </div>
           <IconMapaMobile />
@@ -142,7 +173,7 @@ function Hero () {
 
         <section className="w-full h-auto flex flex-col justify-center p-5 tablet:p-10  ">
           <div className="w-[200px] h-[200px] top-1 left-[130px] relative mobileLG:left-[60px] tablet:w-[350px] tablet:h-[350px] tablet:top-[10px] tablet:left-[350px] laptop:w-[300px] laptop:h-[300px] laptop:top-[1px] laptop:left-[750px] z-[1]">
-            <Image layout="fill" objectFit="contain" src="/img/img-hero.png" alt="" />
+            <Image layout="fill" objectFit="contain" src="/img/img-hero.png" alt=""/>
           </div>
           <section className="w-auto h-auto bg-secondary rounded-[20px] shadow-2xly-32">
             <div className="w-full py-12">
@@ -153,9 +184,7 @@ function Hero () {
                     <p className="text-primary">Encuentra el plan perfecto para tu negocio.</p>
                   </div>
                 </div>
-                <div className="grid lg:grid-cols-3 gap-6">
-                  {Plans}
-                </div>
+                <div className="grid lg:grid-cols-3 gap-6">{Plans}</div>
               </div>
             </div>
           </section>
@@ -173,18 +202,18 @@ function Hero () {
             </p>
           </div>
           <div className="w-[550px] h-[400px] relative">
-            <Image layout="fill" objectFit="contain" src="/img/aboutwe.png" alt="" />
+            <Image layout="fill" objectFit="contain" src="/img/aboutwe.png" alt=""/>
           </div>
         </section>
 
         <section className="hidden w-full h-screen laptop:flex justify-center">
           <div className="relative w-full h-full">
-            <Image layout="fill" objectFit="contain" src="/img/banner.png" alt="" />
+            <Image layout="fill" objectFit="contain" src="/img/banner.png" alt=""/>
           </div>
-        </section>
+        </section> */}
       </main>
     </>
   );
-};
+}
 
 export { Hero };

@@ -19,9 +19,9 @@ export const links = [
   {
     title: 'Información',
     links: [
+      { text: 'Sobre nosotros', href: '/privacidad' },
       { text: 'Términos y condiciones', href: '/terminos' },
       { text: 'Política y privacidad', href: '/privacidad' },
-      { text: 'Sobre nosotros', href: '/privacidad' },
     ],
   },
 ];

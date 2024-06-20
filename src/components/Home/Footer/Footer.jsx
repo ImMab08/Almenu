@@ -6,7 +6,7 @@ import Link from "next/link";
 
 function Footer() {
   return (
-    <footer className="w-full h-auto bg-footerBg shadow-xl flex flex-col px-5 laptop:px-20">
+    <footer className="w-full h-auto bg-bgFooter shadow-xl flex flex-col px-5 laptop:px-20">
       <div className="w-full h-full flex flex-col py-10 laptop:flex-row">
         <div className="laptop:w-[40%]">
           <Image
