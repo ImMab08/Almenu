@@ -1,7 +1,7 @@
 'use client'
-import { Header } from "@/components/Home/Header/Header";
+import { Header } from "@/components/Shared/Header/Header";
 import { Hero } from "@/components/Home/Hero/Hero";
-import { Footer } from "@/components/Home/Footer/Footer";
+import { Footer } from "@/components/Shared/Footer/Footer";
 
 export default function Home() {
   return (

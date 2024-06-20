@@ -4,7 +4,7 @@ export const links = [
   {
     title: 'Contacto',
     links: [
-      { text: 'almenusoport@almenu.com', href: 'mailto:almenusoport@almenu.com' },
+      { text: 'almenusupport@almenu.com', href: 'mailto:almenusoport@almenu.com' },
       { text: '+57 123 456 7890', href: 'tel:+571234567890' },
     ],
   },

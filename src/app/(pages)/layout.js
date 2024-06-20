@@ -1,5 +1,5 @@
-import { Header } from "@/components/Home/Header/Header";
-import { Footer } from "@/components/Home/Footer/Footer";
+import { Header } from "@/components/Shared/Header/Header";
+import { Footer } from "@/components/Shared/Footer/Footer";
 
 export default function Layout({ children }) {
   return (
