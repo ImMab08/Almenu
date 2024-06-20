@@ -1,12 +1,13 @@
 export const navItems = [
-  {url: "/", text: "Sobre Nosotros"},
-  {url: "/", text: "Planes y Suscripciones"},
-  {url: "/", text: "Contactanos"},
+  {url: "/about", text: "Sobre Nosotros"},
+  {url: "/pricing", text: "Planes y Suscripciones"},
+  {url: "/contact", text: "Contactanos"},
 ]
 
 export const navItemsMobile = [
-  {url: "/", text: "Sobre Nosotros"},
-  {url: "/", text: "Planes y Suscripciones"},
-  {url: "/", text: "Contactanos"},
+  {url: "/", text: "Inicio"},
+  {url: "/about", text: "Sobre Nosotros"},
+  {url: "/pricing", text: "Planes y Suscripciones"},
+  {url: "/contact", text: "Contactanos"},
   {url: "/", text: "Iniciar Sesión"},
 ]

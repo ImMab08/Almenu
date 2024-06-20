@@ -1,4 +1,4 @@
-
+'use client'
 import Image from 'next/image';
 
 import { IconBars } from './icons';
@@ -8,6 +8,7 @@ import { HeroMobileNav } from './HeroMobileNav';
 import { navItems, navItemsMobile } from './config';
 
 import { useMenuMobile } from '@/hooks/menu-mobile';
+import Link from 'next/link';
 
 function Header() {
 
@@ -25,9 +26,9 @@ function Header() {
         <IconBars />
       </div>
       <div className="w-[120px] h-[50px] mobileLG:w-[130px] mobileLG:h-[60px] tablet:w-[150px] tablet:h-[70px] laptop:w-[160px] laptop:h-[80px] relative">
-        <a href="index.html">
+        <Link href="/">
           <Image layout="fill" objectFit="contain" src="/img/logo-almenu.png" alt="Logo" />
-        </a>
+        </Link>
       </div>
 
       <div className="container-links hidden laptop:flex justify-evenly items-center w-3/5">

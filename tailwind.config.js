@@ -13,7 +13,7 @@ module.exports = {
         tertiary: "#32CD32",
         title: "#0b2131",
         bgMain: "#1995ed",
-        bgFooter: "#f5f5f5",
+        bgFooter: "#f4f4f4",
       },
       screens: {
         'mobileLG': '425px',
