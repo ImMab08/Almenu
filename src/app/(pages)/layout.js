@@ -5,7 +5,7 @@ export default function Layout({ children }) {
   return (
     <section className="w-full h-auto">
       <Header />
-      <section className="w-full h-auto mt-20">
+      <section className="w-full h-auto mt-10 sm:mt-20">
         {children}
       </section>
       <Footer />
