@@ -1,5 +1,5 @@
 export const inputRegister = [
-  {title: "Nombr(s)"},
+  {title: "Nombre(s)"},
   {title: "Apellido(s)"},
   {title: "Celular"},
   {title: "Correo eléctronico"},

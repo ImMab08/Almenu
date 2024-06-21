@@ -72,6 +72,30 @@
   z-index: 10;
 }
 
+.container-precio {
+  position: relative;
+  overflow: hidden;
+}
+
+.container-precio::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('../../public/img/fondo-precio.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.12;
+  z-index: 0;
+}
+
+.container-precio {
+  z-index: 10;
+}
+
 /*  */
 .text-hidden {
   opacity: 0;
@@ -271,8 +295,8 @@ input:not(:placeholder-shown) ~ label {
 
 .button-register {
   position: absolute;
-  bottom: 10px;
-  right: 325px;
+  bottom: 80px;
+  right: 395px;
 }
 .button-register a {
   padding: 5px 15px;

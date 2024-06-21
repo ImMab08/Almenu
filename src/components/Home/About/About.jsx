@@ -22,9 +22,6 @@ function About() {
       <section className="w-full h-full py-12 md:py-24 lg:py-32">
         <div className="container grid items-center gap-8 px-4 md:px-6 lg:grid-cols-2 lg:gap-16">
           <div className="space-y-4">
-            <div className="inline-block text-secondary rounded-lg bg-bgFooter px-3 py-1 text-sm">
-              About Us
-            </div>
             <h2 className="text-3xl text-secondary font-bold tracking-tighter sm:text-4xl md:text-5xl">
               Transformado Procesos Manuales en Soluciones Digitales
             </h2>
