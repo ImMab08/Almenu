@@ -1,2 +1,2 @@
-import * from './IconLocate'
-import * from './IconPhone'
+export * from './IconLocate'
+export * from './IconPhone'
