@@ -22,7 +22,7 @@ export function InicioMobile() {
           </div>
           <p className="text-sm">
             Da{" "}
-            <Link className="underline" href="/configuracion/mesas">
+            <Link className="underline" href="/configuracion/#mesas">
               click aquí
             </Link>{" "}
             para comenzar.

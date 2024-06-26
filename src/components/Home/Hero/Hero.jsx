@@ -63,33 +63,7 @@ function Hero() {
           </svg>
         </div> */}
 
-        {/* <section className="w-full h-screen desktop:hidden px-2">
-          <p className="text-center">¿Ya tienes una cuenta?</p>
-          <div className="w-[auto] h-[450px] tablet:w-[400px] p-[25px] bg-primary flex flex-col justify-between items-center rounded-3xl shadow-2xl mt-5 laptop:mt-0">
-            <div className="flex justify-between items-center">
-              <h2 className="text-[2rem] font-extrabold text-secondary">Iniciar Sesión</h2>
-            </div>
 
-            <form action="">
-              <div className="input-field">
-                <input className="input" type="text" placeholder=" " required />
-                <label className="label_name">Correo electronico</label>
-              </div>
-              <div className="input-field">
-                <input className="input" type="text" placeholder=" " required />
-                <label className="label_name">Contraseña</label>
-              </div>
-              <div className="button">
-                <a href="home.html">Iniciar sesión</a>
-              </div>
-            </form>
-
-            <div className="w-full flex justify-between gap-[20px]">
-              <a className="text-[14px] text-secondary no-underline hover:text-tertiary" href="">Olvidé mi contraseña</a>
-              <a className="text-[14px] text-secondary no-underline hover:text-tertiary" href="register.html">Registrarme</a>
-            </div>
-          </div>
-        </section> */}
 
         {/* 
 

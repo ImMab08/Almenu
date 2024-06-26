@@ -1,6 +1,6 @@
 import React from 'react'
-import Register from '@/components/Home/Register/Register'
+import Login from '@/components/Home/Login/Login'
 
 export default function page() {
-  return <Register />
+  return <Login />
 }

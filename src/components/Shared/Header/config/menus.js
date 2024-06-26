@@ -10,5 +10,5 @@ export const navItemsMobile = [
   {url: "/about", text: "Sobre Nosotros"},
   {url: "/pricing", text: "Planes y Suscripciones"},
   {url: "/contact", text: "Contactanos"},
-  {url: "/", text: "Iniciar Sesión"},
+  {url: "/login", text: "Iniciar Sesión"},
 ]

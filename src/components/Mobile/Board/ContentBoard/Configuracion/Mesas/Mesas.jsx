@@ -26,7 +26,7 @@ export function Mesas() {
   ]);
 
   return (
-    <section className="w-full h-full p-5 bg-primary rounded-lg">
+    <section className="w-full h-full p-5 bg-primary rounded-lg" id="mesas">
       <h1 className="text-title text-xl font-bold py-2">
         Configuración de Mesas
       </h1>

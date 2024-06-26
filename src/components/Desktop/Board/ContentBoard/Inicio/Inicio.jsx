@@ -14,7 +14,7 @@ export function Inicio () {
           <div className=" w-[250px] h-[250px] relative">
             <Image layout="fill"  src="/img/Questions-amico.png" alt="" />
           </div>
-          <p className="text-sm">Da <Link className="underline" href="/configuracion/mesas">click aquí</Link> para comenzar.</p>
+          <p className="text-sm">Da <Link className="underline" href="/configuracion/#mesas">click aquí</Link> para comenzar.</p>
         </div>    
 
       </div>
