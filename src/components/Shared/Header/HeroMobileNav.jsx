@@ -1,6 +1,6 @@
 import { IconClose } from './icons';
 import { HeroItemsNav } from './HeroItemsNav';
-import { useMenuMobile } from '@/hooks/menu-mobile';
+import { useMenuMobile } from '@/hooks/CustomHook';
 
 export function HeroMobileNav({ items }) {
   

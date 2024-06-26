@@ -6,56 +6,53 @@ import { IconRightArrow } from "./Icons";
 function Hero() {
 
   return (
+    <main className="">
+      <section className="hero w-full h-screen bg-bgMain tablet:flex tablet:flex-col laptop:flex-row justify-center items-center mt-[50px] tablet:mt-[80px] laptop:mt-10 p-5 tablet:p-10 laptop:p-10">
+        
+        <div className="w-full h-[80%] flex flex-col justify-center tablet:block tablet:h-auto laptop:w-3/5 relative z-10">
+          <h1 className="text-[2rem] mobileLG:text-[2.5rem] tablet:text-[3.5rem] laptop:text-[3rem] desktopLG:text-[4rem] leading-[22px] mobileLG:leading-[32px] tablet:leading-[72px] laptop:leading-[52px] desktopLG:leading-[72px] font-extrabold text-primary ">Revolución</h1>
+          <h2 className="text-[3rem] mobileLG:text-[3.5rem] tablet:text-[5.25rem] laptop:text-[4.25rem] desktopLG:text-[5rem] leading-[50px] font-black mb-[5px] text-primary ">
+            <span className="">Digital</span> Para
+          </h2>
+          <h3 className="text-[2.25rem] mobileLG:text-[2.75rem] tablet:text-[4rem] laptop:text-[3rem] leading-[20px] desktopLG:text-[4rem] mobileLG:leading-[32px] tablet:leading-[80px] laptop:leading-[50px] desktopLG:leading-[72px] pl-[20px] tablet:pl-[32px] laptop:pl-[30px] font-extrabold text-primary">Tu Negocio.</h3>
+          <p className="text-primary mt-8 text-sm mobileLG:text-base laptop:text-lg desktopLG:text-xl laptop:mt-[25px] laptop:w-[500px] ">
+            Optimiza y lleva al siguiente nivel tu restaurante con Almenú. Un
+            software hecho a la medida para la gestión de de pequeños,
+            medianos y grandes restaurantes.
+          </p>
+          <div className="aboutMore w-[140px] h-auto flex items-center cursor-pointer mt-5">
+            <Link className="bg-secondary text-primary no-underline hover:underline text-base laptop:text-base transition" href="/about">Conoce más</Link>
+            <IconRightArrow />
+          </div>
+        </div>
 
-      <main className="">
-        <section className="hero w-full h-screen bg-bgMain tablet:flex tablet:flex-col laptop:flex-row justify-center items-center mt-[50px] tablet:mt-[80px] laptop:mt-10 p-5 tablet:p-10 laptop:p-10">
-          <div className="w-full h-[80%] flex flex-col justify-center tablet:block tablet:h-auto laptop:w-3/5 relative z-10">
-            <h1 className="text-[2rem] mobileLG:text-[2.5rem] tablet:text-[3.5rem] laptop:text-[3rem] desktopLG:text-[4rem] leading-[22px] mobileLG:leading-[32px] tablet:leading-[72px] laptop:leading-[52px] desktopLG:leading-[72px] font-extrabold text-primary ">Revolución</h1>
-            <h2 className="text-[3rem] mobileLG:text-[3.5rem] tablet:text-[5.25rem] laptop:text-[4.25rem] desktopLG:text-[5rem] leading-[50px] font-black mb-[5px] text-primary ">
-              <span className="">Digital</span> Para
-            </h2>
-            <h3 className="text-[2.25rem] mobileLG:text-[2.75rem] tablet:text-[4rem] laptop:text-[3rem] leading-[20px] desktopLG:text-[4rem] mobileLG:leading-[32px] tablet:leading-[80px] laptop:leading-[50px] desktopLG:leading-[72px] pl-[20px] tablet:pl-[32px] laptop:pl-[30px] font-extrabold text-primary">Tu Negocio.</h3>
-            <p className="text-primary mt-8 text-sm mobileLG:text-base laptop:text-lg desktopLG:text-xl laptop:mt-[25px] laptop:w-[500px] ">
-              Optimiza y lleva al siguiente nivel tu restaurante con Almenú. Un
-              software hecho a la medida para la gestión de de pequeños,
-              medianos y grandes restaurantes.
-            </p>
-            <div className="aboutMore w-[140px] h-auto flex items-center cursor-pointer mt-5">
-              <a className="bg-secondary text-primary no-underline hover:underline text-base laptop:text-base transition" href="">Conoce más</a>
-              <IconRightArrow />
+        <div className="hidden desktop:block relative z-10">
+          <p className="text-center text-primary">¿Ya tienes una cuenta?</p>
+          <div className="w-[auto] h-[350px] tablet:w-[400px] p-[25px] bg-primary flex flex-col justify-between items-center rounded-3xl shadow-2xl mt-5 laptop:mt-0">
+            <div className="flex justify-between items-center">
+              <h2 className="text-[2rem] font-extrabold text-secondary">Iniciar Sesión</h2>
+            </div>
+            <form action="">
+              <div className="input-field">
+                <input className="input" type="text" placeholder=" " required/>
+                <label className="label_name">Correo electronico</label>
+              </div>
+              <div className="input-field">
+                <input className="input" type="password" placeholder=" " required/>
+                <label className="label_name">Contraseña</label>
+              </div>
+              <div className="button">
+                <Link href="/inicio">Iniciar sesión</Link>
+              </div>
+            </form>
+            <div className="w-full flex justify-between gap-[20px]">
+              <Link className="text-[14px] text-secondary no-underline hover:text-tertiary" href="/">Olvidé mi contraseña</Link>
+              <Link className="text-[14px] text-secondary no-underline hover:text-tertiary" href="/register">Registrarme</Link>
             </div>
           </div>
-
-          <div className="hidden desktop:block relative z-10">
-            <p className="text-center text-primary">¿Ya tienes una cuenta?</p>
-            <div className="w-[auto] h-[350px] tablet:w-[400px] p-[25px] bg-primary flex flex-col justify-between items-center rounded-3xl shadow-2xl mt-5 laptop:mt-0">
-              <div className="flex justify-between items-center">
-                <h2 className="text-[2rem] font-extrabold text-secondary">Iniciar Sesión</h2>
-              </div>
-
-              <form action="">
-                <div className="input-field">
-                  <input className="input" type="text" placeholder=" " required/>
-                  <label className="label_name">Correo electronico</label>
-                </div>
-
-                <div className="input-field">
-                  <input className="input" type="password" placeholder=" " required/>
-                  <label className="label_name">Contraseña</label>
-                </div>
-
-                <div className="button">
-                  <Link href="/inicio">Iniciar sesión</Link>
-                </div>
-              </form>
-
-              <div className="w-full flex justify-between gap-[20px]">
-                <Link className="text-[14px] text-secondary no-underline hover:text-tertiary" href="/">Olvidé mi contraseña</Link>
-                <Link className="text-[14px] text-secondary no-underline hover:text-tertiary" href="/register">Registrarme</Link>
-              </div>
-            </div>
-          </div>
-        </section>
+        </div>
+        
+      </section>
 
         {/* <div className="custom-shape-divider-top-1718826329">
           <svg data-name="Layer 1" viewBox="0 0 1200 120" preserveAspectRatio="none">

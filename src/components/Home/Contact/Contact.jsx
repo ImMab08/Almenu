@@ -4,32 +4,32 @@ import { IconPhone } from "./icons/IconPhone";
 
 function Contact() {
   return (
-      <section className="w-full px-5 sm:px-20 py-12 md:py-24 lg:py-32">
+      <section className="w-full flex flex-col md:flex-row px-5 sm:px-20 py-12 md:py-24 lg:py-32 md:gap-8">
 
-        <div className="container grid gap-8 lg:grid-cols-2 lg:gap-16">
-          <div className="space-y-4">
-            <h2 className="text-3xl text-secondary font-bold tracking-tighter sm:text-4xl md:text-5xl">
-              Ponte en Contacto con Nosotros
-            </h2>
-            <p className="max-w-[600px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-              ¿Tienes alguna pregunta o deseas una accesoria personalizada? 
-              Rellena el siguiente formulario y nos pondremos en contacto 
-              contigo lo antes posible para solucionar todas tus dudas.
-            </p>
-            <div className=" items-center space-y-2">
-              <div className="flex space-x-2">
-                <IconPhone />
-                <span className="">+57 123 457 7890</span>
-              </div>
-              <div className="flex space-x-2">
-                <IconLocate />
-                <span className="">
-                  Cali - Valle del Cauca, Colombia.
-                </span>
-              </div>
+        <div className="space-y-4">
+          <h2 className="text-3xl text-secondary font-bold tracking-tighter sm:text-4xl md:text-5xl">
+            Ponte en Contacto con Nosotros
+          </h2>
+          <p className="max-w-[600px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+            ¿Tienes alguna pregunta o deseas una accesoria personalizada? 
+            Rellena el siguiente formulario y nos pondremos en contacto 
+            contigo lo antes posible para solucionar todas tus dudas.
+          </p>
+          <div className=" items-center space-y-2">
+            <div className="flex space-x-2">
+              <IconPhone />
+              <span className="">+57 123 457 7890</span>
+            </div>
+            <div className="flex space-x-2">
+              <IconLocate />
+              <span className="">
+                Cali - Valle del Cauca, Colombia.
+              </span>
             </div>
           </div>
+        </div>
 
+        <section className="w-full h-screen md:w-auto md:h-auto flex flex-col justify-center">
           <form className="grid gap-4 border border-secondary rounded-lg p-5 shadow-xl space-y-5">
             <div className="space-y-2 sm:space-y-1 flex flex-col items-center justify-center border-b-2 border-secondary pb-8">
               <h1 className="text-2xl sm:text-3xl font-semibold text-secondary">Contactanos</h1>
@@ -53,7 +53,7 @@ function Contact() {
               Enviar
             </button>
           </form>
-        </div>
+        </section>
         
       </section>
   );

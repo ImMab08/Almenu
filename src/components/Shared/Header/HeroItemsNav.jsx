@@ -1,4 +1,4 @@
-import { useMenuMobile } from "@/hooks/menu-mobile";
+import { useMenuMobile } from "@/hooks/CustomHook";
 import Link from "next/link";
 
 export function HeroItemsNav({ items }) {

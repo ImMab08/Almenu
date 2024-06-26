@@ -7,7 +7,7 @@ import { HeroItemsNav } from './HeroItemsNav';
 import { HeroMobileNav } from './HeroMobileNav';
 import { navItems, navItemsMobile } from './config';
 
-import { useMenuMobile } from '@/hooks/menu-mobile';
+import { useMenuMobile } from '@/hooks/CustomHook';
 import Link from 'next/link';
 
 function Header() {
