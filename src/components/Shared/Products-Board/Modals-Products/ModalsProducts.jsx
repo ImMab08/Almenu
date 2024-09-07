@@ -1,9 +1,11 @@
 import React from 'react'
 
-export default function () {
+const ModalsProducts = () => {
   return (
     <div>
       
     </div>
   )
 }
+
+export default ModalsProducts;

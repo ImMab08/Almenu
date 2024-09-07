@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { IconArrowDown } from "./icons/IconArrowDown";
+import { IconArrowDown } from "./icons";
 
 export default function ProductsBoard() {
   const [isDropdownVisible, setIsDropdownVisible] = useState();

@@ -1,1 +1,1 @@
-import * from './IconArrowDown'
+export * from './IconArrowDown'
