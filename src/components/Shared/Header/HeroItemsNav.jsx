@@ -10,7 +10,7 @@ export function HeroItemsNav({ items }) {
       {items.map(({ url, text }) => (
         <Link
           key={url}
-          className="relative no-underline text-[16px] desktopLG:text-[18px] font-semibold text-secondary transition-colors hover:text-tertiary"
+          className="relative no-underline text-[16px] desktopLG:text-[18px] font-semibold text-white transition-colors hover:text-bg"
           href={url}
           onClick={closeMenu}
         >

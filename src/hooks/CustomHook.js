@@ -19,3 +19,22 @@ export const expandedItemState = create((set) => ({
   })),
   closeExpanded: () => set({ expandedId: null }),
 }));
+
+// Estado para el formulario de Login
+export const useLogin = create((set) => ({
+  formData: {
+    username: '',
+    password: '',
+  },
+
+  setFormData: (newData) => set((state) => ({
+    formData: { ...state.formData, ...newData }
+  })),
+  
+  resetFormData: () => set(() => ({
+    formData: {
+      username: '',
+      password: '',
+    }
+  }))
+}));

@@ -1,1 +1,13 @@
 export * from './IconUpload'
+export * from './IconPencil'
+export * from './IconPapelera'
+export * from './IconArrowDown'
+export * from './IconAddButton'
+export * from './IconRemoveButton'
+export * from './IconSearch'
+export * from './IconTableTwo'
+export * from './IconTableFour'
+export * from './IconTableSix'
+export * from './IconTableHeight'
+
+export * from './IconFood'

@@ -1,32 +1,34 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-
-import { IconTable } from "../Configuracion/Mesas/icons";
+import ProductsBoard from "@/components/Shared/Products-Board/ProductsBoard";
 
 export function Inicio () {
   return (
-    <section className="w-full h-full flex">
-      <div className="w-[70%] h-auto p-5"> 
+    <section className="w-full h-full flex bg-secondary">
+      <div className="w-[70%] h-auto"> 
+        <ProductsBoard />
 
-        <div className="w-full h-full flex flex-col items-center justify-center">
-          <p className="text-base font-semibold">¡Aún no has añadido mesas!</p>
-          <div className=" w-[250px] h-[250px] relative">
-            <Image layout="fill"  src="/img/Questions-amico.png" alt="" />
+
+        <div className="w-full h-full flex flex-col items-center justify-center p-5">
+          <p className="text-base font-semibold text-title">¡Aún no has añadido mesas!</p>
+          <div className=" w-[250px] h-[250px] relative flex justify-center">
+            <Image width={200} height={200} className=" object-contain"  src="/img/Questions-amico.png" alt="" />
           </div>
-          <p className="text-sm">Da <Link className="underline" href="/configuracion/#mesas">click aquí</Link> para comenzar.</p>
-        </div>    
+          <p className="text-sm text-title">Da <Link className="underline text-title" href="/configuracion/#mesas">click aquí</Link> para comenzar.</p>
+        </div>
+
 
       </div>
 
-      <section className="w-[30%] flex-1 p-5 bg-primary">
+      <section className="w-[30%] flex-1 p-5 bg-secondary border-primary shadow-lg border-l-[.5px]">
 
         <div className="w-full h-full flex flex-col items-center justify-center">
-          <div className=" w-[250px] h-[250px] relative">
-            <Image layout="fill" src="/img/Receipt-rafiki.png" alt="" />
+          <div className=" w-[250px] h-[250px] relative flex justify-center">
+            <Image width={200} height={200} className=" object-contain" src="/img/Receipt-rafiki.png" alt="" />
           </div>
           <div className="w-[200px]">
-            <p className=" cursor-default text-sm font-semibold">Selecciona una mesa para los productos consumidos.</p>
+            <p className=" cursor-default text-sm font-semibold text-title">Selecciona una mesa para los productos consumidos.</p>
           </div>
         </div>
 

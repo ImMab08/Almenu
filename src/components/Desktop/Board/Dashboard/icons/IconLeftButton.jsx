@@ -1,20 +1,14 @@
 export function IconLeftButton(props) {
   return (
     <svg
-    {...props}
-      width="22px"
-      height="22px"
-      viewBox="0 0 24 24"
-      fill="none"
+      {...props}
       xmlns="http://www.w3.org/2000/svg"
+      width="24px"
+      height="24px"
+      viewBox="0 -960 960 960"
+      fill="#EDEDED"
     >
-      <path
-        d="M15 7L10 12L15 17"
-        stroke="#0b2131"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
+      <path d="M560-240 320-480l240-240 56 56-184 184 184 184-56 56Z" />
     </svg>
   );
 }

@@ -18,7 +18,7 @@ export function InicioMobile() {
         <div className="flex flex-col items-center justify-center">
           <p className="text-base font-semibold">¡Aún no has añadido mesas!</p>
           <div className=" w-[150px] h-[150px] relative">
-            <Image layout="fill" src="/img/Questions-amico.png" alt="" />
+            <Image width={150} height={150} className=" object-contain" src="/img/Questions-amico.png" alt="" />
           </div>
           <p className="text-sm">
             Da{" "}
@@ -34,7 +34,7 @@ export function InicioMobile() {
         <section className="w-auto h-full p-5 bg-primary absolute bottom-0 right-0 z-[2] shadow-lg">
           <div className="w-full h-full flex flex-col items-center justify-center">
             <div className=" w-[250px] h-[250px] relative">
-              <Image layout="fill" src="/img/Receipt-rafiki.png" alt="" />
+              <Image width={150} height={150} className=" object-contain" src="/img/Receipt-rafiki.png" alt="" />
             </div>
             <div className="w-[200px]">
               <p className=" cursor-default text-sm font-semibold">

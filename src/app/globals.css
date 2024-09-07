@@ -5,9 +5,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 :root {
-  --primary-color: #ffffff;
-  --secondary-color: #1995ed;
-  --tertiary-color: #32CD32; 
+  --primary-color: #202020;
+  --secondary-color: #ffffff;
+  --tertiary-color: #2199ef; 
   --footer-bg-color: #f5f7fa;
 }
 
@@ -88,7 +88,7 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  opacity: 0.12;
+  opacity: 0.03;
   z-index: -1;
 }
 
@@ -296,9 +296,9 @@ input:not(:placeholder-shown) ~ label {
 .button-register {
   position: absolute;
   bottom: 80px;
-  right: 395px;
+  right: 390px;
 }
-.button-register a {
+.button-register button {
   padding: 5px 15px;
   background-color: var(--secondary-color);
   display: flex;
@@ -310,7 +310,7 @@ input:not(:placeholder-shown) ~ label {
   color: var(--primary-color);
   transition: color 0.3s ease, transform 0.3s ease;
 }
-.button-register a:hover {
+.button-register button:hover {
   background-color: var(--tertiary-color);
   transform: scale(1.1);
 }

@@ -8,12 +8,13 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: "#ffffff",
-        secondary: "#1995ed",
-        tertiary: "#32CD32",
-        title: "#0b2131",
-        bgMain: "#1995ed",
-        bgFooter: "#f4f4f4",
+        primary: "#121212",
+        secondary: "#202020",
+        tertiary: "#151515",
+        title:"#EDEDED",
+        subtitle: "#ADADAD",
+        border: "#212121",
+        bg: "#1995ed",
       },
       screens: {
         'mobileLG': '425px',
