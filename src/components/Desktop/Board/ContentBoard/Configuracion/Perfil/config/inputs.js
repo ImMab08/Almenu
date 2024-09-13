@@ -8,5 +8,4 @@ export const restaurantData = [
   {title: "Nombre del restaurante", required: "*", placeHolder: "Nombre del restaurante"},
   {title: "Ciudad", required: "*", placeHolder: "Ciudad"},
   {title: "Dirección", required: "*", placeHolder: "Dirección del restaurante"},
-  {title: "Número de teléfono", required: "*", placeHolder: "Número de teléfono o celular"},
 ]

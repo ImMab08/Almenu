@@ -2,21 +2,19 @@
 import React, { useState } from "react";
 
 import useModalStore from "@/hooks/storeOpenModals";
-
 import ModalCategory from "@/components/Modals/ModalCategory";
 import ModalSubcategory from "@/components/Modals/ModalSubcategory";
 
 import { IconAddButton, IconArrowDown, IconPapelera, IconPencil } from "../../icons";
 
 export function Categoria() {
-
+  const { modals, openModal } = useModalStore();
   const [ openConfig, setOpenConfig ] = useState(false);
 
   const handledSumit = () => {
     setOpenConfig(!openConfig);
   }
 
-  const { modals, openModal } = useModalStore();
 
   return (
     <section className="w-full h-full flex flex-col text-title overflow-auto gap-5">

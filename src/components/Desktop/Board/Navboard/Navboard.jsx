@@ -1,8 +1,13 @@
+'use client'
 import React from 'react';
 import { IconDownArrow, IconUser } from './icons';
-import { DataUser } from '@/api/data';
+import UserInfoNav from './UserInfoNav';
 
 export function Navboard({ Header }) {
+  const {usuarioInfo, loading, error} = UserInfoNav();
+
+  if (loading) return <p>Loading...</p>
+  if (error) return <p>Error: {error.message}</p>
 
   return (
     <section className='w-full h-full flex justify-between items-center px-5 border-[#212121] border-b-[.5px] shadow-sm bg-primary'>
@@ -11,9 +16,11 @@ export function Navboard({ Header }) {
       </div>
       <div className='flex items-center'>
         <div className=' mr-3'>
-          <DataUser />
-          <p className='text-title text-[14px] font-semibold leading-4'>Franky Vargas</p>
-          <p className='text-title text-[12px] font-medium'>Admin</p>
+          <div className='flex space-x-1'>
+            <p className='text-title text-[14px] font-semibold leading-4'>{usuarioInfo?.nombre}</p>
+            <p className='text-title text-[14px] font-semibold leading-4'>{usuarioInfo?.apellido}</p>
+          </div>
+          <p className='text-title text-right text-[12px] font-medium'>{usuarioInfo?.plan}</p>
         </div>
         <div className='flex items-center cursor-pointer'>
           <div className=''>

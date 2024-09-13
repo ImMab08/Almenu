@@ -52,9 +52,9 @@ export function Empleados() {
           <div className="w-[60%] h-full flex flex-col rounded-lg p-4 border border-border">
             <div className="grid grid-cols-2 gap-5">{colaborator}</div>
             <div className="w-full h-full flex justify-end items-end mt-32">
-              <buttom className="flex flex-col bg-green-500 hover:bg-green-500/80 px-4 py-2 rounded-md cursor-pointer" onClick={() => handleSaveClick()}>
+              <button className="flex flex-col bg-green-500 hover:bg-green-500/80 px-4 py-2 rounded-md cursor-pointer" onClick={() => handleSaveClick()}>
                 <p className="text-sm text-center font-semibold text-white">Guardar</p>
-              </buttom>
+              </button>
             </div>
           </div>
       
@@ -74,12 +74,12 @@ export function Empleados() {
                   <p className="text-sm text-subtitle">Administrador</p>
                 </div>
                 <div className="flex gap-2">
-                  <buttom className="flex flex-col bg-red-500 hover:bg-red-500/80 px-3 py-1 rounded-md cursor-pointer" onClick={() => handleEditClick()}>
+                  <button className="flex flex-col bg-red-500 hover:bg-red-500/80 px-3 py-1 rounded-md cursor-pointer" onClick={() => handleEditClick()}>
                     <p className="text-sm text-center font-semibold text-white">Eliminar</p>
-                  </buttom>
-                  <buttom className="flex flex-col bg-bg hover:bg-bg/80 px-3 py-1 rounded-md cursor-pointer" onClick={() => handleEditClick()}>
+                  </button>
+                  <button className="flex flex-col bg-bg hover:bg-bg/80 px-3 py-1 rounded-md cursor-pointer" onClick={() => handleEditClick()}>
                     <p className="text-sm text-center font-semibold text-white">Editar</p>
-                  </buttom>
+                  </button>
                 </div>
               </div>
 

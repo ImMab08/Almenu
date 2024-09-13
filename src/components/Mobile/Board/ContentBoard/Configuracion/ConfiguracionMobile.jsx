@@ -57,11 +57,11 @@ export function ConfiguracionMobile() {
             </div>
 
             <div className="w-auto mt-10 px-14">
-              <buttom className="flex flex-col bg-slate-200 p-3 rounded-xl cursor-pointer">
+              <button className="flex flex-col bg-slate-200 p-3 rounded-xl cursor-pointer">
                 <p className="text-sm text-center font-semibold text-title">
                   Guardar los cambios
                 </p>
-              </buttom>
+              </button>
             </div>
           </div>
         </div>
@@ -71,11 +71,11 @@ export function ConfiguracionMobile() {
 
           <div className="w-full flex flex-col">
             <div className="w-auto mt-10 px-14">
-              <buttom className="flex flex-col bg-slate-200 p-3 rounded-xl cursor-pointer">
+              <button className="flex flex-col bg-slate-200 p-3 rounded-xl cursor-pointer">
                 <p className="text-sm text-center font-semibold text-title">
                   Guardar los cambios
                 </p>
-              </buttom>
+              </button>
             </div>
           </div>
         </div>

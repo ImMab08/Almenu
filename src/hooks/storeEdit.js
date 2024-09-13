@@ -1,4 +1,4 @@
-import create from 'zustand';
+import { create } from 'zustand';
 
 const useEditStore = create((set) => ({
   editingSection: null,

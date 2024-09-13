@@ -1,21 +1,24 @@
-import { NextResponse } from 'next/server'
+import axios from 'axios';
 
-export async function POST(req) {
+export const login = async (email, password) => {
   try {
-    const { email, password } = await req.json()
-    const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/auth/login`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json'},
-      body: JSON.stringify({ email, password }),
+
+    const response = await axios.post('http://localhost:8081/auth/v01/login', {
+      email,
+      password
     });
 
-    if (!response.ok) {
-      throw new Error('Login failed');
-    }
+    const { token } = response.data;
 
-    const data = await response.json();
-    return NextResponse.json(data);
+    // Guardar token en las cookies
+    document.cookie = `token=${token}; path=/; SameSite=Lax`;
+
+    return true; // Autenticación exitosa.
+
   } catch (error) {
-    return NextResponse.json({ error: 'Authentication dailed' }, { status: 401 });
+
+    console.error('Error al iniciar sesión', error);
+    return false; // Autenticación fallida.
+    
   }
 }

@@ -2,16 +2,14 @@
 import React, { useState } from "react";
 
 import Link from "next/link";
-import axios from "axios";
 
-import { IconRightArrow } from "./Icons";
 import { useRouter } from "next/navigation";
+import { IconRightArrow } from "./Icons";
+import { login } from "@/api/auth/login";
 
 function Hero() {
-  const [credentials, setCredentials] = useState({
-    email: '',
-    password: '',
-  });
+  const [credentials, setCredentials] = useState({ email: '', password: '',});
+  const [error, setError] = useState('');
   const router = useRouter();
 
   const handleChange = (e) => {
@@ -23,15 +21,14 @@ function Hero() {
 
   const handleSumit = async (e) => {
     e.preventDefault()
-    try {
-      const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/auth/login`, credentials);
-      console.log(response)
-      const { acces_token } = response.data;
-      localStorage.setItem('token', acces_token);
-      router.push('/inicio');
-    } catch (error) {
-      console.error('Login failed', error);
+    const isAuthenticated = await login(credentials.email, credentials.password);
+
+    if (isAuthenticated) {
+      router.push('/inicio'); 
+    } else {
+      setError('El correo o la contraseña son incorrectos.');
     }
+
   }
 
   return (
@@ -66,7 +63,7 @@ function Hero() {
               <h2 className="text-[2rem] font-extrabold text-white">Iniciar Sesión</h2>
             </div>
 
-            <form onClick={handleSumit}>
+            <form onSubmit={handleSumit}>
               <div className="input-field">
                 <input
                   className="input"
@@ -92,6 +89,9 @@ function Hero() {
               <div className="button-login">
                 <button type="submit">Iniciar sesión</button>
               </div>
+              {
+                error && <p>{error}</p>
+              }
             </form>
 
             <div className="w-full flex justify-between gap-[20px]">
