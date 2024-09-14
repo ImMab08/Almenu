@@ -2,8 +2,7 @@ import axios from 'axios';
 
 export const login = async (email, password) => {
   try {
-
-    const response = await axios.post('http://localhost:8081/auth/v01/login', {
+    const response = await axios.post('http://localhost:8081/v01/auth/login', {
       email,
       password
     });
@@ -14,11 +13,8 @@ export const login = async (email, password) => {
     document.cookie = `token=${token}; path=/; SameSite=Lax`;
 
     return true; // Autenticación exitosa.
-
   } catch (error) {
-
     console.error('Error al iniciar sesión', error);
     return false; // Autenticación fallida.
-    
   }
 }

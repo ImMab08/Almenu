@@ -72,7 +72,7 @@ export function Perfil() {
               </div>
       
               <div className="w-full h-full flex justify-end items-end gap-3">
-                <button className="flex flex-col bg-secondary hover:bg-black px-4 py-2 rounded-md cursor-pointer" onClick={() => openModal("Restaurante")}>
+                <button className="flex flex-col bg-bg hover:bg-bg/80 px-4 py-2 rounded-md cursor-pointer" onClick={() => openModal("Restaurante")}>
                   <p className="text-sm text-center font-semibold text-white">Editar</p>
                 </button>
 
@@ -106,8 +106,8 @@ export function Perfil() {
               </div>
             </div>    
             <div className="w-full h-full flex justify-end items-end gap-3">
-              <button className="flex flex-col bg-secondary hover:bg-black px-4 py-2 rounded-md cursor-pointer" onClick={() => handleEditClick("profile")}>
-                <p className="text-sm text-center font-semibold text-white">Editar</p>
+              <button className="flex flex-col bg-bg hover:bg-bg/80 px-4 py-2 rounded-md cursor-pointer" onClick={() => handleEditClick("profile")}>
+                <p className="text-sm text-center font-semibold text-white ">Editar</p>
               </button>
             </div>
           </div>

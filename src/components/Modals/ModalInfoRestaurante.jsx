@@ -95,7 +95,7 @@ export default function ModalInfoRestaurante({ initialData }) {
             </div>
 
             <div className="w-full h-full flex items-center justify-center gap-3 mt-10">
-              <button onClick={closeModal} className="flex flex-col bg-yellow-500 hover:bg-yellow-500/80 px-4 py-2 rounded-md cursor-pointer">
+              <button onClick={closeModal} className="flex flex-col bg-red-500 hover:bg-red-500/80 px-4 py-2 rounded-md cursor-pointer">
                 <p className="text-sm text-center font-semibold text-white">Cancelar</p>
               </button>
               <button type="submit" className="flex flex-col bg-green-500 hover:bg-green-500/80 px-4 py-2 rounded-md cursor-pointer">

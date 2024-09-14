@@ -1,7 +1,7 @@
 import React from "react";
 import useModalStore from "@/hooks/storeOpenModals";
 
-export default function ModalSubcategory() {
+export default function CreateSubcategoria() {
   const { closeModal } = useModalStore();
   return (
     <div className="w-full h-full top-0 left-0 bg-black/70 bg-opacity-60 fixed z-50 flex items-center justify-center">

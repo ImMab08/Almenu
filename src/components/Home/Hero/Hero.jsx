@@ -1,9 +1,8 @@
 "use client";
-import React, { useState } from "react";
-
 import Link from "next/link";
-
+import React, { useState } from "react";
 import { useRouter } from "next/navigation";
+
 import { IconRightArrow } from "./Icons";
 import { login } from "@/api/auth/login";
 
@@ -19,7 +18,7 @@ function Hero() {
     });
   };
 
-  const handleSumit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     const isAuthenticated = await login(credentials.email, credentials.password);
 
@@ -46,12 +45,7 @@ function Hero() {
             y grandes restaurantes.
           </p>
           <div className="aboutMore w-[200px] h-auto flex items-center cursor-pointer mt-5">
-            <Link
-              className="mx-2 text-title no-underline hover:underline text-base laptop:text-base transition"
-              href="/about"
-            >
-              Conoce más
-            </Link>
+            <Link className="mx-2 text-title no-underline hover:underline text-base laptop:text-base transition" href="/about">Conoce más</Link>
             <IconRightArrow />
           </div>
         </div>
@@ -63,7 +57,7 @@ function Hero() {
               <h2 className="text-[2rem] font-extrabold text-white">Iniciar Sesión</h2>
             </div>
 
-            <form onSubmit={handleSumit}>
+            <form onSubmit={handleSubmit}>
               <div className="input-field">
                 <input
                   className="input"
@@ -86,7 +80,7 @@ function Hero() {
                 />
                 <label className="label_name">Contraseña</label>
               </div>
-              <div className="button-login">
+              <div className="text-center text-white bg-bg rounded-md py-1 hover:bg-bg/80">
                 <button type="submit">Iniciar sesión</button>
               </div>
               {
@@ -95,18 +89,8 @@ function Hero() {
             </form>
 
             <div className="w-full flex justify-between gap-[20px]">
-              <Link
-                className="text-[14px] text-subtitle no-underline hover:text-title"
-                href="/"
-              >
-                Olvidé mi contraseña
-              </Link>
-              <Link
-                className="text-[14px] text-subtitle no-underline hover:text-title"
-                href="/register"
-              >
-                Registrarme
-              </Link>
+              <Link className="text-[14px] text-subtitle no-underline hover:text-title" href="/">Olvidé mi contraseña</Link>
+              <Link className="text-[14px] text-subtitle no-underline hover:text-title" href="/register">Registrarme</Link>
             </div>
           </div>
         </div>

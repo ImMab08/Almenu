@@ -1,20 +1,34 @@
 'use client'
+import Link from "next/link";
+import Image from "next/image";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 
-import axios from "axios";
-import Image from "next/image";
-import Link from "next/link";
+import { login } from "@/api/auth/login";
 
 const Login = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
+  const [ credentials, setCredentials ] = useState({ email: '', password: ''})
+  const [ error, setError ] = useState('');
   const router = useRouter();
 
-  const handleSubmit = async (e) => {
-    console.log(e.target.value, e.targe.name)
+  const handleChange = async (e) => {
+    setCredentials({
+      ...credentials,
+      [e.target.name]: e.target.value
+    });
   };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const isAuthenticated = await login(credentials.email, credentials.password);
+
+    if (isAuthenticated) {
+      router.push('/inicio');
+    } else {
+      setError("El correo o la contraseña son incorrectos.")
+    }
+  }
+
   return (
     <main className="w-full h-screen bg-primary hero">
       <section className=" relative w-full h-full flex flex-col items-center justify-center px-2">
@@ -24,35 +38,38 @@ const Login = () => {
             <h2 className="text-[1.8rem] sm:text-[2rem] font-extrabold text-title">Iniciar Sesión</h2>
           </div>
 
-          <form>
-          <div className="input-field">
-            <input
-              className="input"
-              type="text"
-              name="email"
-              onChange={handleSubmit}
-              placeholder=" "
-              required
-            />
-            <label className="label_name">Correo electrónico</label>
-          </div>
-          
-          <div className="input-field">
-            <input
-              className="input"
-              type="password"
-              name="password"
-              onChange={handleSubmit}
-              placeholder=" "
-              required
-            />
-            <label className="label_name">Contraseña</label>
-          </div>
+          <form onSubmit={handleSubmit}>
+            <div className="input-field">
+              <input
+                className="input"
+                type="text"
+                name="email"
+                onChange={handleChange}
+                placeholder=" "
+                required
+              />
+              <label className="label_name">Correo electrónico</label>
+            </div>
+        
+            <div className="input-field">
+              <input
+                className="input"
+                type="password"
+                name="password"
+                onChange={handleChange}
+                placeholder=" "
+                required
+              />
+              <label className="label_name">Contraseña</label>
+            </div>
 
-          <div className="button-login">
-            <button type="submit">Iniciar sesión</button>
-          </div>
-        </form>
+            <div className="text-center text-white bg-bg rounded-md py-1 hover:bg-bg/80">
+              <button type="submit">Iniciar sesión</button>
+            </div>
+              {
+                error && <p className="text-red-500 text-center font-bold">{error}</p>
+              }
+          </form>
           
           <div className="w-full flex justify-between gap-[20px]">
             <a className="text-[14px] text-subtitle no-underline hover:text-title" href="">Olvidé mi contraseña</a>

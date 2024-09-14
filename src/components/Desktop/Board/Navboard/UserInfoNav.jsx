@@ -11,7 +11,7 @@ const UserInfoNav = () => {
       try {
         const response = await api.get("/v01/user/navboard");
         setUsuarioInfo(response.data);
-      } catch (erro) {
+      } catch (error) {
         setError(error);
       } finally {
         setLoading(false);

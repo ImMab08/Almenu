@@ -1,35 +1,72 @@
 import React, { useState } from "react";
 
-import useEditStore from "@/hooks/storeEdit";
 import { Colaborator } from "./config";
 import { IconArrowDown, IconSearch } from "../../icons";
 
+import useEditStore from "@/hooks/storeEdit";
+import useModalStore from "@/hooks/storeOpenModals";
+
+import useColaboradoresApi from "./config/ApiColaboradores";
+
+import DeleteColaboradores from "@/components/Modals/Colaboradores/DeleteColaboradores";
+
 export function Empleados() {
   const [ openConfig, setOpenConfig ] = useState();
+  const { modals, openModal } = useModalStore();
+  const { colaborador, loading, error, createColaborador } = useColaboradoresApi();
 
-  const handledSumit = () => {
-    setOpenConfig(!openConfig)
-  }
+  const [ errors, setErrors ] = useState({});
+  const [ formData, setFormData ] = useState({
+    nombres: "",
+    apellidos: "",
+    celular: "",
+    email: "",
+    cargo: "",
+    salario: "",
+  });
 
-  const { editingSection, setEditingSection, clearEditingSection } = useEditStore()
+  const handleInputChange  = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
 
-  const handleEditClick = (section) => {
-    setEditingSection(section)
-  }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  const handleSaveClick = () => {
-    setEditingSection()
-  }
+    try {
+      await createColaborador(formData);
+      setFormData({ 
+        nombres: "",
+        apellidos: "",
+        celular: "",
+        email: "",
+        cargo: "",
+        salario: "",
+      }); // Limpiar formulario después de crear a un colaborador.
+    } catch(err) {
+      setErrors(err);
+    }
+  };
 
-  const colaborator = Colaborator.map(({title, required, placeHolder}) => {
+  const handleToggleConfig = () => {
+    setOpenConfig(!openConfig);
+  };
+
+  const formColaborador = Colaborator.map(({title, required, placeHolder, name}) => {
     return (
       <div key={title} className="flex flex-col">
-        <label className="text-sm font-semibold text-subtitle">
+        <label className="text-sm font-semibold text-title">
           {title} <span className="text-red-500">{required}</span>
         </label>
         <input
-          className={`mt-1 border-border border-[1.5px] full h-[40px] p-4 rounded-md bg-transparent`}
+          className={`mt-1 border-border border-[1.5px] full h-[40px] p-4 rounded-md bg-transparent text-title`}
           type="text"
+          name={name}
+          value={formData[name] || ""}
+          onChange={handleInputChange}
           placeholder={placeHolder}
           required
         />
@@ -39,23 +76,28 @@ export function Empleados() {
 
   return (
     <section className="w-full h-auto p-5 bg-primary rounded-lg space-y-5">
-      <div className="flex cursor-pointer" onClick={handledSumit}>
+      <div className="flex cursor-pointer" onClick={handleToggleConfig}>
         <h1 className="flex-1 text-xl text-title font-semibold">Configuración de Colaboradores</h1>
-        <div className={`cursor-pointer transform transition-transform duration-300 ${openConfig ? 'rotate-0' : '-rotate-180'}`} onClick={handledSumit}>
+        <div className={`cursor-pointer transform transition-transform duration-300 ${openConfig ? 'rotate-0' : '-rotate-180'}`} onClick={handleToggleConfig}>
           <IconArrowDown />
         </div>
       </div>
 
       {openConfig &&
         <div className="w-full h-full flex">
-        
           <div className="w-[60%] h-full flex flex-col rounded-lg p-4 border border-border">
-            <div className="grid grid-cols-2 gap-5">{colaborator}</div>
-            <div className="w-full h-full flex justify-end items-end mt-32">
-              <button className="flex flex-col bg-green-500 hover:bg-green-500/80 px-4 py-2 rounded-md cursor-pointer" onClick={() => handleSaveClick()}>
-                <p className="text-sm text-center font-semibold text-white">Guardar</p>
-              </button>
-            </div>
+
+            <form onSubmit={handleSubmit} action="">
+              <div className="grid grid-cols-2 gap-5">
+                {formColaborador}
+              </div>
+
+              <div className="w-full h-full flex justify-end items-end mt-32">
+                <button className="flex flex-col bg-green-500 hover:bg-green-500/80 px-4 py-2 rounded-md cursor-pointer">
+                  <p className="text-sm text-center font-semibold text-white">Guardar</p>
+                </button>
+              </div>
+            </form>
           </div>
       
           <div className="w-[40%] h-[430px] flex flex-col flex-1 items-center border border-border rounded-lg p-2 ml-3 overflow-auto space-y-2">
@@ -68,23 +110,34 @@ export function Empleados() {
 
             <div className="w-full h-full space-y-2 overflow-auto">
 
-              <div className="w-full p-2 bg-tertiary cursor-pointer flex items-center justify-between rounded-md">
-                <div className="">
-                  <h2 className="text-base font-semibold text-title">Franky López</h2>
-                  <p className="text-sm text-subtitle">Administrador</p>
+              {colaborador?.length > 0 ? (
+                colaborador.map((colab) => (
+                  <div key={colab.id} className="w-full p-2 bg-tertiary cursor-pointer flex items-center justify-between rounded-md">
+                    <div className="">
+                      <div className="flex space-x-1">
+                        <p className="text-base font-semibold text-title">{colab.nombres}</p>
+                        <p className="text-base font-semibold text-title">{colab.apellidos}</p>
+                      </div>
+                      <p className="text-sm text-subtitle">{colab.cargo}</p>
+                    </div>
+                    <div className="flex gap-2">
+                      <button className="flex flex-col bg-bg hover:bg-bg/80 px-3 py-1 rounded-md cursor-pointer" onClick={() => openModal("EditarEmpleado", colab.id)}>
+                        <p className="text-sm text-center font-semibold text-white">Editar</p>
+                      </button>
+                      <button className="flex flex-col bg-red-500 hover:bg-red-500/80 px-3 py-1 rounded-md cursor-pointer" onClick={() => openModal("EliminarEmpleado", colab.id)}>
+                        <p className="text-sm text-center font-semibold text-white">Eliminar</p>
+                      </button>
+                    </div>
+                  </div>
+                ))
+              ) : (
+                <div className="w-full h-full flex justify-center items-center">
+                  <p className="text-center text-title font-semibold">No has añadido colaboradores aún</p>
                 </div>
-                <div className="flex gap-2">
-                  <button className="flex flex-col bg-red-500 hover:bg-red-500/80 px-3 py-1 rounded-md cursor-pointer" onClick={() => handleEditClick()}>
-                    <p className="text-sm text-center font-semibold text-white">Eliminar</p>
-                  </button>
-                  <button className="flex flex-col bg-bg hover:bg-bg/80 px-3 py-1 rounded-md cursor-pointer" onClick={() => handleEditClick()}>
-                    <p className="text-sm text-center font-semibold text-white">Editar</p>
-                  </button>
-                </div>
-              </div>
-
+              )}
             </div>
 
+            {modals.EliminarEmpleado && <DeleteColaboradores />}
           </div>
         </div>
       }
