@@ -9,7 +9,6 @@ export function Inicio () {
       <div className="w-[70%] h-auto"> 
         <ProductsBoard />
 
-
         <div className="w-full h-full flex flex-col items-center justify-center p-5">
           <p className="text-base font-semibold text-title">¡Aún no has añadido mesas!</p>
           <div className=" w-[250px] h-[250px] relative flex justify-center">

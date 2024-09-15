@@ -1,39 +1,27 @@
-import React, { useState } from "react";
+import React from "react";
 import useModalStore from "@/hooks/storeOpenModals";
-import api from "@/api/api";
+import useColaboradoresApi from "@/components/Desktop/Board/ContentBoard/Configuracion/Empleados/config/ApiColaboradores";
 
-export default function DeleteColaboradores() {
+export default function DeleteColaboradores({ colaborador }) {
   const { closeModal } = useModalStore();
+  const { deleteColaborador } = useColaboradoresApi();
 
-  // Estado para el formulario
-  const [nombre, setNombre] = useState("");
-  const [descripcion, setDescripcion] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-
-  // Función para manejar el envío del formulario
   const handleSubmit = async (e) => {
-    e.preventDefault(); // Evita la recarga de la página
-
-    setLoading(true);
-    setError(null);
-
     try {
-      await api.post("v01/categoria/create", { nombre, descripcion });
-      // Cierra el modal después de guardar
-      closeModal();
-    } catch (err) {
-      setError(err.message);
-    } finally {
-      setLoading(false);
+      if (colaborador) {
+        await deleteColaborador(colaborador.id);
+      }
+    } catch(error) {
+      console.log(error)
     }
-  };
+    closeModal()
+  }
 
   return (
     <div className="w-full h-full top-0 left-0 bg-black/70 bg-opacity-60 fixed z-50 flex items-center justify-center">
       <div className="rounded-lg bg-secondary w-[450px] ">
         <div className="flex flex-col space-y-4 p-5">
-          <p className="text-xl text-center text-title">¿Estás seguro que deseas eliminar a <span className="font-semibold">Helados</span>?</p>
+          <p className="text-xl text-center text-title">¿Estás seguro que deseas eliminar a <span className="font-semibold">{colaborador?.nombres} {colaborador?.apellidos}</span>?</p>
           <p className="text-xs font-semibold text-subtitle text-center">¡Al hacer esto perderas toda su información!</p>
         </div>
 

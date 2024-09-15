@@ -1,21 +1,33 @@
 import React, { useState } from "react";
 
 import { Colaborator } from "./config";
-import { IconArrowDown, IconSearch } from "../../icons";
+import { IconArrowDown, IconPapelera, IconPencil, IconSearch, IconViewMoreUp } from "../../icons";
 
-import useEditStore from "@/hooks/storeEdit";
 import useModalStore from "@/hooks/storeOpenModals";
-
 import useColaboradoresApi from "./config/ApiColaboradores";
 
 import DeleteColaboradores from "@/components/Modals/Colaboradores/DeleteColaboradores";
+import UpdateColaboradores from "@/components/Modals/Colaboradores/UpdateColaboradores";
 
 export function Empleados() {
   const [ openConfig, setOpenConfig ] = useState();
+  const [ openViewColaborador, setOpenViewColaborador ] = useState();
   const { modals, openModal } = useModalStore();
-  const { colaborador, loading, error, createColaborador } = useColaboradoresApi();
+  const { colaborador, createColaborador } = useColaboradoresApi();
 
-  const [ errors, setErrors ] = useState({});
+  // Estado para almacenar al empleado seleccionado.
+  const [ selectedColaborador, setSelectedColaborador ] = useState(null);
+
+  const handleOpenDeleteModal = (colaborador) => {
+    setSelectedColaborador(colaborador);
+    openModal("DeleteColaborador");
+  }
+
+  const handleOpenUpdateModal = (colaborador) => {
+    setSelectedColaborador(colaborador);
+    openModal("UpdateColaborador")
+  }
+
   const [ formData, setFormData ] = useState({
     nombres: "",
     apellidos: "",
@@ -47,13 +59,22 @@ export function Empleados() {
         salario: "",
       }); // Limpiar formulario después de crear a un colaborador.
     } catch(err) {
-      setErrors(err);
+      console.log(err);
     }
   };
 
   const handleToggleConfig = () => {
     setOpenConfig(!openConfig);
   };
+
+  // Función para manejar la apertura y cierra de la info del colaborador por su ID.
+  const handleOpenColaborador = (id) => {
+    if (openViewColaborador === id) {
+      setOpenViewColaborador(null); // contraer
+    } else {
+      setOpenViewColaborador(id); // expandir
+    }
+  }
 
   const formColaborador = Colaborator.map(({title, required, placeHolder, name}) => {
     return (
@@ -111,23 +132,50 @@ export function Empleados() {
             <div className="w-full h-full space-y-2 overflow-auto">
 
               {colaborador?.length > 0 ? (
-                colaborador.map((colab) => (
-                  <div key={colab.id} className="w-full p-2 bg-tertiary cursor-pointer flex items-center justify-between rounded-md">
-                    <div className="">
-                      <div className="flex space-x-1">
-                        <p className="text-base font-semibold text-title">{colab.nombres}</p>
-                        <p className="text-base font-semibold text-title">{colab.apellidos}</p>
+                colaborador.map((colaborador) => (
+                  <div key={colaborador.id} className="w-full p-2 bg-tertiary  rounded-md">
+                    <div className="flex justify-between items-center">
+                      <div className="flex flex-col">
+                        <div className="flex space-x-1">
+                          <p className="text-base font-semibold text-title">{colaborador.nombres}</p>
+                          <p className="text-base font-semibold text-title">{colaborador.apellidos}</p>
+                        </div>
+                        <p className="text-sm text-subtitle">{colaborador.cargo}</p>
                       </div>
-                      <p className="text-sm text-subtitle">{colab.cargo}</p>
+
+                      <div className="flex space-x-2">
+                        <button className="flex flex-col bg-bg hover:bg-bg/80 px-2 py-2 rounded-md cursor-pointer" onClick={() => handleOpenUpdateModal(colaborador)}>
+                          <IconPencil />
+                        </button>
+                        <button className="flex flex-col bg-red-500 hover:bg-red-500/80 px-2 py-2 rounded-md cursor-pointer" onClick={() => handleOpenDeleteModal(colaborador)}>
+                          <IconPapelera />
+                        </button>
+                        <button className={`flex flex-col bg-green-500 hover:bg-green-500/80 px-1 py-1 rounded-md cursor-pointer `} onClick={() => handleOpenColaborador(colaborador.id)}>
+                          <div className={`transform transition-transform duration-300 ${openViewColaborador === colaborador.id ? 'rotate-0' : 'rotate-180'}`}>
+                            <IconViewMoreUp />
+                          </div>
+                        </button>
+                      </div>
                     </div>
-                    <div className="flex gap-2">
-                      <button className="flex flex-col bg-bg hover:bg-bg/80 px-3 py-1 rounded-md cursor-pointer" onClick={() => openModal("EditarEmpleado", colab.id)}>
-                        <p className="text-sm text-center font-semibold text-white">Editar</p>
-                      </button>
-                      <button className="flex flex-col bg-red-500 hover:bg-red-500/80 px-3 py-1 rounded-md cursor-pointer" onClick={() => openModal("EliminarEmpleado", colab.id)}>
-                        <p className="text-sm text-center font-semibold text-white">Eliminar</p>
-                      </button>
-                    </div>
+                                
+                    {openViewColaborador === colaborador.id &&
+                      <div className="flex flex-col mt-2 border-t border-border">
+                        <div className="flex flex-col space-y-2 mt-2">
+                            <div className="flex flex-col">
+                              <h4 className="text-title text-sm">Correo eléctronico</h4>
+                              <p className="text-subtitle text-xs">{colaborador?.email}</p>
+                            </div>
+                            <div className="flex flex-col">
+                              <h4 className="text-title text-sm">Celular</h4>
+                              <p className="text-subtitle text-xs">{colaborador?.celular}</p>
+                            </div>
+                            <div className="flex flex-col">
+                              <h4 className="text-title text-sm">Salario</h4>
+                              <p className="text-subtitle text-xs">$ {colaborador?.salario}</p>
+                            </div>
+                        </div>                 
+                      </div>
+                    }
                   </div>
                 ))
               ) : (
@@ -136,8 +184,9 @@ export function Empleados() {
                 </div>
               )}
             </div>
-
-            {modals.EliminarEmpleado && <DeleteColaboradores />}
+            
+            {modals.UpdateColaborador && <UpdateColaboradores colaborador={selectedColaborador} />}
+            {modals.DeleteColaborador && <DeleteColaboradores colaborador={selectedColaborador} />}
           </div>
         </div>
       }

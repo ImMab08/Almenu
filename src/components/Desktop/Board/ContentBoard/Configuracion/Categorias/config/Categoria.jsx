@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import useCategoriaApi from "./ApiCategoria";
 import useModalStore from "@/hooks/storeOpenModals";
@@ -11,6 +11,19 @@ import DeleteCategoria from "@/components/Modals/Categoria/DeleteCategoria";
 export default function Categoria() {
   const { modals, openModal } = useModalStore();
   const { categoria, loading, error } = useCategoriaApi();
+
+  // Estado para almacenar la categoría seleccionada.
+  const [ selectedCategoria, setSelectedCategoria ] = useState(null);
+
+  const handleOpenDeleteModal = (categoria) => {
+    setSelectedCategoria(categoria);
+    openModal("ConfirmDelete");
+  }
+
+  const handleOpenEditModal = (categoria) => {
+    setSelectedCategoria(categoria);
+    openModal("EditarCategoria")
+  }
 
   return (
     <div className="rounded-lg border border-border">
@@ -37,10 +50,10 @@ export default function Categoria() {
                     <td className="p-4 align-middle text-subtitle">{categoria.descripcion}</td>
 
                     <td className="p-4 align-middle space-x-2">
-                      <button className="inline-flex items-center justify-center rounded-md text-sm font-medium bg-bg hover:bg-bg/80 h-7 w-7" onClick={() => openModal("EditarCategoria", categoria.id)}>
+                      <button className="inline-flex items-center justify-center rounded-md text-sm font-medium bg-bg hover:bg-bg/80 h-7 w-7" onClick={() => handleOpenEditModal(categoria)}>
                         <IconPencil />
                       </button>
-                      <button className="inline-flex items-center justify-center rounded-md text-sm font-medium bg-red-500 hover:bg-red-500/80 h-7 w-7" onClick={() => openModal("ConfirmDelete", categoria.id)}>
+                      <button className="inline-flex items-center justify-center rounded-md text-sm font-medium bg-red-500 hover:bg-red-500/80 h-7 w-7" onClick={() => handleOpenDeleteModal(categoria)}>
                         <IconPapelera />
                       </button>
                     </td>
@@ -64,8 +77,8 @@ export default function Categoria() {
         </button>
 
         {modals.CreateCategoria && <CreateCategoria />}
-        {modals.EditarCategoria && <UpdateCategoria />}
-        {modals.ConfirmDelete && <DeleteCategoria />}
+        {modals.EditarCategoria && <UpdateCategoria categoria={selectedCategoria} />}
+        {modals.ConfirmDelete && <DeleteCategoria categoria={selectedCategoria} />}
       </div>
     </div>
   );

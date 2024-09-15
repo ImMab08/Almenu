@@ -36,11 +36,34 @@ const useColaboradoresApi = () => {
     }
   }
 
+  // Editar a un colaborador
+  const updateColaborador = async (id_empleado, updateColaborador) => {
+    try {
+      const response = await api.put(`/v01/colaborador/update/${id_empleado}`, updateColaborador);
+      // Actualizar al empleado
+      setColaborador(colaborador.map(colaborador =>
+        colaborador.id === id_empleado ? response.data : colaborador
+      ));
+    } catch (err) {
+      setError(err.message || "Error al actualizar al empleado.")
+    }
+  }
+
+  // Eliminar a un colaborador 
+  const deleteColaborador = async (id_empleado) => {
+    try {
+      await api.delete(`/v01/colaborador/delete/${id_empleado}`)
+      setColaborador(colaborador.filter(colaborador => colaborador.id !== id_empleado));
+    } catch (err) {
+      setError(err.message || "Error al eliminar al colaborador.");
+    }
+  }
+
   useEffect(() => {
     fetchColaboradores();
   }, []);
 
-  return { colaborador, loading, error, createColaborador }
+  return { colaborador, loading, error, createColaborador, updateColaborador, deleteColaborador }
 };
 
 export default useColaboradoresApi;

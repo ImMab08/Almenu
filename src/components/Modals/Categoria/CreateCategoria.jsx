@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import useModalStore from "@/hooks/storeOpenModals";
-import api from "@/api/api";
+import useCategoriaApi from "@/components/Desktop/Board/ContentBoard/Configuracion/Categorias/config/ApiCategoria";
 
 export default function CreateCategoria() {
   const { closeModal } = useModalStore();
+  const { createCategoria } = useCategoriaApi();
 
   // Estado para el formulario
   const [nombre, setNombre] = useState("");
@@ -13,13 +14,11 @@ export default function CreateCategoria() {
 
   // Función para manejar el envío del formulario
   const handleSubmit = async (e) => {
-    e.preventDefault(); // Evita la recarga de la página
-
     setLoading(true);
     setError(null);
 
     try {
-      await api.post("/v01/categoria/create", { nombre, descripcion });
+      await createCategoria({ nombre, descripcion });
       // Cierra el modal después de guardar
       closeModal();
     } catch (err) {
@@ -43,7 +42,7 @@ export default function CreateCategoria() {
                 <label htmlFor="nombre">Nombre</label>
                 <input
                   id="nombre"
-                  className="flex h-10 border px-3 py-2 text-sm text-primary w-[300px] rounded-lg"
+                  className="flex h-10 border px-3 py-2 text-sm text-title w-[300px] bg-transparent rounded-lg"
                   placeholder="Añade un nombre a la categoría"
                   type="text"
                   value={nombre}
@@ -56,7 +55,7 @@ export default function CreateCategoria() {
                 <label htmlFor="descripcion">Descripción</label>
                 <textarea
                   id="descripcion"
-                  className="flex border px-3 py-2 text-sm text-primary w-[300px] rounded-lg"
+                  className="flex border px-3 py-2 text-sm text-title w-[300px] bg-transparent  rounded-lg"
                   placeholder="Añade una descripción corta"
                   rows="4"
                   value={descripcion}
@@ -72,7 +71,7 @@ export default function CreateCategoria() {
         <div className="flex items-center justify-center p-4 relative space-x-10">
           <button onClick={closeModal} className="flex items-center justify-center text-sm font-medium text-white h-9 bg-red-500 hover:bg-red-500/80 rounded-md px-3 gap-1">Cancelar</button>
           <button onClick={handleSubmit} disabled={loading} className="flex items-center justify-center text-sm font-medium text-white h-9 bg-green-500 hover:bg-green-500/80 rounded-md px-4 gap-1">
-            {loading ? "Añadiendo..." : "Añadir"}
+            {loading ? "Guardando..." : "Guardar"}
           </button>
         </div>
       </div>

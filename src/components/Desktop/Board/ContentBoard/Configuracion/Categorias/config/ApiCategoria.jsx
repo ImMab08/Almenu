@@ -38,12 +38,12 @@ const useCategoriaApi = () => {
   };
 
   // Actualizar una categoría existente
-  const updateCategoria = async (idCategoria, updatedCategoria) => {
+  const updateCategoria = async (id_categoria, updatedCategoria) => {
     try {
-      const response = await api.put(`/v01/categoria/update/${idCategoria}`, updatedCategoria);
+      const response = await api.put(`/v01/categoria/update/${id_categoria}`, updatedCategoria);
       // Actualizar la categoría en el estado sin recargar
       setCategorias(categoria.map(categoria =>
-        categoria.id === idCategoria ? response.data : categoria
+        categoria.id === id_categoria ? response.data : categoria
       ));
     } catch (err) {
       setError(err.message || "Error al actualizar la categoría.");
@@ -51,11 +51,11 @@ const useCategoriaApi = () => {
   };
 
   // Eliminar una categoría
-  const deleteCategoria = async (idCategoria) => {
+  const deleteCategoria = async (id_categoria) => {
     try {
-      await api.delete(`/v01/categoria/delete/${idCategoria}`);
+      await api.delete(`/v01/categoria/delete/${id_categoria}`);
       // Filtrar la categoría eliminada del estado sin recargar
-      setCategorias(categoria.filter(categoria => categoria.id !== idCategoria));
+      setCategorias(categoria.filter(categoria => categoria.id !== id_categoria));
     } catch (err) {
       setError(err.message || "Error al eliminar la categoría.");
     }

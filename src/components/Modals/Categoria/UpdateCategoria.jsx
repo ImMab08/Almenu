@@ -1,42 +1,30 @@
 import React, { useState, useEffect } from "react";
 import useModalStore from "@/hooks/storeOpenModals";
-import api from "@/api/api";
+import useCategoriaApi from "@/components/Desktop/Board/ContentBoard/Configuracion/Categorias/config/ApiCategoria";
 
-export default function UpdateCategoria() {
-  const { closeModal, modals } = useModalStore();
-  const categoria = modals.EditarCategoria; // Obtener la categoría del modal
+export default function UpdateCategoria({ categoria }) {
+  const { closeModal } = useModalStore();
+  const { updateCategoria } = useCategoriaApi();
 
-  // Estado para el formulario
-  const [nombre, setNombre] = useState("");
-  const [descripcion, setDescripcion] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  // Estados locales para actualizar los datos de la categoria seleccionada.
+  const [ nombre, setNombre ] = useState(categoria.nombre);
+  const [ descripcion, setDescripcion ] = useState(categoria.descripcion);
+  const [ loading, setLoading ] = useState(false);
 
-  // Inicializa el estado con los datos de la categoría cuando el componente se monta
-  useEffect(() => {
-    if (categoria) {
-      setNombre(categoria.nombre);
-      setDescripcion(categoria.descripcion);
-    }
-  }, [categoria]);
-
-  // Función para manejar el envío del formulario
+  // Función para manejar la edición de la categoria.
   const handleSubmit = async (e) => {
-    e.preventDefault(); // Evita la recarga de la página
-
     setLoading(true);
-    setError(null);
-
     try {
-      await api.put(`v01/categoria/update`, { id: categoria.id, nombre, descripcion });
-      // Cierra el modal después de actualizar
-      closeModal("EditarCategoria");
-    } catch (err) {
-      setError(err.message);
+      if (categoria) {
+        await updateCategoria(categoria.id, { nombre, descripcion })
+      }
+    } catch (error) {
+      console.log(error)
     } finally {
       setLoading(false);
     }
-  };
+    closeModal();
+  }
 
   return (
     <div className="w-full h-full top-0 left-0 bg-black/70 bg-opacity-60 fixed z-50 flex items-center justify-center">
@@ -73,8 +61,6 @@ export default function UpdateCategoria() {
                   required
                 />
               </div>
-
-              {error && <p className="text-red-500 text-center">{error}</p>}
             </form>
           </div>
         </div>
@@ -88,26 +74,3 @@ export default function UpdateCategoria() {
     </div>
   );
 }
-
-
-
-
-// const [ formData, setFormData ] = useState({
-//   nombre: initialData?.nombre || "",
-//   descripcion: initialData?.descripcion || "",
-// });
-
-// const handleInputChange = (e) => {
-//   const { name, value } = e.target;
-//   setFormData({
-//     ...formData,
-//     [name]: value,
-//   });
-// };
-
-// const handleSubmit = async (e) => {
-//   e.prevenDefault()
-//   try {
-    
-//   } catch
-// }

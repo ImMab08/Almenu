@@ -1,3 +1,5 @@
+export * from './IconViewMoreUp'
+export * from './IconViewMoreDown'
 export * from './IconUpload'
 export * from './IconPencil'
 export * from './IconPapelera'
