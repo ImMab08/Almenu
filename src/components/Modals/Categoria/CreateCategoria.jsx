@@ -1,16 +1,17 @@
 import React, { useState } from "react";
 import useModalStore from "@/hooks/storeOpenModals";
-import useCategoriaApi from "@/components/Desktop/Board/ContentBoard/Configuracion/Categorias/config/ApiCategoria";
+import useCategoriaApi from "@/api/Conections/CategoriaApi";
+
 
 export default function CreateCategoria() {
   const { closeModal } = useModalStore();
   const { createCategoria } = useCategoriaApi();
 
   // Estado para el formulario
-  const [nombre, setNombre] = useState("");
-  const [descripcion, setDescripcion] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [ nombre, setNombre ] = useState("");
+  const [ descripcion, setDescripcion ] = useState("");
+  const [ loading, setLoading ] = useState(false);
+  const [ error, setError ] = useState(null);
 
   // Función para manejar el envío del formulario
   const handleSubmit = async (e) => {
@@ -42,7 +43,7 @@ export default function CreateCategoria() {
                 <label htmlFor="nombre">Nombre</label>
                 <input
                   id="nombre"
-                  className="flex h-10 border px-3 py-2 text-sm text-title w-[300px] bg-transparent rounded-lg"
+                  className="flex border px-3 py-2 text-sm text-title bg-primary w-[300px] rounded-lg"
                   placeholder="Añade un nombre a la categoría"
                   type="text"
                   value={nombre}
@@ -55,7 +56,7 @@ export default function CreateCategoria() {
                 <label htmlFor="descripcion">Descripción</label>
                 <textarea
                   id="descripcion"
-                  className="flex border px-3 py-2 text-sm text-title w-[300px] bg-transparent  rounded-lg"
+                  className="flex border px-3 py-2 text-sm text-title bg-primary w-[300px] rounded-lg"
                   placeholder="Añade una descripción corta"
                   rows="4"
                   value={descripcion}

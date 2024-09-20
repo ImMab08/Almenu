@@ -1,10 +1,16 @@
 "use client";
 import React, { useState } from "react";
 import { IconTableTwo, IconTableFour, IconTableSix, IconTableHeight, IconArrowDown } from "../../icons";
+import useLoading from "@/hooks/useLoading";
 
 export function Mesas() {
-
+  const loading = useLoading();
   const [ openConfig, setOpenConfig ] = useState();
+
+  if (loading) return (
+    <div className="w-full h-[72px] p-5 bg-primary rounded-lg space-y-5 animate-pulse">
+    </div>
+  )
 
   const handledSumit = () => {
     setOpenConfig(!openConfig)

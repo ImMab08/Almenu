@@ -1,14 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import useModalStore from "@/hooks/storeOpenModals";
-import useCategoriaApi from "@/components/Desktop/Board/ContentBoard/Configuracion/Categorias/config/ApiCategoria";
+import useCategoriaApi from "@/api/Conections/CategoriaApi";
 
 export default function DeleteCategoria({ categoria }) {
   const { closeModal } = useModalStore();
   const { deleteCategoria } = useCategoriaApi();
 
-  // Función para manejar el envío de la confirmación
+  // Función para confirmar la eliminación
   const handleSubmit = async (e) => {
-    e.preventDefault(); // Evita la recarga de la página
     try {
       if (categoria) {
         await deleteCategoria(categoria.id)

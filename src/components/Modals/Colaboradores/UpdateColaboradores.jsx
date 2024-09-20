@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Colaborator } from "@/components/Desktop/Board/ContentBoard/Configuracion/Empleados/config";
 import useModalStore from "@/hooks/storeOpenModals";
-import useColaboradoresApi from "@/components/Desktop/Board/ContentBoard/Configuracion/Empleados/config/ApiColaboradores";
+import useColaboradoresApi from "@/api/Conections/EmpleadoApi";
 
 export default function UpdateColaboradores({ colaborador }) {
   const { closeModal } = useModalStore();
@@ -22,8 +22,8 @@ export default function UpdateColaboradores({ colaborador }) {
 
   // Treare los datos del usuario seleccionado
   const [ formData, setFormData ] = useState({
-    nombres: colaborador.nombres,
-    apellidos: colaborador.apellidos,
+    nombre: colaborador.nombre,
+    apellido: colaborador.apellido,
     celular: colaborador.celular,
     email: colaborador.email,
     cargo: colaborador.cargo,

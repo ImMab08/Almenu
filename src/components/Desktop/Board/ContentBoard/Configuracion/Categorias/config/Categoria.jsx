@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import useCategoriaApi from "./ApiCategoria";
+import useCategoriaApi from "@/api/Conections/CategoriaApi";
 import useModalStore from "@/hooks/storeOpenModals";
 import { IconAddButton, IconPapelera, IconPencil } from "../../../icons";
 
@@ -10,7 +10,7 @@ import DeleteCategoria from "@/components/Modals/Categoria/DeleteCategoria";
 
 export default function Categoria() {
   const { modals, openModal } = useModalStore();
-  const { categoria, loading, error } = useCategoriaApi();
+  const { categoria } = useCategoriaApi();
 
   // Estado para almacenar la categoría seleccionada.
   const [ selectedCategoria, setSelectedCategoria ] = useState(null);
@@ -22,7 +22,7 @@ export default function Categoria() {
 
   const handleOpenEditModal = (categoria) => {
     setSelectedCategoria(categoria);
-    openModal("EditarCategoria")
+    openModal("EditarCategoria");
   }
 
   return (

@@ -1,16 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
 
-import useCategoriaApi from "./ApiCategoria";
+import useSubcategoriaApi from "@/api/Conections/SubcategoriaApi";
 import useModalStore from "@/hooks/storeOpenModals";
 import { IconAddButton, IconPapelera, IconPencil } from "../../../icons";
 
-import ModalSubcategory from "@/components/Modals/Subcategoria/CreateSubcategoria";
+import CreateSubcategoria from "@/components/Modals/Subcategoria/CreateSubcategoria";
 import UpdateSubcategoria from "@/components/Modals/Subcategoria/UpdateSubcategoria";
 import DeleteSubcategoria from "@/components/Modals/Subcategoria/DeleteSubcategoria";
 
 export default function Subcategoria() {
   const { modals, openModal } = useModalStore();
-  const { subcategoria, loading, error } = useCategoriaApi();
+  const { subcategoria } = useSubcategoriaApi();
+
+  // Estado para almacenar la subcategoria seleccionada.
+  const [ selectedSubcategoria, setSelectedSubcategoria ] = useState(null);
+
+  // función para eliminar una subcategoria;
+  const handleDeleteSubcategoria = (subcategoria) => {
+    setSelectedSubcategoria(subcategoria);
+    openModal("deleteSubcategoria");
+  }
+
+  // función para editar una subcategoria;
+  const handleEditSubcategoria = (subcategoria) => {
+    setSelectedSubcategoria(subcategoria);
+    openModal("editSubcategoria")
+  }
 
   return (
     <div className="rounded-lg border border-border">
@@ -23,33 +38,35 @@ export default function Subcategoria() {
         <div className="w-full h-[280px] overflow-auto">
           <table className="w-full text-sm">
             <thead className="sticky top-0">
-              <tr className="border-b border-border">
+              <tr className="border-b border-border bg-primary">
                 <th className="h-12 px-4 text-left align-middle font-bold text-title">Nombre</th>
                 <th className="h-12 px-4 text-left align-middle font-bold text-title">Descripción</th>
+                <th className="h-12 px-4 text-left align-middle font-bold text-title">Categoría</th>
                 <th className="h-12 px-4 text-left align-middle font-bold text-title">Opciones</th>
               </tr>
             </thead>
             <tbody className="w-full">
               {subcategoria?.length > 0 ? (
-                subcategoria.map((subcategoria) => {
+                subcategoria.map((subcategoria) => (
                   <tr key={subcategoria.id} className="border-b border-border">
-                    <td className="p-4 align-middle font-semibold text-subtitle">{subcategoria.nombre}</td>
-                    <td className="p-4 align-middle text-subtitle">{subcategoria.descripcion}</td>
+                    <td className="p-4 align-middle font-semibold text-subtitle">{subcategoria?.nombre}</td>
+                    <td className="p-4 align-middle text-subtitle">{subcategoria?.descripcion}</td>
+                    <td className="p-4 align-middle font-semibold text-subtitle">{subcategoria?.nombreCategoria}</td>
 
                     <td className="p-4 align-middle space-x-2">
-                      <button className="inline-flex items-center justify-center rounded-md text-sm font-medium bg-bg hover:bg-bg/80 h-7 w-7" onClick={() =>   openModal("EditarCategoria", categoria.id) }>
+                      <button className="inline-flex items-center justify-center rounded-md text-sm font-medium bg-bg hover:bg-bg/80 h-7 w-7" onClick={() => handleEditSubcategoria(subcategoria)}>
                         <IconPencil />
                       </button>
-                      <button className="inline-flex items-center justify-center rounded-md text-sm font-medium bg-red-500 hover:bg-red-500/80 h-7 w-7" onClick={() => openModal("ConfirmDelete", categoria.id)}>
+                      <button className="inline-flex items-center justify-center rounded-md text-sm font-medium bg-red-500 hover:bg-red-500/80 h-7 w-7" onClick={() => handleDeleteSubcategoria(subcategoria)}>
                         <IconPapelera />
                       </button>
                     </td>
 
                   </tr>
-                })
+                ))
               ) : (
                 <tr>
-                  <td colSpan="3" className="text-center p-4">No hay subcategorias creadas</td>
+                  <td colSpan="4" className="text-center p-4">No hay subcategorias creadas</td>
                 </tr>
               )}
             </tbody>
@@ -63,9 +80,9 @@ export default function Subcategoria() {
           Añadir Subcategoria
         </button>
 
-        {modals.CreateSubcategoria && <ModalSubcategory />}
-        {modals.UpdateSubcategoria && <UpdateSubcategoria />}
-        {modals.DeleteSubcategoria && <DeleteSubcategoria />}
+        {modals.CreateSubcategoria && <CreateSubcategoria />}
+        {modals.editSubcategoria && <UpdateSubcategoria subcategoria={selectedSubcategoria}/>}
+        {modals.deleteSubcategoria && <DeleteSubcategoria subcategoria={selectedSubcategoria}/>}
       </div>
     </div>
   );

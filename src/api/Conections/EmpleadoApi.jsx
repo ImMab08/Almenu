@@ -6,22 +6,27 @@ const useColaboradoresApi = () => {
   const [ loading, setLoading ] = useState(true);
   const [ error, setError ] = useState(null)
 
-  // Obetener colaboradores
-  const fetchColaboradores = async () => {
-    setLoading(true)
-    try {
-      const response = await api.get("/v01/colaborador/colaboradores");
-      if (response?.data) {
-        setColaborador(response.data);
-      } else {
-        setError("No se encuentra colaboradores");
-      }
-    } catch (err) {
-      setError(err.message || "Error al cargar a los colaboradores");
-    } finally {
-      setLoading(false)
-    }
-  };
+  // Obtener colaboradores
+  useEffect(() => {
+    setTimeout(() => {
+      const fetchColaboradores = async () => {
+        try {
+          const response = await api.get("/v01/colaborador/colaboradores");
+          if (response?.data) {
+            setColaborador(response.data);
+          } else {
+            setError("No se encuentra colaboradores");
+          }
+        } catch (error) {
+          setError(error.message || "Error al cargar a los colaboradores");
+        } finally {
+          setLoading(false)
+        }
+      };
+
+      fetchColaboradores();
+    }, 1000)
+  }, [])
 
   // Crear un nuevo colaborador
   const createColaborador = async (newColaborador) => {
@@ -58,10 +63,6 @@ const useColaboradoresApi = () => {
       setError(err.message || "Error al eliminar al colaborador.");
     }
   }
-
-  useEffect(() => {
-    fetchColaboradores();
-  }, []);
 
   return { colaborador, loading, error, createColaborador, updateColaborador, deleteColaborador }
 };

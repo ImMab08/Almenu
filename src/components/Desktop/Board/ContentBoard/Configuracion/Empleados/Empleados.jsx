@@ -3,13 +3,15 @@ import React, { useState } from "react";
 import { Colaborator } from "./config";
 import { IconArrowDown, IconPapelera, IconPencil, IconSearch, IconViewMoreUp } from "../../icons";
 
+import useLoading from "@/hooks/useLoading";
 import useModalStore from "@/hooks/storeOpenModals";
-import useColaboradoresApi from "./config/ApiColaboradores";
 
-import DeleteColaboradores from "@/components/Modals/Colaboradores/DeleteColaboradores";
+import useColaboradoresApi from "@/api/Conections/EmpleadoApi";
 import UpdateColaboradores from "@/components/Modals/Colaboradores/UpdateColaboradores";
+import DeleteColaboradores from "@/components/Modals/Colaboradores/DeleteColaboradores";
 
 export function Empleados() {
+  const loading = useLoading();
   const [ openConfig, setOpenConfig ] = useState();
   const [ openViewColaborador, setOpenViewColaborador ] = useState();
   const { modals, openModal } = useModalStore();
@@ -29,8 +31,8 @@ export function Empleados() {
   }
 
   const [ formData, setFormData ] = useState({
-    nombres: "",
-    apellidos: "",
+    nombre: "",
+    apellido: "",
     celular: "",
     email: "",
     cargo: "",
@@ -51,8 +53,8 @@ export function Empleados() {
     try {
       await createColaborador(formData);
       setFormData({ 
-        nombres: "",
-        apellidos: "",
+        nombre: "",
+        apellido: "",
         celular: "",
         email: "",
         cargo: "",
@@ -75,6 +77,11 @@ export function Empleados() {
       setOpenViewColaborador(id); // expandir
     }
   }
+
+  if (loading) return (
+    <div className="w-full h-[72px] p-5 bg-primary rounded-lg space-y-5 animate-pulse">
+    </div>
+  )
 
   const formColaborador = Colaborator.map(({title, required, placeHolder, name}) => {
     return (
@@ -137,8 +144,8 @@ export function Empleados() {
                     <div className="flex justify-between items-center">
                       <div className="flex flex-col">
                         <div className="flex space-x-1">
-                          <p className="text-base font-semibold text-title">{colaborador.nombres}</p>
-                          <p className="text-base font-semibold text-title">{colaborador.apellidos}</p>
+                          <p className="text-base font-semibold text-title">{colaborador.nombre}</p>
+                          <p className="text-base font-semibold text-title">{colaborador.apellido}</p>
                         </div>
                         <p className="text-sm text-subtitle">{colaborador.cargo}</p>
                       </div>

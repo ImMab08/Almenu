@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import useModalStore from "@/hooks/storeOpenModals";
-import useCategoriaApi from "@/components/Desktop/Board/ContentBoard/Configuracion/Categorias/config/ApiCategoria";
+import useCategoriaApi from "@/api/Conections/CategoriaApi";
 
 export default function UpdateCategoria({ categoria }) {
   const { closeModal } = useModalStore();
@@ -40,7 +40,7 @@ export default function UpdateCategoria({ categoria }) {
                 <label htmlFor="nombre">Nombre</label>
                 <input
                   id="nombre"
-                  className="flex h-10 border px-3 py-2 text-sm bg-transparent w-[300px] rounded-lg"
+                  className="flex border px-3 py-2 text-sm text-title bg-primary w-[300px] rounded-lg"
                   placeholder="Añade un nombre a la categoría"
                   type="text"
                   value={nombre}
@@ -53,7 +53,7 @@ export default function UpdateCategoria({ categoria }) {
                 <label htmlFor="descripcion">Descripción</label>
                 <textarea
                   id="descripcion"
-                  className="flex border px-3 py-2 text-sm bg-transparent w-[300px] rounded-lg"
+                  className="flex border px-3 py-2 text-sm text-title bg-primary w-[300px] rounded-lg"
                   placeholder="Añade una descripción corta"
                   rows="4"
                   value={descripcion}

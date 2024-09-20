@@ -1,12 +1,19 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import Categoria from "./config/Categoria";
 import Subcategoria from "./config/Subcategoria";
 import {IconArrowDown } from "../../icons";
+import useLoading from "@/hooks/useLoading";
 
 export function SettingsCategoria() {
-  const [openConfig, setOpenConfig] = useState(false);
+  const loading  = useLoading();
+  const [ openConfig, setOpenConfig ] = useState(false);
+
+  if (loading) return (
+    <div className="w-full h-[72px] p-5 bg-primary rounded-lg space-y-5 animate-pulse">
+    </div>
+  )
 
   const handledSumit = () => {
     setOpenConfig(!openConfig);

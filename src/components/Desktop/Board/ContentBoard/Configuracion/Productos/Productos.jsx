@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import useModalStore from "@/hooks/storeOpenModals";
 import ModalProducto from "@/components/Modals/ModalProducto";
@@ -9,17 +9,23 @@ import {
   IconArrowDown,
   IconPapelera,
   IconPencil,
-  IconSearch,
 } from "../../icons";
+import useLoading from "@/hooks/useLoading";
 
 export function Productos() {
-  const [openConfig, setOpenConfig] = useState(false);
+  const loading = useLoading();
+  const [ openConfig, setOpenConfig ] = useState(false);
+  const { modals, openModal } = useModalStore();
+
+  if (loading) return (
+    <div className="w-full h-[72px] p-5 bg-primary rounded-lg space-y-5 animate-pulse">
+    </div>
+  )
 
   const handledSumit = () => {
     setOpenConfig(!openConfig);
   };
 
-  const { modals, openModal } = useModalStore();
 
   return (
     <section className="w-full h-full flex flex-col text-secondary overflow-auto">

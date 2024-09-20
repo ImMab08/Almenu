@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import useModalStore from "@/hooks/storeOpenModals";
 
 import api from "@/api/api";
-import { IconUpload } from "./icons/IconUpload";
+import { IconUpload } from "../icons/IconUpload";
 
-export default function ModalInfoRestaurante({ initialData }) {
+export default function UpdateRestaurante({ initialData }) {
   const { closeModal } = useModalStore();
   const [ formData, setFormData ] = useState({
     nombre: initialData?.nombre || "",
