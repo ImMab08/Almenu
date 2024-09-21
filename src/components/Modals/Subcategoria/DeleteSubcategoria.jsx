@@ -9,8 +9,8 @@ export default function DeleteSubcategoria({ subcategoria }) {
   // Función para confirmar la eliminación
   const handleSubmit = async (e) => {
     try {
-      if (subcategoria) {
-        const response = await deleteSubcategoria(subcategoria.id)
+      if (subcategoria && subcategoria.id_subcategoria) {
+        const response = await deleteSubcategoria(subcategoria.id_subcategoria)
         console.log("Respuesta api", response)
       }
     } catch {

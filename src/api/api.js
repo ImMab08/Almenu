@@ -13,7 +13,6 @@ api.interceptors.request.use((config) => {
     // verificar si el token existe
     if (tokenCookie) {
         const token = tokenCookie.split('=')[1]; // Obtener el token
-        console.log("Enviando toke: ", token)
         config.headers.Authorization = `Bearer ${token}`;
     } else {
         console.log('Token no encontrado');

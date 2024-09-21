@@ -4,7 +4,7 @@ import useSubcategoriaApi from "@/api/Conections/SubcategoriaApi";
 
 export default function UpdateSubcategoria({ subcategoria }) {
   const { closeModal } = useModalStore();
-  const { UpdateSubcategoria, categoria } = useSubcategoriaApi();
+  const { updateSubcategoria, categoria } = useSubcategoriaApi();
 
   // Estados locales para actualizar los datos de la subcategoria seleccionada.
   const [ nombre, setNombre ] = useState(subcategoria.nombre);
@@ -14,11 +14,11 @@ export default function UpdateSubcategoria({ subcategoria }) {
   // Función para manejar la edicción de la subcategoria.
   const handleSubmit = async (e) => {
     try {
-      if (subcategoria) {
-        await UpdateSubcategoria(subcategoria.id, { nombre, descripcion, idCategoria })
+      if (subcategoria && subcategoria.id_subcategoria) {
+        await updateSubcategoria(subcategoria.id_subcategoria, { nombre, descripcion, idCategoria })
       }
-    } catch {
-      console.log("Error al actualizar la subcategoria");
+    } catch(error) {
+      console.error("Error al actualizar la subcategoria", error);
     }
     closeModal();
   }

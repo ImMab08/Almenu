@@ -48,7 +48,7 @@ export default function Subcategoria() {
             <tbody className="w-full">
               {subcategoria?.length > 0 ? (
                 subcategoria.map((subcategoria) => (
-                  <tr key={subcategoria.id} className="border-b border-border">
+                  <tr key={subcategoria?.nombre} className="border-b border-border">
                     <td className="p-4 align-middle font-semibold text-subtitle">{subcategoria?.nombre}</td>
                     <td className="p-4 align-middle text-subtitle">{subcategoria?.descripcion}</td>
                     <td className="p-4 align-middle font-semibold text-subtitle">{subcategoria?.nombreCategoria}</td>

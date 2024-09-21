@@ -44,19 +44,23 @@ const useSubcategoriaApi = () => {
     } catch {
       console.log("Error al crear la subcategoria.")
     }
-  }
+  };
 
   // Actualizar una subcategoria
   const updateSubcategoria = async (id_subcategoria, updateSubcategoria) => {
     try {
-      await api.put(`/v01/subcategoria/update/${id_subcategoria}`, updateSubcategoria);
+      const response = await api.put(`/v01/subcategoria/update/${id_subcategoria}`, {
+        nombre: updateSubcategoria.nombre,
+        descripcion: updateSubcategoria.descripcion,
+        id_categoria: updateSubcategoria.idCategoria,
+      });
       setSubcategoria(subcategoria.map((subcategoria) =>
         subcategoria.id === id_subcategoria ? response.data : subcategoria
       ));
     } catch {
-      console.log("Error al eliminar una subcategoria.");
+      console.log("Error al crear la subcategoria una subcategoria.");
     }
-  }
+  };
 
   // Eliminar una subcategoria
   const deleteSubcategoria = async (id_subcategoria) => {
@@ -66,7 +70,7 @@ const useSubcategoriaApi = () => {
     } catch {
       console.log("Error al eliminar la subcategoria.")
     }
-  }
+  };
 
   useEffect(() => {
     fetchCategorias();

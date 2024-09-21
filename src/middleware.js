@@ -2,7 +2,6 @@ import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 
 export function middleware(request) {
-  console.log("Middleware ejecutado"); 
   
   const cookieStore = cookies();
   const token = cookieStore.get('token'); // Obtener el token de las cookies.
