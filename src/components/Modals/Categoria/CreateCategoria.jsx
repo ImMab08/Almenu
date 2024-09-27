@@ -3,7 +3,7 @@ import useModalStore from "@/hooks/storeOpenModals";
 import useCategoriaApi from "@/api/Conections/CategoriaApi";
 
 
-export default function CreateCategoria() {
+export default function CreateCategoria({ addCategoriaList }) {
   const { closeModal } = useModalStore();
   const { createCategoria } = useCategoriaApi();
 
@@ -15,12 +15,24 @@ export default function CreateCategoria() {
 
   // Función para manejar el envío del formulario
   const handleSubmit = async (e) => {
+    e.preventDefault();
     setLoading(true);
     setError(null);
 
+    // Creamos un array de los parametros que recibe los datos del usario
+    // para luego enviarlos a la API.
+    const newCategoria = {
+      nombre,
+      descripcion
+    }
+
     try {
-      await createCategoria({ nombre, descripcion });
-      // Cierra el modal después de guardar
+      // Guardamos el awai en una constante para luego pasarselo a nuestra prop con
+      // el fin de actualizar el estado sin recargar.
+      const createdCategoria = await createCategoria(newCategoria);
+      // Llamamos a nuestra prop para actualizar el estado sin recargar.
+      addCategoriaList(createdCategoria);
+      // Cerramos el modal después de guardar y settear los estados.
       closeModal();
     } catch (err) {
       setError(err.message);

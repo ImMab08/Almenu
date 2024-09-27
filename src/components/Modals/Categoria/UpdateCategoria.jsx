@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import useModalStore from "@/hooks/storeOpenModals";
 import useCategoriaApi from "@/api/Conections/CategoriaApi";
 
-export default function UpdateCategoria({ categoria }) {
+export default function UpdateCategoria({ categoria, editCategoriaList }) {
   const { closeModal } = useModalStore();
   const { updateCategoria } = useCategoriaApi();
 
@@ -14,16 +14,20 @@ export default function UpdateCategoria({ categoria }) {
   // Función para manejar la edición de la categoria.
   const handleSubmit = async (e) => {
     setLoading(true);
+
+    const updateData = {
+      nombre,
+      descripcion
+    }
     try {
-      if (categoria) {
-        await updateCategoria(categoria.id, { nombre, descripcion })
-      }
+      const updatedCategoria = await updateCategoria(categoria.id, updateData);
+      editCategoriaList(updatedCategoria);
+      closeModal();
     } catch (error) {
       console.log(error)
     } finally {
       setLoading(false);
     }
-    closeModal();
   }
 
   return (

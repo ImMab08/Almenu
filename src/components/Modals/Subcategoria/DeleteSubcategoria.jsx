@@ -1,4 +1,4 @@
-import React, from "react";
+import React from "react";
 import useModalStore from "@/hooks/storeOpenModals";
 import useSubcategoriaApi from "@/api/Conections/SubcategoriaApi";
 
@@ -6,15 +6,14 @@ export default function DeleteSubcategoria({ subcategoria }) {
   const { closeModal } = useModalStore();
   const { deleteSubcategoria } = useSubcategoriaApi();
 
-  // Función para confirmar la eliminación
+  // Función para confirmar la eliminación.
   const handleSubmit = async (e) => {
     try {
       if (subcategoria && subcategoria.id_subcategoria) {
-        const response = await deleteSubcategoria(subcategoria.id_subcategoria)
-        console.log("Respuesta api", response)
+         await deleteSubcategoria(subcategoria.id_subcategoria)
       }
-    } catch {
-      console.log("Error al eliminar la subcategoria")
+    } catch(error) {
+      console.error("Error al eliminar la subcategoria", error)
     }
     closeModal();
   };

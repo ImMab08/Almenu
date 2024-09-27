@@ -57,8 +57,8 @@ const useSubcategoriaApi = () => {
       setSubcategoria(subcategoria.map((subcategoria) =>
         subcategoria.id === id_subcategoria ? response.data : subcategoria
       ));
-    } catch {
-      console.log("Error al crear la subcategoria una subcategoria.");
+    } catch (error) {
+      console.error("Error al crear la subcategoria una subcategoria.", error);
     }
   };
 

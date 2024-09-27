@@ -30,8 +30,15 @@ const useCategoriaApi = () => {
   const createCategoria = async (newCategoria) => {
     try {
       const response = await api.post("/v01/categoria/create", newCategoria);
-      // Agregar la nueva categoría a la lista sin recargar
-      setCategorias([...categoria, response.data]);
+
+      // Agregar la nueva categoría a la lista sin actualizar.
+      setCategorias([
+        ...categoria, 
+        response.data
+      ]);
+
+      // Retornamos la información
+      return response.data;
     } catch (err) {
       setError(err.message || "Error al crear la categoría.");
     }
@@ -41,12 +48,15 @@ const useCategoriaApi = () => {
   const updateCategoria = async (id_categoria, updatedCategoria) => {
     try {
       const response = await api.put(`/v01/categoria/update/${id_categoria}`,updatedCategoria);
+
       // Actualizar la categoría en el estado sin recargar
-      setCategorias(
-        categoria.map((categoria) =>
+      setCategorias((prevCategorias) =>
+        prevCategorias.map((categoria) =>
           categoria.id === id_categoria ? response.data : categoria
         )
       );
+
+      return response.data;
     } catch (err) {
       setError(err.message || "Error al actualizar la categoría.");
     }
@@ -55,17 +65,21 @@ const useCategoriaApi = () => {
   // Eliminar una categoría
   const deleteCategoria = async (id_categoria) => {
     try {
-      await api.delete(`/v01/categoria/delete/${id_categoria}`);
+      const response = await api.delete(`/v01/categoria/delete/${id_categoria}`);
+
       // Filtrar la categoría eliminada del estado sin recargar
       setCategorias(
         categoria.filter((categoria) => categoria.id !== id_categoria)
       );
+
+      // Retornamos la información
+      return response.data;
     } catch (err) {
       setError(err.message || "Error al eliminar la categoría.");
     }
   };
 
-  return { categoria, loading, error, createCategoria, updateCategoria, deleteCategoria };
+  return { categoria, setCategorias, loading, error, createCategoria, updateCategoria, deleteCategoria };
 };
 
 export default useCategoriaApi;

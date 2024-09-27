@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { Colaborator } from "./config";
 import { IconArrowDown, IconPapelera, IconPencil, IconSearch, IconViewMoreUp } from "../../icons";
@@ -7,6 +7,7 @@ import useLoading from "@/hooks/useLoading";
 import useModalStore from "@/hooks/storeOpenModals";
 
 import useColaboradoresApi from "@/api/Conections/EmpleadoApi";
+
 import UpdateColaboradores from "@/components/Modals/Colaboradores/UpdateColaboradores";
 import DeleteColaboradores from "@/components/Modals/Colaboradores/DeleteColaboradores";
 
@@ -14,17 +15,34 @@ export function Empleados() {
   const loading = useLoading();
   const [ openConfig, setOpenConfig ] = useState();
   const [ openViewColaborador, setOpenViewColaborador ] = useState();
+
   const { modals, openModal } = useModalStore();
-  const { colaborador, createColaborador } = useColaboradoresApi();
+  const { colaborador, setColaborador, fetchColaboradores, createColaborador } = useColaboradoresApi();
 
   // Estado para almacenar al empleado seleccionado.
   const [ selectedColaborador, setSelectedColaborador ] = useState(null);
+
+  useEffect(() => {
+    fetchColaboradores();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   const handleOpenDeleteModal = (colaborador) => {
     setSelectedColaborador(colaborador);
     openModal("DeleteColaborador");
   }
 
+  // Función para eliminar un colaborador del estado sin actualizar.
+  const removeColaboradorList = (colaborador) => {
+    console.log("Empleado eliminado: ", colaborador);
+    setColaborador((prevColaborador) => 
+    prevColaborador.filter(
+      (item) => item.id !== colaborador.idx
+    )
+    );
+  };
+
+  // Función para abrir el modal de confirmar eliminación.
   const handleOpenUpdateModal = (colaborador) => {
     setSelectedColaborador(colaborador);
     openModal("UpdateColaborador")
@@ -193,7 +211,7 @@ export function Empleados() {
             </div>
             
             {modals.UpdateColaborador && <UpdateColaboradores colaborador={selectedColaborador} />}
-            {modals.DeleteColaborador && <DeleteColaboradores colaborador={selectedColaborador} />}
+            {modals.DeleteColaborador && <DeleteColaboradores colaborador={selectedColaborador} removeColaboradorList={removeColaboradorList} />}
           </div>
         </div>
       }

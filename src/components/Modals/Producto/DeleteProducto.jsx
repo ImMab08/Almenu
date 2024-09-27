@@ -1,25 +1,22 @@
 import React from "react";
 import useModalStore from "@/hooks/storeOpenModals";
-import useColaboradoresApi from "@/api/Conections/EmpleadoApi";
+import useProductoApi from "@/api/Conections/ProductoApi";
 
-export default function DeleteColaboradores({ colaborador, removeColaboradorList }) {
+export default function DeleteProducto({ producto, removeProductoList }) {
   const { closeModal } = useModalStore();
-  const { deleteColaborador } = useColaboradoresApi();
+  const { deleteProducto } = useProductoApi();
 
   // Función para confirmar la eliminación.
   const handleSubmit = async (e) => {
+    e.preventDefault();
     try {
-      // Comprobamos si el colaborador y su id son los mismos.
-      if (colaborador && colaborador.id) {
-        // Llamamos a la API para eliminar al empleado por su ID.
-        await deleteColaborador(colaborador.id);
-        // Llamamos a la prop para remover al empleado de la lista.
-        removeColaboradorList(colaborador.id);
-        // Cerranmos nuestor modal.
+      if (producto && producto.id_producto) {
+        await deleteProducto(producto.id_producto);
+        removeProductoList(producto.id_producto);
         closeModal();
       }
     } catch(error) {
-      console.log(error)
+      console.error("Error al eliminar el producto", error)
     }
   }
 
@@ -27,7 +24,7 @@ export default function DeleteColaboradores({ colaborador, removeColaboradorList
     <div className="w-full h-full top-0 left-0 bg-black/70 bg-opacity-60 fixed z-50 flex items-center justify-center">
       <div className="rounded-lg bg-secondary w-[450px] ">
         <div className="flex flex-col space-y-4 p-5">
-          <p className="text-xl text-center text-title">¿Estás seguro que deseas eliminar a <span className="font-semibold">{colaborador?.nombre} {colaborador?.apellido}</span>?</p>
+          <p className="text-xl text-center text-title">¿Estás seguro que deseas eliminar el producto <span className="font-semibold">{producto.nombre}</span>?</p>
           <p className="text-xs font-semibold text-subtitle text-center">¡Al hacer esto perderas toda su información!</p>
         </div>
 

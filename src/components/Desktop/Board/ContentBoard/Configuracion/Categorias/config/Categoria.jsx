@@ -10,20 +10,50 @@ import DeleteCategoria from "@/components/Modals/Categoria/DeleteCategoria";
 
 export default function Categoria() {
   const { modals, openModal } = useModalStore();
-  const { categoria } = useCategoriaApi();
+  const { categoria, setCategorias, updateCategoria } = useCategoriaApi();
 
   // Estado para almacenar la categoría seleccionada.
-  const [ selectedCategoria, setSelectedCategoria ] = useState(null);
+  const [ selectedCategoria, setSelectedCategoria ] = useState([]);
 
+  // Función para manejar la apertura del modal de confirmación de eliminación.
   const handleOpenDeleteModal = (categoria) => {
     setSelectedCategoria(categoria);
     openModal("ConfirmDelete");
   }
 
+  // Función para eliminar una categoria del estado sin actualizar.
+  const removeCategoriaList = (categoria) => {
+    console.log("Categoria eliminada: ", categoria)
+    setCategorias((prevCategorias) =>
+      prevCategorias.filter(
+        (item) => item.id !== categoria
+      )
+    );
+  };
+
   const handleOpenEditModal = (categoria) => {
     setSelectedCategoria(categoria);
     openModal("EditarCategoria");
-  }
+  };
+
+  // Función para editar una categoria sin actualizar su estado.
+  const editCategoriaList = (updatedCategoria) => {
+    console.log('Actualizando categoría:', updatedCategoria);
+    setCategorias((prevCategorias) =>
+      prevCategorias.map((categoria) => 
+        categoria.id === updatedCategoria.id ? updatedCategoria : categoria
+      )
+    );
+  };
+
+  const addCategoriaList = (categoria) => {
+    setCategorias(
+      (prevCategorias) => [
+        ...prevCategorias, 
+        categoria
+      ]
+    );
+  };
 
   return (
     <div className="rounded-lg border border-border">
@@ -45,9 +75,9 @@ export default function Categoria() {
             <tbody className="w-full">
               {categoria?.length > 0 ? (
                 categoria.map((categoria) => (
-                  <tr key={categoria.id} className="border-b border-border">
-                    <td className="p-4 align-middle font-semibold text-subtitle">{categoria.nombre}</td>
-                    <td className="p-4 align-middle text-subtitle">{categoria.descripcion}</td>
+                  <tr key={categoria?.id} className="border-b border-border">
+                    <td className="p-4 align-middle font-semibold text-subtitle">{categoria?.nombre}</td>
+                    <td className="p-4 align-middle text-subtitle">{categoria?.descripcion}</td>
 
                     <td className="p-4 align-middle space-x-2">
                       <button className="inline-flex items-center justify-center rounded-md text-sm font-medium bg-bg hover:bg-bg/80 h-7 w-7" onClick={() => handleOpenEditModal(categoria)}>
@@ -76,9 +106,9 @@ export default function Categoria() {
           Añadir Categoría
         </button>
 
-        {modals.CreateCategoria && <CreateCategoria />}
-        {modals.EditarCategoria && <UpdateCategoria categoria={selectedCategoria} />}
-        {modals.ConfirmDelete && <DeleteCategoria categoria={selectedCategoria} />}
+        {modals.CreateCategoria && <CreateCategoria addCategoriaList={addCategoriaList} />}
+        {modals.EditarCategoria && <UpdateCategoria categoria={selectedCategoria} editCategoriaList={editCategoriaList} />}
+        {modals.ConfirmDelete && <DeleteCategoria categoria={selectedCategoria} removeCategoriaList={removeCategoriaList} />}
       </div>
     </div>
   );

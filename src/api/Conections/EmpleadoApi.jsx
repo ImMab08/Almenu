@@ -7,26 +7,20 @@ const useColaboradoresApi = () => {
   const [ error, setError ] = useState(null)
 
   // Obtener colaboradores
-  useEffect(() => {
-    setTimeout(() => {
-      const fetchColaboradores = async () => {
-        try {
-          const response = await api.get("/v01/colaborador/colaboradores");
-          if (response?.data) {
-            setColaborador(response.data);
-          } else {
-            setError("No se encuentra colaboradores");
-          }
-        } catch (error) {
-          setError(error.message || "Error al cargar a los colaboradores");
-        } finally {
-          setLoading(false)
-        }
-      };
-
-      fetchColaboradores();
-    }, 1000)
-  }, [])
+  const fetchColaboradores = async () => {
+    try {
+      const response = await api.get("/v01/colaborador/colaboradores");
+      if (response?.data) {
+        setColaborador(response.data);
+      } else {
+        setError("No se encuentra colaboradores");
+      }
+    } catch (error) {
+      setError(error.message || "Error al cargar a los colaboradores");
+    } finally {
+      setLoading(false)
+    }
+  };
 
   // Crear un nuevo colaborador
   const createColaborador = async (newColaborador) => {
@@ -57,14 +51,21 @@ const useColaboradoresApi = () => {
   // Eliminar a un colaborador 
   const deleteColaborador = async (id_empleado) => {
     try {
-      await api.delete(`/v01/colaborador/delete/${id_empleado}`)
-      setColaborador(colaborador.filter(colaborador => colaborador.id !== id_empleado));
+      const response = await api.delete(`/v01/colaborador/delete/${id_empleado}`)
+
+      // Filtrar al colaborar eliminado del estado sin recargar.
+      setColaborador(
+        colaborador.filter((colaborador) => colaborador.id !== id_empleado)
+      );
+
+      // Retornamos la información.
+      return response.data;
     } catch (err) {
       setError(err.message || "Error al eliminar al colaborador.");
     }
   }
 
-  return { colaborador, loading, error, createColaborador, updateColaborador, deleteColaborador }
+  return { colaborador, setColaborador, loading, error, fetchColaboradores, createColaborador, updateColaborador, deleteColaborador }
 };
 
 export default useColaboradoresApi;

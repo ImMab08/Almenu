@@ -13,3 +13,4 @@ export * from './IconTableSix'
 export * from './IconTableHeight'
 
 export * from './IconFood'
+export * from './IconDefaultProduct'

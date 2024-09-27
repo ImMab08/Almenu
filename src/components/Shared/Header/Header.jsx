@@ -24,11 +24,11 @@ function Header() {
       >
         <IconBars />
       </div>
-      <div className="w-[120px] h-[50px] mobileLG:w-[130px] mobileLG:h-[60px] tablet:w-[150px] tablet:h-[70px] laptop:w-[150px] laptop:h-[68px] relative">
+      <div className="flex items-center justify-center w-[120px] h-[50px] mobileLG:w-[130px] mobileLG:h-[60px] tablet:w-[150px] tablet:h-[70px] laptop:w-[150px] laptop:h-[68px] relative">
         <Link href="/">
           <Image
-            width={150}
-            height={150}
+            width={90}
+            height={90}
             className="object-contain"
             src="/img/logo-almenu.png"
             alt="Logo"
