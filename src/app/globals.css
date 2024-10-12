@@ -28,6 +28,26 @@
   background: #555;
 }
 
+/* Personalizar la barra de desplazamiento */
+ul::-webkit-scrollbar {
+  width: 2px; /* Cambia este valor según tus necesidades */
+  height: 3px;
+}
+
+ul::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+ul::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border: 2px solid transparent;
+}
+
+ul::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
+
+
 * {
   font-family: "Poppins", sans-serif;
   box-sizing: border-box;
@@ -175,12 +195,13 @@
 /* FORM */
 
 .input-field {
+  width: 100%;
   position: relative;
   margin: 20px 0px;
 }
 .input-field input {
-  width: 250px;
-  height: 50px;
+  width: 100%;
+  height: 40px;
   border-radius: 10px;
   font-size: 14px;
   padding: 0 15px;
@@ -265,49 +286,6 @@ input:not(:placeholder-shown) ~ label {
   width: 100%;
   height: 100%;
   object-fit: contain;
-}
-
-.input-field {
-  position: relative;
-  margin: 15px 0px;
-}
-.input-field input {
-  width: 250px;
-  height: 40px;
-  border-radius: 10px;
-  font-size: 14px;
-  padding: 0 15px;
-  border: 1px solid var(--secondary-color);
-  background: transparent;
-  color: var(--tertiary-color);
-  outline: none;
-  transition: border-color 0.3s ease;
-}
-.input-field label {
-  position: absolute;
-  top: 50%;
-  left: 15px;
-  transform: translateY(-50%);
-  color: var(--secondary-color);
-  font-size: 15px;
-  pointer-events: none;
-  transition: .3s;
-}
-input:focus ~ label,
-input:not(:placeholder-shown) ~ label {
-  top: 0;
-  left: 10px;
-  font-size: 12px;
-  padding: 0 5px;
-  background-color: #202020;
-  color: var(--tertiary-color);
-}
-.input-field input::placeholder {
-  color: transparent;
-}
-.input-field input:focus,
-.input-field input:not(:placeholder-shown) {
-  border-color: var(--tertiary-color);
 }
 
 .button-register {

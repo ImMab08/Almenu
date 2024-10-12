@@ -2,39 +2,54 @@
 import React, { useState } from "react";
 import { IconArrowDown } from "./icons";
 import useCategoriaApi from "@/api/Conections/CategoriaApi";
+import { IconClose } from "../Header/icons";
 
-export default function ProductsBoard() {
+export default function ProductsBoard({ handleCategoriaSelect, handleProductoSelect }) {
+  const [selected, setSelected] = useState(null);
   const [isDropdownVisible, setIsDropdownVisible] = useState();
   const { categoria } = useCategoriaApi();
 
   const showDropdown = () => setIsDropdownVisible(true);
   const hideDropdown = () => setIsDropdownVisible(false);
 
+  const handleCategoriaClic = (idCategoria) => {
+    setSelected(idCategoria);
+    handleCategoriaSelect(idCategoria);
+  };
+
+  const handleClose = () => {
+    setSelected(null);
+    handleCategoriaSelect(false);
+  };
+
   return (
     <header className="w-full">
-      <nav className=" w-full h-auto bg-[#151515] border-b border-border px-5">
-        <ul className="flex space-x-5">
-          {categoria?.length > 0 ? (
-            categoria.map((categoria) => (
-                <li key={categoria.id} className="p-1 text-title text-base flex items-center cursor-pointer list-none" onMouseEnter={showDropdown} onMouseLeave={hideDropdown}>
+      <nav className=" w-full h-auto bg-tertiary border-b border-border">
+        <div className="flex justify-between items-center">
+          <ul className="flex space-x-5 overflow-x-scroll">
+            {categoria?.length > 0 ? (
+              categoria.map((categoria) => (
+                <li
+                  key={categoria.id}
+                  className={`p-1 text-title text-base flex items-center cursor-pointer list-none hover:bg-secondary px-2 ${
+                    selected === categoria.id ? "bg-secondary" : ""
+                  }`}
+                  onMouseEnter={showDropdown}
+                  onMouseLeave={hideDropdown}
+                  onClick={() => handleCategoriaClic(categoria.id)}
+                >
                   {categoria.nombre}
                   <IconArrowDown />
-                  {/* {isDropdownVisible && (
-                    <>
-                      <ul className=" absolute top-[106px] z-50 bg-white w-auto h-auto flex flex-col space-y-2 rounded-b-lg">
-                        <li className="hover:bg-secondary hover:text-white px-3">Lorem ipsum</li>
-                        <li className="hover:bg-secondary hover:text-white px-3">Lorem ipsum</li>
-                        <li className="hover:bg-secondary hover:text-white px-3">Lorem ipsum</li>
-                        <li className="hover:bg-secondary hover:text-white px-3">Lorem ipsum</li>
-                      </ul>
-                    </>
-                  )} */}
                 </li>
-            ))
-          ) : (
-            <div></div>
-          )}
-        </ul>
+              ))
+            ) : (
+              <div></div>
+            )}
+          </ul>
+          <div className="relative z-10 flex items-center justify-center px-3 cursor-pointer" onClick={handleClose}>
+            <IconClose />
+          </div>
+        </div>
       </nav>
     </header>
   );

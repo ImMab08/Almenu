@@ -24,7 +24,7 @@ export function Empleados() {
 
   useEffect(() => {
     fetchColaboradores();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const handleOpenDeleteModal = (colaborador) => {

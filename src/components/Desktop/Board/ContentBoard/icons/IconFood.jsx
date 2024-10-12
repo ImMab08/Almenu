@@ -3,8 +3,8 @@ export function IconFood(props) {
     <svg
       {...props}
       xmlns="http://www.w3.org/2000/svg"
-      width="60px"
-      height="60px"
+      width="55px"
+      height="55px"
       viewBox="0 -960 960 960"
       fill="#EDEDED"
     >

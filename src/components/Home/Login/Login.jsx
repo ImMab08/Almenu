@@ -38,7 +38,7 @@ const Login = () => {
             <h2 className="text-[1.8rem] sm:text-[2rem] font-extrabold text-title">Iniciar Sesión</h2>
           </div>
 
-          <form onSubmit={handleSubmit}>
+          <form className="w-full px-5" onSubmit={handleSubmit}>
             <div className="input-field">
               <input
                 className="input"
@@ -67,11 +67,11 @@ const Login = () => {
               <button type="submit">Iniciar sesión</button>
             </div>
               {
-                error && <p className="text-red-500 text-center font-bold">{error}</p>
+                error && <p className="text-red-500 text-center text-sm font-medium pt-4">{error}</p>
               }
           </form>
           
-          <div className="w-full flex justify-between gap-[20px]">
+          <div className="w-full flex justify-between gap-[20px] pt-10">
             <a className="text-[14px] text-subtitle no-underline hover:text-title" href="">Olvidé mi contraseña</a>
             <Link className="text-[14px] text-subtitle no-underline hover:text-title" href="/register">Registrarme</Link>
           </div>

@@ -52,12 +52,12 @@ function Hero() {
 
         <div className="hidden desktop:block relative z-10">
           <p className="text-center text-primary">¿Ya tienes una cuenta?</p>
-          <div className="w-[auto] h-[350px] tablet:w-[400px] p-[25px] bg-[#1f1f1f] flex flex-col justify-between items-center rounded-3xl shadow-2xl mt-5 laptop:mt-0">
+          <div className="w-auto h-[380px] tablet:w-[400px] p-[25px] bg-secondary flex flex-col justify-between items-center rounded-3xl shadow-2xl mt-5 laptop:mt-0">
             <div className="flex justify-between items-center">
               <h2 className="text-[2rem] font-extrabold text-white">Iniciar Sesión</h2>
             </div>
 
-            <form onSubmit={handleSubmit}>
+            <form className="w-full px-5" onSubmit={handleSubmit}>
               <div className="input-field">
                 <input
                   className="input"
@@ -84,11 +84,11 @@ function Hero() {
                 <button type="submit">Iniciar sesión</button>
               </div>
               {
-                error && <p>{error}</p>
+                error && <p className="text-red-500 text-center text-sm font-medium pt-4">{error}</p>
               }
             </form>
 
-            <div className="w-full flex justify-between gap-[20px]">
+            <div className="w-full flex justify-between gap-[20px] pt-10">
               <Link className="text-[14px] text-subtitle no-underline hover:text-title" href="/">Olvidé mi contraseña</Link>
               <Link className="text-[14px] text-subtitle no-underline hover:text-title" href="/register">Registrarme</Link>
             </div>

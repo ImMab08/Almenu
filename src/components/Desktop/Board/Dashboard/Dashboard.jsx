@@ -112,7 +112,7 @@ export function DashBoard() {
       </section>
 
       <button
-        className={`pl-[5px] absolute bottom-4 ${
+        className={`pl-[5px] absolute z-50 bottom-4 ${
           isExpanded ? 'left-[216px]' : 'left-[72px] hover:w-[50px] hover:pl-[15px]'
         } bg-primary w-[35px] h-[35px] shadow-lg rounded-r-xl transition-all duration-300`}
         onClick={toggleExpanded}
