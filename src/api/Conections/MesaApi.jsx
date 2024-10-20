@@ -1,5 +1,5 @@
 import api from "@/api/api";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const useMesaApi = () => {
   const [ mesas, setMesas ] = useState([]);
@@ -33,30 +33,6 @@ const useMesaApi = () => {
     }
   }
 
-  // Editar Mesas
-  const updateMesa = async (id_mesa, updateMesa) => {
-    try {
-      const response = await api.put(`/v01/mesa/update/${id_mesa}`, updateMesa);
-      setMesas(mesas.map(mesas => 
-        mesas.id_mesa === id_mesa ? response.data : mesas
-      ));
-    } catch (error) {
-      setError(error.message || "Error al actualizar la mesa.")
-    }
-  }
-
-  // Actualizar varias Mesas una por una
-  const updateMultipleMesas = async (updatedMesas) => {
-    try {
-      for (const mesa of updatedMesas) {
-        await updateMesa(mesa.id_mesa, mesa);
-      }
-      fetchMesas();
-    } catch (error) {
-      setError(error.message || "Error al actualizar las mesas.");
-    }
-  };
-
   // Eliminar Mesas
   const deleteMesa = async (id_mesa) => {
     try {
@@ -74,7 +50,7 @@ const useMesaApi = () => {
     }
   }
 
-  return { mesas, setMesas, loading, error, fetchMesas, createMesa, updateMesa, updateMultipleMesas, deleteMesa }
+  return { mesas, setMesas, loading, error, fetchMesas, createMesa, deleteMesa }
 }
 
 export default useMesaApi;
