@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import useModalStore from "@/hooks/storeOpenModals";
 import useProductoApi from "@/api/Conections/ProductoApi";
 import { IconUpload } from "../icons/IconUpload";
 
 export default function UpdateProducto({ producto }) {
   const { closeModal } = useModalStore();
-  const { categoria, subcategoria, updateProducto, fetchSubcategorias }  = useProductoApi();
+  const { categoria, subcategoria, updateProducto, fetchCategorias, fetchSubcategorias }  = useProductoApi();
 
   // Estados para el formulario.
   const [ nombre, setNombre ] = useState(producto.nombre);
@@ -16,6 +16,11 @@ export default function UpdateProducto({ producto }) {
 
   const [ idCategoria, setIdCategoria ] = useState("");
   const [ idSubcategoria, setIdSubcategoria ] = useState("");
+
+  useEffect(() => {
+    fetchCategorias();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   const handleInputChange = async (e) => {
     const selectedCategoria = e.target.value;
@@ -30,6 +35,8 @@ export default function UpdateProducto({ producto }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    console.log(producto)
+
     const putProducto = { 
       nombre, 
       descripcion, 
@@ -39,6 +46,8 @@ export default function UpdateProducto({ producto }) {
       idCategoria: parseInt(idCategoria), 
       idSubcategoria: parseInt(idSubcategoria) 
     };
+
+    console.log("Put producto", putProducto)
 
     try {
       await updateProducto(producto.id_producto, putProducto);

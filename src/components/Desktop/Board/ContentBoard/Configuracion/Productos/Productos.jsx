@@ -15,8 +15,8 @@ import {
 import useProductoApi from "@/api/Conections/ProductoApi";
 
 import CreateProducto from "@/components/Modals/Producto/CreateProducto";
-import DeleteProducto from "@/components/Modals/Producto/DeleteProducto";
 import UpdateProducto from "@/components/Modals/Producto/UpdateProducto";
+import DeleteProducto from "@/components/Modals/Producto/DeleteProducto";
 
 export function Productos() {
   const loading = useLoading();
@@ -127,41 +127,25 @@ export function Productos() {
               </div>
 
               <div className="p-6">
-                <div className="relative w-full overflow-auto">
+                <div className="relative w-full h-[400px] overflow-auto">
                   <table className="w-full caption-bottom text-sm">
                     <thead className="[&amp;_tr]:border-b">
                       <tr className="border-b border-border transition-colors hover:bg-muted/50">
-                        <th className="h-12 px-4 text-left align-middle font-bold text-title">
-                          Imagen
-                        </th>
-                        <th className="h-12 px-4 text-left align-middle font-bold text-title">
-                          Nombre
-                        </th>
-                        <th className="h-12 px-4 text-left align-middle font-bold text-title">
-                          Descripción
-                        </th>
-                        <th className="h-12 px-4 text-left align-middle font-bold text-title">
-                          Precio
-                        </th>
-                        <th className="h-12 px-4 text-left align-middle font-bold text-title">
-                          Catidad
-                        </th>
-                        <th className="h-12 px-4 text-left align-middle font-bold text-title">
-                          Categoría
-                        </th>
-                        <th className="h-12 px-4 text-left align-middle font-bold text-title">
-                          Subcategoria
-                        </th>
-                        <th className="h-12 px-4 text-left align-middle font-bold text-title">
-                          Opciones
-                        </th>
+                        <th className="h-12 px-4 text-left align-middle font-bold text-title">Imagen</th>
+                        <th className="h-12 px-4 text-left align-middle font-bold text-title">Nombre</th>
+                        <th className="h-12 px-4 text-left align-middle font-bold text-title">Descripción</th>
+                        <th className="h-12 px-4 text-left align-middle font-bold text-title">Precio</th>
+                        <th className="h-12 px-4 text-left align-middle font-bold text-title">Catidad</th>
+                        <th className="h-12 px-4 text-left align-middle font-bold text-title">Categoría</th>
+                        <th className="h-12 px-4 text-left align-middle font-bold text-title">Subcategoria</th>
+                        <th className="h-12 px-4 text-left align-middle font-bold text-title">Opciones</th>
                       </tr>
                     </thead>
                     <tbody className="">
                       {producto.length > 0 ? (
                         producto.map((producto) => (
                           <tr
-                            key={producto?.id}
+                            key={producto?.id_producto}
                             className="border-b border-border"
                           >
                             <td className="p-4 align-middle text-subtitle font-extralight">
@@ -174,7 +158,9 @@ export function Productos() {
                               {producto?.descripcion}
                             </td>
                             <td className="p-4 align-middle text-subtitle font-extralight">
-                              {producto?.precio}
+                              ${producto?.precio.toLocaleString("es-CO", {
+                                maximumFractionDigits: 2,
+                              })}
                             </td>
                             <td className="p-4 align-middle text-subtitle font-extralight">
                               {producto?.cantidad}

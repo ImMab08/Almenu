@@ -8,7 +8,7 @@ import Link from "next/link";
 
 export function Menu() {
   const { menu, setMenu } = useMenuApi();
-  const [ selectedCategoria, setSelectedCategoria ] = useState();
+  const [selectedCategoria, setSelectedCategoria] = useState();
 
   // Llama a fetchMenu cada vez que cambia la categoría seleccionada
   useEffect(() => {
@@ -35,18 +35,24 @@ export function Menu() {
   }, [selectedCategoria, setMenu]);
 
   // Función que se pasa al componente ProductsBoard para capturar la categoría seleccionada
-  const handleCategoriaSelect = (idCategoria) => {
+  const handleSelectCategoria = (idCategoria) => {
     console.log("id seleccionada", idCategoria);
-    setSelectedCategoria(idCategoria); // Actualiza la categoría seleccionada
+    setSelectedCategoria(idCategoria);
   };
 
   return (
     <section className="w-full h-full items-center">
-      <ProductsBoard handleCategoriaSelect={handleCategoriaSelect} />
+      <ProductsBoard handleSelectCategoria={handleSelectCategoria} />
       <div className="p-5 space-y-5 w-full h-full">
         {!selectedCategoria ? ( // Mostrar mensaje si no hay categoría seleccionada
           <div className="w-full h-full flex items-center justify-center">
-            <p className="text-lg text-title font-medium">Selecciona una <span className="font-semibold pb-[2px] border-b-2">categoría</span> para ver tus productos.</p>
+            <p className="text-lg text-title font-medium">
+              Selecciona una{" "}
+              <span className="font-semibold pb-[2px] border-b-2">
+                categoría
+              </span>{" "}
+              para ver tus productos.
+            </p>
           </div>
         ) : menu.length > 0 ? ( // Si se selecciona una categoria, mostrar su contenido
           menu.map((subcategoria) => (
@@ -64,7 +70,10 @@ export function Menu() {
                         <div className="w-[140px] h-[140px] bg-primary rounded-lg flex justify-center items-center cursor-pointer relative">
                           <IconFood />
                           <span className="absolute rounded-tl-lg p-2 bg-secondary bottom-0 right-0 text-title text-xs">
-                            $ {producto.precio}
+                            $
+                            {producto.precio.toLocaleString("es-CO", {
+                              maximumFractionDigits: 2,
+                            })}
                           </span>
                         </div>
                         <div className="max-w-[180px] space-y-2">
@@ -80,7 +89,9 @@ export function Menu() {
                   ))
                 ) : (
                   <div>
-                    <p className="text-subtitle font-normal">No has añadido productos para esta Subcategoria.</p>
+                    <p className="text-subtitle font-normal">
+                      No has añadido productos para esta Subcategoria.
+                    </p>
                   </div>
                 )}
               </div>
@@ -88,7 +99,10 @@ export function Menu() {
           ))
         ) : (
           <div className="w-full h-full flex items-center text-center justify-center">
-            <p className="text-title font-semibold w-[350px]">No has añadido productos o creado subcategorias para estacategoria.</p>
+            <p className="text-title font-semibold w-[350px]">
+              No has añadido productos o creado subcategorias para
+              estacategoria.
+            </p>
             <Link rel="stylesheet" href="" />
           </div>
         )}

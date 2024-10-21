@@ -1,5 +1,5 @@
 import api from "@/api/api";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const useMesaApi = () => {
   const [ mesas, setMesas ] = useState([]);
@@ -7,20 +7,25 @@ const useMesaApi = () => {
   const [ error, setError ] = useState(null);
 
   // Obtener las mesas
-  const fetchMesas = async () => {
-    try {
-      const response = await api.get("/v01/mesa/usuario");
-      if (response?.data) {
-        setMesas(response.data);
-      } else {
-        setError("No se han encontrado mesas para el usuario.");
+  useEffect(() => {
+    const fetchMesas = async () => {
+      try {
+        const response = await api.get("/v01/mesa/usuario");
+        if (response?.data) {
+          setMesas(response.data);
+        } else {
+          setError("No se han encontrado mesas para el usuario.");
+        }
+      } catch (error) {
+        setError(error.message || "Error al cargar las mesas.");
+      } finally {
+        setLoading(true);
       }
-    } catch (error) {
-      setError(error.message || "Error al cargar las mesas.");
-    } finally {
-      setLoading(true);
     }
-  }
+
+    fetchMesas();
+  }, [])
+
 
   // Crear Mesas
   const createMesa = async (newMesa) => {
@@ -50,7 +55,7 @@ const useMesaApi = () => {
     }
   }
 
-  return { mesas, setMesas, loading, error, fetchMesas, createMesa, deleteMesa }
+  return { mesas, setMesas, loading, error, createMesa, deleteMesa }
 }
 
 export default useMesaApi;

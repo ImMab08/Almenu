@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import { IconTableTwo, IconTableFour, IconTableSix, IconTableHeight, IconArrowDown, IconPapelera } from "../../icons";
 import useLoading from "@/hooks/useLoading";
@@ -12,11 +12,6 @@ export function Mesas() {
   const [mesasBackup, setMesasBackup] = useState([]);
   const [openConfig, setOpenConfig] = useState(false);
   const [hoveredMesa, setHoveredMesa] = useState(null);
-
-  useEffect(() => {
-    fetchMesas();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   // Manejo del modo de edición
   const handleEdited = () => {
@@ -123,7 +118,7 @@ export function Mesas() {
       {openConfig && (
         <>
           <div className="flex w-full">
-            <div className="w-[86%] h-[500px] rounded-lg p-4 border grid grid-cols-10 grid-rows-4 border-border bg-tertiary ">
+            <div className="w-[86%] h-[500px] rounded-lg p-4 border items-center justify-center grid grid-cols-10 grid-rows-4 border-border bg-tertiary ">
               {mesas.map((mesa) => (
                 <Mesa key={mesa.id_mesa} mesa={mesa} />
               ))}

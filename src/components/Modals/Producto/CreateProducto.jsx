@@ -49,6 +49,8 @@ export default function CreateProducto({ addProductoToList }) {
       idSubcategoria: parseInt(idSubcategoria) 
     };
 
+    console.log("prodducto", newProducto)
+
     try {
       const createdProducto = await createProducto(newProducto);
 

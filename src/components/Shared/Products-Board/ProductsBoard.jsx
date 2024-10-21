@@ -1,25 +1,27 @@
 "use client";
 import React, { useState } from "react";
 import { IconArrowDown } from "./icons";
-import useCategoriaApi from "@/api/Conections/CategoriaApi";
 import { IconClose } from "../Header/icons";
+import useCategoriaApi from "@/api/Conections/CategoriaApi";
 
-export default function ProductsBoard({ handleCategoriaSelect, handleProductoSelect }) {
+export default function ProductsBoard({ handleSelectCategoria }) {
   const [selected, setSelected] = useState(null);
-  const [isDropdownVisible, setIsDropdownVisible] = useState();
   const { categoria } = useCategoriaApi();
 
-  const showDropdown = () => setIsDropdownVisible(true);
-  const hideDropdown = () => setIsDropdownVisible(false);
-
-  const handleCategoriaClic = (idCategoria) => {
-    setSelected(idCategoria);
-    handleCategoriaSelect(idCategoria);
+  const handleCategoriaClic = (idCategoria) => {    
+    // Verificar si la categoría ya está seleccionada
+    if (selected === idCategoria) {
+      setSelected(null);
+      handleSelectCategoria(false)
+    } else {
+      setSelected(idCategoria);
+      handleSelectCategoria(idCategoria);
+    }
   };
-
+  
   const handleClose = () => {
     setSelected(null);
-    handleCategoriaSelect(false);
+    handleSelectCategoria(false);
   };
 
   return (
@@ -34,8 +36,6 @@ export default function ProductsBoard({ handleCategoriaSelect, handleProductoSel
                   className={`p-1 text-title text-base flex items-center cursor-pointer list-none hover:bg-secondary px-2 ${
                     selected === categoria.id ? "bg-secondary" : ""
                   }`}
-                  onMouseEnter={showDropdown}
-                  onMouseLeave={hideDropdown}
                   onClick={() => handleCategoriaClic(categoria.id)}
                 >
                   {categoria.nombre}
