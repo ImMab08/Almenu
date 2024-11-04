@@ -1,22 +1,51 @@
 import React, { useState } from "react";
-import useModalStore from "@/hooks/storeOpenModals";
-import useSubcategoriaApi from "@/api/Conections/SubcategoriaApi";
 
-export default function CreateSubcategoria() {
+import { crear } from "@/utils/crear";
+import { useFetch } from "@/hooks/useFetch";
+import useModalStore from "@/hooks/storeOpenModals";
+
+export default function CreateSubcategoria({ subcategoria, setData }) {
   const { closeModal } = useModalStore();
-  const { createSubcategoria, categoria }  = useSubcategoriaApi();
 
   // Estados para el formulario.
   const [ nombre, setNombre ] = useState("");
   const [ descripcion, setDescripcion ] = useState("");
   const [ idCategoria, setIdCategoria ] = useState("");
 
+  // Estados para manejar errores.
+  const [ errorNombre, setErrorNombre ] = useState("");
+  const [ errorCategoria, setErrorCategoria ] = useState("");
+
+  const { data: categorias } = useFetch('/v01/categoria/usuario');
+
+  // Función para el envío del formulario.
   const handleSubmit = async (e) => {
-    try {
-      await createSubcategoria({ nombre, descripcion, idCategoria })
-    } catch {
-      console.error("Error al crear la subcategoria");
-    }
+    e.preventDefault();
+    setErrorNombre("");
+    setErrorCategoria("");
+
+    // Validación de campos
+    if (!idCategoria) {
+      setErrorCategoria("Debes de seleccionar una categoría.");
+      return;
+    } 
+    if (!nombre) {
+      setErrorNombre("Debes de asignar un nombre.");
+      return;
+    }  
+
+    const response = await crear('/v01/subcategoria/create', { nombre, descripcion, idCategoria })
+    setData([
+      ...subcategoria,
+      {
+        ...response,
+        nombre,
+        descripcion,
+        idCategoria,
+        nombreCategoria: categorias.find((categoria) => categoria.id === Number(idCategoria))?.nombre
+      }
+    ]);
+
     closeModal();
   }
 
@@ -29,36 +58,40 @@ export default function CreateSubcategoria() {
 
         <div className="px-6">
           <div className="w-full h-auto overflow-auto">
+            
             <form action="" className="p-2 space-y-4">
-
               <div className="flex flex-col space-y-1.5">
                 <label className="" htmlFor="categoria">Categoria</label>
-                <select className="py-2 px-3 bg-primary rounded-lg " name="categoria" id="categoria" value={idCategoria} onChange={(e) => setIdCategoria(e.target.value)}>
+                <select className="py-2 px-3 bg-primary rounded-lg focus:outline-none" name="categoria" id="categoria" value={idCategoria} onChange={(e) => setIdCategoria(e.target.value)}>
                   <option className="py-2 px-4 bg-primary" value="">Selecciona una categoria</option>
-                  {categoria.map((categoria) => (
+                  {categorias.map((categoria) => (
                       <option className="py-2 px-4 bg-primary" key={categoria.id} value={categoria.id}>
                         {categoria?.nombre}
                       </option>
                   ))}
                 </select>
+
+                {errorCategoria && <p className="text-red-500 text-sm">{errorCategoria}</p>}
               </div>
               
               <div className="flex flex-col space-y-1.5">
                 <label htmlFor="">Nombre</label>
                 <input
-                  className="flex border px-3 py-2 text-sm text-title bg-primary w-[300px] rounded-lg"
+                  className="flex px-3 py-2 text-sm text-title bg-primary w-[300px] rounded-lg focus:outline-none"
                   placeholder="Añade un nombre a la categoría"
-                  type="search"
+                  type="text"
                   value={nombre}
                   onChange={(e) => setNombre(e.target.value)}
                   required
                 />
+
+                {errorNombre && <p className="text-red-500 text-sm">{errorNombre}</p>}
               </div>
 
               <div className="flex flex-col space-y-1.5">
                 <label htmlFor="">Descripción</label>
                 <textarea
-                  className="flex border px-3 py-2 text-sm text-title bg-primary w-[300px] rounded-lg"
+                  className="flex px-3 py-2 text-sm text-title bg-primary w-[300px] rounded-lg focus:outline-none"
                   placeholder="Añade una descrión corta"
                   value={descripcion}
                   onChange={(e) => setDescripcion(e.target.value)}
@@ -69,6 +102,7 @@ export default function CreateSubcategoria() {
                 />
               </div>
             </form>
+            
           </div>
         </div>
         <div className="flex items-center justify-center p-4 relative space-x-10">

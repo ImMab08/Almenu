@@ -1,14 +1,15 @@
+import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import React, { useState } from "react";
-import useMesaApi from "@/api/Conections/MesaApi";
-import ProductsBoard from "@/components/Shared/Products-Board/ProductsBoard";
-import MenuProductos from "./MenuProductos";
 
-import { IconTableFour, IconTableHeight, IconTableSix, IconTableTwo } from "../../icons";
+import { useFetch } from "@/hooks/useFetch";
+import MenuProductos from "./MenuProductos";
+import ProductsBoard from "@/components/Shared/Products-Board/ProductsBoard";
+
+import { IconTableFour, IconTableHeight, IconTableSix, IconTableTwo } from "@/icons";
 
 export default function Mesas({ selectedMesa, handleSelectMesa, selectedCategoria, handleSelectCategoria, handleProductoSelect, pedidos, productos }) {
-  const { mesas } = useMesaApi();
+  const { data: mesas } = useFetch("/v01/mesa/usuario");
 
   const renderIconMesa = (capacidad) => {
     switch (capacidad) {

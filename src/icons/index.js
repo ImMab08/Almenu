@@ -1,3 +1,5 @@
+export * from './IconClose'
+export * from './IconUpload'
 export * from './IconViewMoreUp'
 export * from './IconViewMoreDown'
 export * from './IconUpload'

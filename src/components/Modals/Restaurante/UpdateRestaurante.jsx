@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import useModalStore from "@/hooks/storeOpenModals";
 
 import api from "@/api/api";
-import { IconUpload } from "../icons/IconUpload";
+import { IconUpload } from "@/icons";
 
 export default function UpdateRestaurante({ initialData }) {
   const { closeModal } = useModalStore();

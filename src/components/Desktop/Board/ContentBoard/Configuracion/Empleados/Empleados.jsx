@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
 
 import { Colaborator } from "./config";
-import { IconArrowDown, IconPapelera, IconPencil, IconSearch, IconViewMoreUp } from "../../icons";
+import { IconArrowDown, IconPapelera, IconPencil, IconSearch, IconViewMoreUp } from "../../../../../../icons";
 
 import useLoading from "@/hooks/useLoading";
 import useModalStore from "@/hooks/storeOpenModals";
 
 import useColaboradoresApi from "@/api/Conections/EmpleadoApi";
-
 import UpdateColaboradores from "@/components/Modals/Colaboradores/UpdateColaboradores";
 import DeleteColaboradores from "@/components/Modals/Colaboradores/DeleteColaboradores";
+import { useFetch } from "@/hooks/useFetch";
 
 export function Empleados() {
   const loading = useLoading();
@@ -17,36 +17,26 @@ export function Empleados() {
   const [ openViewColaborador, setOpenViewColaborador ] = useState();
 
   const { modals, openModal } = useModalStore();
-  const { colaborador, setColaborador, fetchColaboradores, createColaborador } = useColaboradoresApi();
+
+  const { colaborador, setColaborador, createColaborador } = useColaboradoresApi();
+
+  const {  } = useFetch("/v01/colaborador/create", "GET");
+  const { data: colaboradores } = useFetch("/v01/colaborador/colaboradores", "GET");
 
   // Estado para almacenar al empleado seleccionado.
   const [ selectedColaborador, setSelectedColaborador ] = useState(null);
 
-  useEffect(() => {
-    fetchColaboradores();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
-
-  const handleOpenDeleteModal = (colaborador) => {
-    setSelectedColaborador(colaborador);
-    openModal("DeleteColaborador");
-  }
-
-  // Función para eliminar un colaborador del estado sin actualizar.
-  const removeColaboradorList = (colaborador) => {
-    console.log("Empleado eliminado: ", colaborador);
-    setColaborador((prevColaborador) => 
-    prevColaborador.filter(
-      (item) => item.id !== colaborador.idx
-    )
-    );
+  // Función para editar un producto
+  const handleOpenModalEdit = (colaborador) => {
+    setSelectProducto(colaborador);
+    openModal("EditarColaborador");
   };
 
-  // Función para abrir el modal de confirmar eliminación.
-  const handleOpenUpdateModal = (colaborador) => {
-    setSelectedColaborador(colaborador);
-    openModal("UpdateColaborador")
-  }
+    // Función para eliminar un producto.
+    const handleOpenModalDelete = (colaborador) => {
+      setSelectProducto(colaborador);
+      openModal("EliminarColaborador");
+    };
 
   const [ formData, setFormData ] = useState({
     nombre: "",
@@ -156,8 +146,8 @@ export function Empleados() {
 
             <div className="w-full h-full space-y-2 overflow-auto">
 
-              {colaborador?.length > 0 ? (
-                colaborador.map((colaborador) => (
+              {colaboradores?.length > 0 ? (
+                colaboradores.map((colaborador) => (
                   <div key={colaborador.id} className="w-full p-2 bg-tertiary  rounded-md">
                     <div className="flex justify-between items-center">
                       <div className="flex flex-col">

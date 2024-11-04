@@ -30,28 +30,11 @@ const useMesaApi = () => {
   // Crear Mesas
   const createMesa = async (newMesa) => {
     try {
-      const response = await api.post("/v01/mesa/create", newMesa);
+      const response = await api.post("", newMesa);
       console.log("Respuesta del servidor:", response);
       return response
     } catch (error) {
       setError(error.message ||  "Error al crear la mesa");
-    }
-  }
-
-  // Eliminar Mesas
-  const deleteMesa = async (id_mesa) => {
-    try {
-      const response = await api.delete(`/v01/mesa/delete/${id_mesa}`);
-      if (response) {
-        setMesas(
-          mesas.filter((mesa) => mesa.id !== id_mesa)
-        );
-        return response.data;
-      } else {
-        throw new Error("La respuesta del servidor es undefined");
-      }
-    } catch(error) {
-      setError(error.message || "Error al eliminar la mesa.");
     }
   }
 

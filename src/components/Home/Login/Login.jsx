@@ -22,6 +22,8 @@ const Login = () => {
     e.preventDefault();
     const isAuthenticated = await login(credentials.email, credentials.password);
 
+    console.log("datos: ", isAuthenticated )
+
     if (isAuthenticated) {
       router.push('/inicio');
     } else {

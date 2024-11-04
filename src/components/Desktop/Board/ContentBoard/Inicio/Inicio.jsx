@@ -1,163 +1,77 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import Image from "next/image";
-import Link from "next/link";
-import { jsPDF } from "jspdf";
-import ProductsBoard from "@/components/Shared/Products-Board/ProductsBoard";
-import useMesaApi from "@/api/Conections/MesaApi";
-import {
-  IconFood,
-  IconTableFour,
-  IconTableHeight,
-  IconTableSix,
-  IconTableTwo,
-} from "../icons";
-
-import api from "@/api/api";
 import useLoading from "@/hooks/useLoading";
-import useMenuApi from "@/api/Conections/MenuApi";
+
+import jsPDF from "jspdf";
+import api from "@/api/api";
+import Mesas from "./config/Mesas";
+import Pedido from "./config/Pedido";
+
 import useProductoApi from "@/api/Conections/ProductoApi";
 import useModalStore from "@/hooks/storeOpenModals";
 
-import CreateFactura from "@/components/Modals/Factura/CreateFactura";
-
 export function Inicio() {
   const loading = useLoading();
-
-  const { modals, openModal } = useModalStore();
-  const [factura, setFactura] = useState(null);
-  const [selectedFactura, setSelectedFactura] = useState();
-
-  const { mesas, setMesas, fetchMesas } = useMesaApi();
-  const [pedidos, setPedidos] = useState({});
-  const [selectedMesa, setSelectedMesa] = useState(false);
-
-  const { menu, setMenu } = useMenuApi();
-  const [selectedCategoria, setSelectedCategoria] = useState();
-
   const { producto, setProducto } = useProductoApi();
+  const { modals, openModal, closeModal } = useModalStore();
 
-  // Función para abrir el modal para generar la factura.
-  const handledOpenModalFactura = () => {
-    const idPedido = pedidos[selectedMesa.id]?.id; // Obtenemos el id del pedido de la mesa seleccionada
-    if (idPedido) {
-      setSelectedFactura(idPedido); // Establecemos el id de la factura (pedido) seleccionada
-      openModal("CreateFactura"); // Abrimos el modal
-    } else {
-      console.error("No hay pedido asociado a la mesa seleccionada.");
-    }
-  };
+  const [pedidos, setPedidos] = useState({});
+  const [selectedMesa, setSelectedMesa] = useState(null);
+  const [selectedFactura, setSelectedFactura] = useState();
+  const [selectedCategoria, setSelectedCategoria] = useState(null);
+  const [facturaDetails, setFacturaDetails] = useState({ id_cliente: null, id_empleado: null });
+  const [id_factura, setIdFactura] = useState(null);
+  const [totalFactura, setTotalFactura] = useState(0);
 
-  useEffect(() => {
-    fetchMesas();
-    // Recuperar los pedidos desde localStorage
-    const savedPedidos = localStorage.getItem("pedidos");
-    if (savedPedidos) {
-      setPedidos(JSON.parse(savedPedidos));
-    }
-    // Recuperar los productos desde localStorage
-    const savedProductos = localStorage.getItem("producto");
-    if (savedProductos) {
-      setProducto(JSON.parse(savedProductos));
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  const renderIcon = (capacidad) => {
-    switch (capacidad) {
-      case 2:
-        return <IconTableTwo />;
-      case 4:
-        return <IconTableFour />;
-      case 6:
-        return <IconTableSix />;
-      case 8:
-        return <IconTableHeight />;
-      default:
-        return null;
-    }
-  };
-
-  // Crear un pedido.
-  const [estadoPedido, setEstadoPedido] = useState("en proceso");
-
-  // Función para crear el pedido.
-  const handleSubmitPedido = async (mesaId) => {
+  // Función para crear un pedido de una mesa
+  const handleCreatePedido = async (mesa) => {
     const newPedido = {
-      estado: estadoPedido,
-      id_mesa: parseInt(mesaId),
+      estado: "activo",
+      id_mesa: parseInt(mesa.id),
     };
 
     try {
-      console.log("Datos del pedido a enviar:", newPedido);
+      // Crear el pedido en el backend
       const createPedido = await api.post(`/v01/pedido/create`, newPedido);
       const pedidoId = createPedido.data.id;
 
-      // Actualiza el estado local
+      // Actualizar el estado con el nuevo pedido
       const updatedPedidos = {
         ...pedidos,
-        [mesaId]: {
+        [mesa.id]: {
           id: pedidoId,
           estado: "ocupada",
         },
       };
       setPedidos(updatedPedidos);
 
-      // Guarda en localStorage
+      // Almacenar en localStorage para persistencia
       localStorage.setItem("pedidos", JSON.stringify(updatedPedidos));
-
-      console.log("Pedido creado con éxito para la mesa:", mesaId);
     } catch (error) {
       console.error("Error al crear pedido:", error);
     }
   };
 
-  // Función para que cuando se selecciona una mesa, se cree el pedido.
-  const handledSelectMesa = (mesa) => {
-    setSelectedMesa(mesa);
-
-    // Si la mesa tiene un ID válido, llama directamente a handleSubmitPedido
-    if (mesa && mesa.id) {
-      console.log("ID de la mesa seleccionada:", mesa.id); // Verificar el ID
-
-      // Verificar si ya hay un pedido para esta mesa
-      if (!pedidos[mesa.id]) {
-        handleSubmitPedido(mesa.id); // Pasa el ID de la mesa para crear el pedido
-      }
+  // Función para manejar la selección de la mesa
+  const handleSelectMesa = (mesa) => {
+    if (selectedMesa && selectedMesa.id === mesa.id) {
+      setSelectedMesa(null);
     } else {
-      console.error("Mesa seleccionada no tiene ID válido:", mesa);
-    }
-  };
+      setSelectedMesa(mesa);
 
-  // Llama a fetchMenu cada vez que cambia la categoría seleccionada
-  useEffect(() => {
-    const fetchMenu = async (idCategoria) => {
-      try {
-        const response = await api.get(
-          `/v01/menu/usuario/${idCategoria}/productos`
-        );
-
-        if (response.status === 200) {
-          setMenu(response.data);
-          console.log("Datos enviados", response.data);
-        } else {
-          throw new Error("Error al obtener el menú.");
-        }
-      } catch (error) {
-        console.error("Error al obtener el menú del usuario:", error); // Muestra detalles del error
+      // Verificar si la mesa ya tiene un pedido
+      if (!pedidos[mesa.id]) {
+        handleCreatePedido(mesa); // Crear pedido si no existe
       }
-    };
-
-    if (selectedCategoria) {
-      fetchMenu(selectedCategoria);
     }
-  }, [selectedCategoria, setMenu]);
-
-  // Función que se pasa al componente ProductsBoard para capturar la categoría seleccionada
-  const handleCategoriaSelect = (idCategoria) => {
-    setSelectedCategoria(idCategoria); // Actualiza la categoría seleccionada
   };
 
+  // Función para manejar la selección de categoría
+  const handleSelectCategoria = (idCategoria) => {
+    setSelectedCategoria(idCategoria);
+  };
+
+  // Función para seleccionar un producto y añadirlo a el pedido
   const handleProductoSelect = (productoSeleccionado) => {
     const mesaProductos = producto[selectedMesa.id] || [];
     const existingProduct = mesaProductos.find(
@@ -206,31 +120,7 @@ export function Inicio() {
     }
   };
 
-  // Función para generar el PDF
-  const generatePDF = (pedido) => {
-    const doc = new jsPDF();
-
-    doc.setFontSize(18);
-    doc.text("Reporte de Pedido", 14, 22);
-    const fechaHora = new Date().toLocaleString();
-    doc.setFontSize(12);
-    doc.text(`Fecha y Hora: ${fechaHora}`, 14, 30);
-    doc.setFontSize(14);
-    doc.text("Detalles del Pedido:", 14, 40);
-
-    let lineHeight = 50;
-    pedido.productos.forEach((producto) => {
-      doc.text(
-        `${producto.nombre} - Cantidad: ${producto.cantidad}`,
-        14,
-        lineHeight
-      );
-      lineHeight += 10;
-    });
-
-    doc.save(`pedido_${pedido.id}.pdf`);
-  };
-
+  // Función para generar un pedido (Detalles del pedido)
   const handleSubmitDetallesPedido = async () => {
     const productosMesa = producto[selectedMesa.id]; // Productos seleccionados para la mesa actual
     const idPedido = pedidos[selectedMesa.id]?.id; // Asegurarse de que el pedido ya esté creado para la mesa
@@ -241,7 +131,7 @@ export function Inicio() {
       return;
     }
 
-    // Crear el array de objetos con el formato esperado por el backend (id_pedido, id_producto, cantidad)
+    // Crear el array de objetos con el formato esperado por el backend (idPedido, id_producto, cantidad)
     const detallesPedido = productosMesa.map((p) => ({
       id_pedido: idPedido, // Referencia al pedido que ya está creado
       id_producto: p.id_producto,
@@ -275,8 +165,50 @@ export function Inicio() {
     }
   };
 
-  const hanldeDeletePedido = async () => {
+  // Función para generar el PDF
+  const generatePDF = (pedido) => {
+    const doc = new jsPDF();
+
+    doc.setFontSize(18);
+    doc.text("Reporte de Pedido", 14, 22);
+    const fechaHora = new Date().toLocaleString();
+    doc.setFontSize(12);
+    doc.text(`Fecha y Hora: ${fechaHora}`, 14, 30);
+    doc.setFontSize(14);
+    doc.text("Detalles del Pedido:", 14, 40);
+
+    let lineHeight = 50;
+    pedido.productos.forEach((producto) => {
+      doc.text(
+        `${producto.nombre} - Cantidad: ${producto.cantidad}`,
+        14,
+        lineHeight
+      );
+      lineHeight += 10;
+    });
+
+    doc.save(`pedido_${pedido.id}.pdf`);
+  };
+
+  // Función para abrir el modal para generar la factura.
+  const handledOpenModalFactura = () => {
+    const idPedido = pedidos[selectedMesa.id]?.id; // Obtenemos el id del pedido de la mesa seleccionada
+    if (idPedido) {
+      setSelectedFactura(idPedido); // Establecemos el id de la factura (pedido) seleccionada
+      openModal("CreateFactura"); // Abrimos el modal
+    } else {
+      console.error("No hay pedido asociado a la mesa seleccionada.");
+    }
+  };
+
+  // Función para eliminar un pedido de una mesa
+  const handleDeletePedido = async () => {
     const idpedido = pedidos[selectedMesa.id]?.id;
+
+    if (!idpedido) {
+      console.log("No se encontró un pedido para eliminar.");
+      return;
+    }
 
     try {
       // Realizar petición DELETE al backend
@@ -285,15 +217,15 @@ export function Inicio() {
       // Actualizar el estado de pedidos eliminando el pedido actual
       const updatedPedidos = { ...pedidos };
       delete updatedPedidos[selectedMesa.id];
-      setPedidos(updatedPedidos); // Actualizar el estado con el pedido eliminado
+      setPedidos(updatedPedidos);
 
       // Eliminar los productos asociados a la mesa
       const updatedProductos = { ...producto };
       delete updatedProductos[selectedMesa.id];
-      setProducto(updatedProductos); // Actualizar el estado de los productos
+      setProducto(updatedProductos);
 
-      // Eliminar del localStorage los detalles del pedido y los productos de la mesa
-      localStorage.removeItem("detallesPedido");
+      // Actualizar los localStorage después de eliminar el pedido
+      localStorage.setItem("pedidos", JSON.stringify(updatedPedidos));
       localStorage.setItem("producto", JSON.stringify(updatedProductos));
 
       // Actualizar la mesa seleccionada
@@ -301,16 +233,229 @@ export function Inicio() {
 
       alert("Pedido cancelado y mesa desocupada.");
     } catch (error) {
-      console.log("Error al cancelar el pedido. Inténtalo de nuevo.", error);
+      console.error(
+        "Error al cancelar el pedido:",
+        error.response?.data || error.message
+      );
+      alert("Error al cancelar el pedido. Inténtalo de nuevo.");
     }
   };
 
+  // Maneja el efecto cuando cambia selectedMesa
   useEffect(() => {
-    const mesas = JSON.parse(localStorage.getItem("pedidos"));
-    if (mesas) {
-      setMesas(mesas); // Actualiza el estado de las mesas en tu componente principal
+    if (!selectedMesa) {
+      // Si la mesa es nula, puedes realizar cualquier limpieza si es necesario
+      console.log("Mesa deseleccionada");
     }
-  }, [localStorage.getItem("pedidos")]);
+  }, [selectedMesa]);
+
+  // Cargar pedidos desde localStorage al cargar la página
+  useEffect(() => {
+    const storedPedidos = localStorage.getItem("pedidos");
+    if (storedPedidos) {
+      setPedidos(JSON.parse(storedPedidos));
+    } else {
+      setPedidos({}); // Asegúrate de que los pedidos sean un objeto vacío si no hay datos
+    }
+
+    const storedProductos = localStorage.getItem("producto");
+    if (storedProductos) {
+      setProducto(JSON.parse(storedProductos));
+    } else {
+      setProducto({}); // Asegúrate de que los productos sean un objeto vacío si no hay datos
+    }
+  }, []);
+
+  // Obtener detalles del pedido al abrir el modal
+  useEffect(() => {
+    // Verifica que selectedFactura esté definida y tenga un id
+    const id_pedido = selectedFactura?.id;
+    console.log("Id del pedido en prueba: ", id_pedido);
+
+    // Si existe un id_pedido válido, ejecuta la función para obtener los detalles
+    if (id_pedido) {
+      console.log("Id del pedido seleccionado: ", id_pedido);
+
+      const fetchPedido = async () => {
+        try {
+          const response = await api.get(`/v01/pedido/${id_pedido}`);
+          if (response?.data) {
+            setPedidos(response.data); // Guardar los datos del pedido en el estado
+            console.log("Datos del pedido: ", response);
+
+            // Verifica que response.data.detalles sea un array
+            if (Array.isArray(response.data.detalles)) {
+              // Calcular el total sumando el precio_total de cada detalle
+              const total = response.data.detalles.reduce(
+                (sum, item) => sum + item.precio_total,
+                0
+              );
+              setTotalFactura(total); // Guardar el total en el estado
+            } else {
+              console.log("No se encontraron detalles del pedido.");
+            }
+          } else {
+            console.log("No se ha encontrado el pedido de esta mesa.");
+          }
+        } catch (error) {
+          console.log("Error al obtener el pedido:", error);
+        } finally {
+          setLoadingPedido(false); // Cambiar el estado de carga
+        }
+      };
+
+      fetchPedido();
+    }
+  }, [selectedFactura]); // Escucha los cambios en selectedFactura
+
+  // Función para generar el PDF de una factura.
+  const generateFacturaPdf = (pedido) => {
+    console.log("Pedido recibido para el PDF:", pedido); // Verificar qué se está recibiendo
+
+    if (!pedido || !pedido.detalles || !Array.isArray(pedido.detalles)) {
+      console.error(
+        "Los detalles del pedido no están disponibles o son inválidos"
+      );
+      return; // Detén la ejecución si no hay detalles
+    }
+
+    const doc = new jsPDF();
+
+    // Título
+    doc.setFontSize(18);
+    doc.text("Factura", 14, 22);
+
+    // Fecha y Hora
+    const fechaHora = new Date().toLocaleString();
+    doc.setFontSize(12);
+    doc.text(`Fecha y Hora: ${fechaHora}`, 14, 30);
+
+    // Detalles del Pedido
+    doc.setFontSize(14);
+    doc.text("Detalles del Pedido:", 14, 40);
+    let lineHeight = 50;
+
+    // Número de Mesa
+    doc.setFontSize(12);
+    doc.text(`Mesa: ${pedido.numeroMesa}`, 14, lineHeight);
+    lineHeight += 10;
+
+    // Encabezados de Tabla
+    doc.text("Producto", 14, lineHeight);
+    doc.text("Precio", 80, lineHeight);
+    doc.text("Cantidad", 130, lineHeight);
+    doc.text("Total", 180, lineHeight);
+    lineHeight += 10;
+
+    // Productos
+    pedido.detalles.forEach((item) => {
+      doc.text(item.nombre_producto, 14, lineHeight);
+      doc.text(
+        `$ ${item.precio_unitario.toLocaleString("es-CO", {
+          maximumFractionDigits: 2,
+        })}`,
+        79,
+        lineHeight
+      );
+      doc.text(`${item.cantidad}`, 137, lineHeight);
+      doc.text(
+        `$ ${item.precio_total.toLocaleString("es-CO", {
+          maximumFractionDigits: 2,
+        })}`,
+        177,
+        lineHeight
+      );
+      lineHeight += 8;
+    });
+
+    // Datos del cliente y el empleado
+    lineHeight += 10;
+    doc.text("Cliente: ", 14, lineHeight);
+    lineHeight += 10;
+    doc.text("Empleado: ", 14, lineHeight);
+    lineHeight += 10;
+
+    // Total Factura
+    lineHeight += 10;
+    const totalFactura = pedido.detalles.reduce(
+      (total, item) => total + item.precio_total,
+      0
+    );
+    doc.text(
+      `Total Factura: $ ${totalFactura.toLocaleString("es-CO", {
+        maximumFractionDigits: 2,
+      })}`,
+      14,
+      lineHeight
+    );
+
+    // Guardar PDF
+    doc.save(`factura_${pedido.id}.pdf`);
+  };
+
+  const handleSubmitFactura = async () => {
+    const idPedido = pedidos[selectedMesa?.id]?.id; // Asegúrate de que selectedMesa y pedidos están bien definidos.
+    console.log("ID Pedido:", idPedido); // Verifica que obtengas un id de pedido válido.
+
+    const newFactura = {
+      id_pedido: idPedido,
+      id_cliente: facturaDetails.id_cliente,
+      id_empleado: facturaDetails.id_empleado,
+    };
+
+    console.log("Datos de la nueva factura:", newFactura); // Verifica que newFactura tenga los valores correctos.
+
+    try {
+      const response = await api.post("/v01/factura/create", newFactura);
+      const facturaData = response.data;
+      console.log("Datos factura", facturaData);
+      setIdFactura(facturaData.id);
+      console.log("Factura creada correctamente con ID:", facturaData.id);
+
+      try {
+        const response = await api.get(`/v01/pedido/${idPedido}`); // Obtener los datos del pedido
+        const pedido = response.data;
+        console.log("Pedido obtenido: ", pedido);
+
+        if (pedido && Array.isArray(pedido.detalles)) {
+          console.log("Detalles del pedido: ", pedido.detalles);
+
+          generateFacturaPdf({
+            id: idPedido,
+            numeroMesa: selectedMesa?.numero, // Si tienes el número de mesa disponible
+            detalles: pedido.detalles, // Pasar los detalles correctamente
+          });
+        } else {
+          console.error("No se encontraron detalles en el pedido.");
+        }
+      } catch (error) {
+        console.error("Error al obtener el pedido para la factura:", error);
+      }
+
+      // Actualizar el estado de pedidos eliminando el pedido actual
+      const updatedPedidos = { ...pedidos };
+      delete updatedPedidos[selectedMesa.id];
+      setPedidos(updatedPedidos);
+
+      // Eliminar los productos asociados a la mesa
+      const updatedProductos = { ...producto };
+      delete updatedProductos[selectedMesa.id];
+      setProducto(updatedProductos);
+
+      // Actualizar los localStorage después de eliminar el pedido
+      localStorage.setItem("pedidos", JSON.stringify(updatedPedidos));
+      localStorage.setItem("producto", JSON.stringify(updatedProductos));
+
+      // Actualizar la mesa seleccionada
+      setSelectedMesa(null);
+      setFacturaDetails({ id_cliente: null, id_empleado: null });
+      setTotalFactura(0);
+
+      closeModal(); // Cerrar el modal después de generar la factura
+    } catch (error) {
+      console.log("Error al crear la factura:", error);
+    }
+  };
 
   if (loading) {
     return (
@@ -323,208 +468,30 @@ export function Inicio() {
 
   return (
     <section className="w-full h-full flex bg-secondary">
-      <div className="w-[64%] h-full">
-        {!selectedMesa ? null : (
-          <ProductsBoard
-            handleCategoriaSelect={handleCategoriaSelect}
-            handleProductoSelect={handleProductoSelect}
-          />
-        )}
-        {selectedCategoria && (
-          <div className="relative z-10 w-full h-full bg-secondary p-2 overflow-auto pb-5">
-            {menu.length > 0 ? (
-              menu.map((subcategoria) => (
-                <div key={subcategoria.idSubcategoria}>
-                  <div className="pb-2">
-                    <h2 className="text-xl text-title font-semibold">
-                      {subcategoria.nombreSubcategoria}
-                    </h2>
-                  </div>
-                  <div className="grid grid-cols-3 mb-5 gap-2">
-                    {subcategoria.productosDTO.length > 0 ? (
-                      subcategoria.productosDTO.map((producto) => (
-                        <div
-                          key={producto.id_producto}
-                          className=" cursor-pointer hover:bg-primary/30 p-2 rounded-lg"
-                          onClick={() => handleProductoSelect(producto)}
-                        >
-                          <div className="flex space-x-2">
-                            <div className="w-[110px] h-[110px] bg-primary rounded-lg flex justify-center items-center cursor-pointer relative">
-                              <IconFood />
-                              <span className="absolute rounded-tl-lg p-1 bg-secondary bottom-0 right-0 text-title text-xs">
-                                $
-                                {producto.precio.toLocaleString("es-CO", {
-                                  maximumFractionDigits: 2,
-                                })}
-                              </span>
-                            </div>
-                            <div className="max-w-[180px] space-y-2">
-                              <h3 className="text-lg text-title">
-                                {producto.nombre}
-                              </h3>
-                              <p className="text-[10px] text-subtitle">
-                                {producto.descripcion}
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                      ))
-                    ) : (
-                      <div>
-                        <p className="text-subtitle font-normal">
-                          No has añadido productos para esta Subcategoria.
-                        </p>
-                      </div>
-                    )}
-                  </div>
-                </div>
-              ))
-            ) : (
-              <div className="w-full h-full flex flex-col items-center justify-center">
-                <div className="w-[250px] h-[250px] relative flex justify-center">
-                  <Image
-                    width={300}
-                    height={300}
-                    className=" object-contain"
-                    src="/img/NotFoundProductos.png"
-                    alt=""
-                  />
-                </div>
-                <p className="text-subtitle font-normal">
-                  No has añadido subcategorias y productos para esta categoría.
-                </p>
-              </div>
-            )}
-          </div>
-        )}
-        <div className="w-full h-full p-4">
-          {mesas.length > 0 ? (
-            <div className="w-full h-full grid grid-cols-8 grid-rows-5 items-center justify-center">
-              {mesas.map((mesa) => (
-                <button
-                  key={mesa.id}
-                  className={`relative w-[100px] h-[100px] p-2 flex flex-col items-center rounded-lg ${
-                    selectedMesa?.id === mesa.id
-                      ? "bg-green-500" // Mesa seleccionada
-                      : pedidos[mesa.id] &&
-                        pedidos[mesa.id].estado === "ocupada"
-                      ? "bg-yellow-500 hover:bg-yellow-500/80" // Mesa ocupada con pedido activo
-                      : "bg-slate-300 hover:bg-slate-300/80" // Mesa disponible
-                  }`}
-                  onClick={() => handledSelectMesa(mesa)}
-                >
-                  <p>Mesa {mesa.numeroMesa}</p>
-                  {renderIcon(mesa.capacidad)}
-                </button>
-              ))}
-            </div>
-          ) : (
-            <div className="w-full h-full flex flex-col items-center justify-center p-5">
-              <p className="text-base font-semibold text-title">
-                ¡Aún no has añadido mesas!
-              </p>
-              <div className="w-[250px] h-[250px] relative flex justify-center">
-                <Image
-                  width={200}
-                  height={200}
-                  className="object-contain"
-                  src="/img/Questions-amico.png"
-                  alt=""
-                />
-              </div>
-              <p className="text-sm text-title">
-                Da{" "}
-                <Link
-                  className="underline text-title"
-                  href="/configuracion/#mesas"
-                >
-                  click aquí
-                </Link>{" "}
-                para comenzar.
-              </p>
-            </div>
-          )}
-        </div>
+      <div className="w-[64%] h-full items-center justify-center">
+        <Mesas
+          pedidos={pedidos}
+          producto={producto}
+          selectedMesa={selectedMesa}
+          selectedCategoria={selectedCategoria}
+          handleSelectMesa={handleSelectMesa}
+          handleSelectCategoria={handleSelectCategoria}
+          handleProductoSelect={handleProductoSelect}
+        />
       </div>
 
       <section className="w-[36%] flex-1 p-5 bg-secondary border-primary shadow-lg border-l-[.5px]">
-        {!selectedMesa ? (
-          <div className="w-full h-full flex flex-col items-center justify-center">
-            <div className=" w-[250px] h-[250px] relative flex justify-center">
-              <Image
-                width={200}
-                height={200}
-                className=" object-contain"
-                src="/img/Receipt-rafiki.png"
-                alt=""
-              />
-            </div>
-            <div className="w-[200px]">
-              <p className=" cursor-default text-sm font-semibold text-title">
-                Selecciona una mesa para los productos consumidos.
-              </p>
-            </div>
-          </div>
-        ) : (
-          <div className="w-full h-full flex flex-col justify-between">
-            <div className="text-title relative ">
-              <div className="flex justify-between">
-                <span className="text-lg font-normal">Pedido</span>
-                <span className="text-lg font-semibold">
-                  Mesa {selectedMesa?.numeroMesa}
-                </span>
-              </div>
-              <div className="border-b-2 my-5 "></div>
-              <table className="w-full ">
-                <thead className="">
-                  <tr>
-                    <th className="h-4 text-left">Producto</th>
-                    <th className="h-4 text-left">Precio</th>
-                    <th className="h-4 text-center">Cantidad</th>
-                    <th className="h-4 text-center">Total</th>
-                  </tr>
-                </thead>
-                <tbody className="">
-                  {producto[selectedMesa.id]?.map((item) => (
-                    <tr key={item.id_producto} className="text-subtitle">
-                      <td className="py-2">{item.nombre}</td>
-                      <td className="py-2">${item.precio}</td>
-                      <div className="flex ml-4 space-x-4 py-2">
-                        <button className="">-</button>
-                        <td className="">{item.cantidad}</td>
-                        <button className="">+</button>
-                      </div>
-                      <td className="py-2 text-center">{item.total}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-
-            <div className="relative bottom-0 flex justify-between">
-              <button
-                className="bg-red-500 hover:bg-red-500/80 text-sm font-medium text-white mt-2 p-2 rounded"
-                onClick={hanldeDeletePedido}
-              >
-                Cancelar pedido
-              </button>
-              <button
-                className="bg-blue-500 hover:bg-blue-500/80 text-sm font-medium text-white mt-2 p-2 rounded"
-                onClick={() => handleSubmitDetallesPedido()}
-              >
-                Generar pedido
-              </button>
-              <button
-                className="bg-green-500 hover:bg-green-500/80 text-sm font-medium text-white mt-2 p-2 rounded"
-                onClick={() => handledOpenModalFactura(factura)}
-              >
-                Generar factura
-              </button>
-            </div>
-          </div>
-        )}
-
-        {modals.CreateFactura && <CreateFactura id_pedido={selectedFactura} />}
+        <Pedido
+          pedidos={pedidos}
+          producto={producto}
+          selectedMesa={selectedMesa}
+          selectedFactura={selectedFactura}
+          handleDeletePedido={handleDeletePedido}
+          handleProductoSelect={handleProductoSelect}
+          handledOpenModalFactura={handledOpenModalFactura}
+          handleSubmitDetallesPedido={handleSubmitDetallesPedido}
+          handleSubmitFactura={handleSubmitFactura}
+        />
       </section>
     </section>
   );

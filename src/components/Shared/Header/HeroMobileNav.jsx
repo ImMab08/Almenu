@@ -1,4 +1,4 @@
-import { IconClose } from './icons';
+import { IconClose } from '@/icons';
 import { HeroItemsNav } from './HeroItemsNav';
 import { useMenuMobile } from '@/hooks/CustomHook';
 

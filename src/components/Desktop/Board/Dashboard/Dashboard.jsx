@@ -63,7 +63,7 @@ export function DashBoard() {
     return (
       <div
         onClick={() => {handledClick(url)}}
-        className={`flex items-center my-[10px] ${isSelected ? 'bg-secondary' : ' bg-primary'} hover:bg-secondary active:bg-secondary text-title hover:text-tertiary py-1 rounded-md ${
+        className={`flex items-center my-[10px] ${isSelected ? 'bg-secondary' : ' bg-primary'} hover:bg-secondary active:bg-secondary text-title py-1 rounded-md ${
           isExpanded ? 'w-48' : 'w-12'
         } transition-all duration-300`}
         key={url}
@@ -81,7 +81,7 @@ export function DashBoard() {
     const IconComponent = iconMap[icon];
     return (
       <div
-        className={`flex items-center my-[10px] ${isSelected ? 'bg-secondary' : 'bg-primary'} hover:bg-secondary text-title hover:text-tertiary py-1 rounded-md ${
+        className={`flex items-center my-[10px] ${isSelected ? 'bg-secondary' : 'bg-primary'} hover:bg-secondary active:bg-secondary text-title py-1 rounded-md ${
           isExpanded ? 'w-48' : 'w-12'
         } transition-all duration-300`}
         key={url}

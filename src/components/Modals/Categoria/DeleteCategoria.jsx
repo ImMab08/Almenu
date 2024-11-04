@@ -1,26 +1,21 @@
 import React from "react";
-import useModalStore from "@/hooks/storeOpenModals";
-import useCategoriaApi from "@/api/Conections/CategoriaApi";
 
-export default function DeleteCategoria({ categoria, removeCategoriaList }) {
+import { eliminar } from "@/utils/eliminar";
+import useModalStore from "@/hooks/storeOpenModals";
+
+export default function DeleteCategoria({ categoria, setData }) {
   const { closeModal } = useModalStore();
-  const { deleteCategoria } = useCategoriaApi();
 
   // Función para confirmar la eliminación.
   const handleSubmit = async (e) => {
-    try {
-      // Comprobamos si la categoria y su id son los mismos.
-      if (categoria && categoria.id) {
-        // Llamamos a la API para eliminar la categoría por su ID.
-        await deleteCategoria(categoria.id)
-        // Llamamos a la prop para remover la categoría de la lista.
-        removeCategoriaList(categoria.id)
-        // Cerramos muestro modal.
-        closeModal();
-      }
-    } catch(error) {
-      console.log(error);
-    }
+    e.preventDefault();
+
+    await eliminar(`/v01/categoria/delete/${categoria?.id}`)
+    setData((prev) => 
+      prev.filter((item) => item.id !== categoria.id)
+    );
+
+    closeModal();
   };
 
   return (

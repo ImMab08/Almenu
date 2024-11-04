@@ -1,12 +1,13 @@
 "use client";
 import React, { useState } from "react";
-import { IconArrowDown } from "./icons";
-import { IconClose } from "../Header/icons";
-import useCategoriaApi from "@/api/Conections/CategoriaApi";
+
+import { useFetch } from "@/hooks/useFetch";
+
+import { IconArrowDown, IconClose } from "@/icons";
 
 export default function ProductsBoard({ handleSelectCategoria }) {
   const [selected, setSelected] = useState(null);
-  const { categoria } = useCategoriaApi();
+  const { data: categorias } = useFetch('/v01/categoria/usuario');
 
   const handleCategoriaClic = (idCategoria) => {    
     // Verificar si la categoría ya está seleccionada
@@ -29,8 +30,8 @@ export default function ProductsBoard({ handleSelectCategoria }) {
       <nav className=" w-full h-auto bg-tertiary border-b border-border">
         <div className="flex justify-between items-center">
           <ul className="flex space-x-5 overflow-x-scroll">
-            {categoria?.length > 0 ? (
-              categoria.map((categoria) => (
+            {categorias?.length > 0 ? (
+              categorias.map((categoria) => (
                 <li
                   key={categoria.id}
                   className={`p-1 text-title text-base flex items-center cursor-pointer list-none hover:bg-secondary px-2 ${

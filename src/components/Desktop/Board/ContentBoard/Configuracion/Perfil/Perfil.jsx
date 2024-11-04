@@ -5,7 +5,7 @@ import Usuario from "./config/Usuario";
 import Restaurante from "./config/Restaurante";
 import useLoading from "@/hooks/useLoading";
 
-import { IconArrowDown } from "../../icons";
+import { IconArrowDown } from "../../../../../../icons";
 
 export function Perfil() {
   const loading = useLoading();

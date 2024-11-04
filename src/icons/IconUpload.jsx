@@ -3,8 +3,8 @@ export function IconUpload(props) {
     <svg
       {...props}
       xmlns="http://www.w3.org/2000/svg"
-      width="60px"
-      height="60px"
+      width="50px"
+      height="50px"
       viewBox="0 -960 960 960"
       fill="#EDEDED"
     >

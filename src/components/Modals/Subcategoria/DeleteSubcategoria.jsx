@@ -1,20 +1,21 @@
 import React from "react";
-import useModalStore from "@/hooks/storeOpenModals";
-import useSubcategoriaApi from "@/api/Conections/SubcategoriaApi";
 
-export default function DeleteSubcategoria({ subcategoria }) {
+import { eliminar } from "@/utils/eliminar";
+import useModalStore from "@/hooks/storeOpenModals";
+
+export default function DeleteSubcategoria({ subcategoria, setData }) {
   const { closeModal } = useModalStore();
-  const { deleteSubcategoria } = useSubcategoriaApi();
 
   // Función para confirmar la eliminación.
   const handleSubmit = async (e) => {
-    try {
-      if (subcategoria && subcategoria.id_subcategoria) {
-         await deleteSubcategoria(subcategoria.id_subcategoria)
-      }
-    } catch(error) {
-      console.error("Error al eliminar la subcategoria", error)
-    }
+    e.preventDefault();
+
+    await eliminar(`/v01/subcategoria/delete/${subcategoria.id_subcategoria}`);
+
+    setData((prev) => 
+      prev.filter((item) => item.id_subcategoria !== subcategoria.id_subcategoria)
+    );
+
     closeModal();
   };
 
@@ -23,12 +24,12 @@ export default function DeleteSubcategoria({ subcategoria }) {
       <div className="rounded-lg bg-secondary w-[450px] ">
         <div className="flex flex-col space-y-4 p-5">
           <p className="text-xl text-center">¿Estás seguro que deseas eliminar la subcategoria <span className="font-semibold">{subcategoria?.nombre}</span>?</p>
-          <p className="text-xs font-semibold text-subtitle text-center">Al hacer esto se eliminara para siempre</p>
+          <p className="text-xs font-semibold text-subtitle text-center">Al hacer esto se eliminara para siempre <br /> al igual que TODOS los productos que esten <br />relacionados a esta.</p>
         </div>
 
         <div className="flex items-center justify-center p-4 relative space-x-10">
-          <button onClick={closeModal} className="flex items-center justify-center text-sm font-medium text-white h-9 bg-red-500 hover:bg-red-500/80 rounded-md px-3 gap-1">Cancelar</button>
-          <button onClick={handleSubmit} className="flex items-center justify-center text-sm font-medium text-white h-9 bg-green-500 hover:bg-green-500/80 rounded-md px-4 gap-1">Confirmar</button>
+          <button onClick={closeModal} className="flex items-center justify-center text-sm font-medium text-white h-9 bg-red-500 hover:bg-red-500/80 rounded-md px-3">Cancelar</button>
+          <button onClick={handleSubmit} className="flex items-center justify-center text-sm font-medium text-white h-9 bg-green-500 hover:bg-green-500/80 rounded-md px-4">Confirmar</button>
         </div>
       </div>
     </div>

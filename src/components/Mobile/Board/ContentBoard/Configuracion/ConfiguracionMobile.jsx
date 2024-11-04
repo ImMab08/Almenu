@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 
-import { IconUpload } from "../icons";
+import { IconUpload } from "@/icons";
 
 import { userData, restaurantData } from "./config/inputs";
 import { Mesas } from "./Mesas";

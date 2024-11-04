@@ -1,34 +1,33 @@
 import React, { useState } from "react";
-import useModalStore from "@/hooks/storeOpenModals";
-import useCategoriaApi from "@/api/Conections/CategoriaApi";
 
-export default function UpdateCategoria({ categoria, editCategoriaList }) {
+import { editar } from "@/utils/editar";
+import useModalStore from "@/hooks/storeOpenModals";
+
+export default function UpdateCategoria({ categoria, setData }) {
   const { closeModal } = useModalStore();
-  const { updateCategoria } = useCategoriaApi();
 
   // Estados locales para actualizar los datos de la categoria seleccionada.
-  const [ nombre, setNombre ] = useState(categoria.nombre);
-  const [ descripcion, setDescripcion ] = useState(categoria.descripcion);
-  const [ loading, setLoading ] = useState(false);
+  const [ nombre, setNombre ] = useState(categoria?.nombre);
+  const [ descripcion, setDescripcion ] = useState(categoria?.descripcion);
+  const [ error, setError ] = useState("");
 
   // Función para manejar la edición de la categoria.
   const handleSubmit = async (e) => {
-    setLoading(true);
+    e.preventDefault();
+    setError("");
 
-    const updateData = {
-      nombre,
-      descripcion
+    if (!nombre) {
+      setError("Tienes que ponerle un nombre a la categoría.");
+      return;
     }
-    try {
-      const updatedCategoria = await updateCategoria(categoria.id, updateData);
-      editCategoriaList(updatedCategoria);
-      closeModal();
-    } catch (error) {
-      console.log(error)
-    } finally {
-      setLoading(false);
-    }
-  }
+
+    await editar(`/v01/categoria/update/${categoria.id}`, { nombre, descripcion });
+    setData((prev) => 
+      prev.map((item) => item.id === categoria.id ? { nombre, descripcion } : item)
+    );
+
+    closeModal();
+  };
 
   return (
     <div className="w-full h-full top-0 left-0 bg-black/70 bg-opacity-60 fixed z-50 flex items-center justify-center">
@@ -38,41 +37,39 @@ export default function UpdateCategoria({ categoria, editCategoriaList }) {
         </div>
 
         <div className="px-6">
-          <div className="w-full h-[250px] overflow-auto">
+          <div className="w-full h-[270px] overflow-auto">
             <form onSubmit={handleSubmit} className="p-2 space-y-4">
               <div className="flex flex-col space-y-1.5">
                 <label htmlFor="nombre">Nombre</label>
                 <input
-                  id="nombre"
-                  className="flex border px-3 py-2 text-sm text-title bg-primary w-[300px] rounded-lg"
-                  placeholder="Añade un nombre a la categoría"
+                  required
                   type="text"
                   value={nombre}
+                  placeholder="Añade un nombre a la categoría"
                   onChange={(e) => setNombre(e.target.value)}
-                  required
+                  className="flex px-3 py-2 text-sm text-title bg-primary min-w-72 rounded-lg focus:outline-none"
                 />
               </div>
+
+              {error && <p className=" text-red-500 text-sm">{error}</p>}
 
               <div className="flex flex-col space-y-1.5">
                 <label htmlFor="descripcion">Descripción</label>
                 <textarea
-                  id="descripcion"
-                  className="flex border px-3 py-2 text-sm text-title bg-primary w-[300px] rounded-lg"
-                  placeholder="Añade una descripción corta"
                   rows="4"
-                  value={descripcion}
-                  onChange={(e) => setDescripcion(e.target.value)}
                   required
+                  value={descripcion}
+                  placeholder="Añade una descripción corta"
+                  onChange={(e) => setDescripcion(e.target.value)}
+                  className="flex px-3 py-2 text-sm text-title bg-primary w-auto rounded-lg focus:outline-none"
                 />
               </div>
             </form>
           </div>
         </div>
         <div className="flex items-center justify-center p-4 relative space-x-10">
-          <button onClick={() => closeModal("EditarCategoria")} className="flex items-center justify-center text-sm font-medium text-white h-9 bg-red-500 hover:bg-red-500/80 rounded-md px-3 gap-1">Cancelar</button>
-          <button onClick={handleSubmit} disabled={loading} className="flex items-center justify-center text-sm font-medium text-white h-9 bg-green-500 hover:bg-green-500/80 rounded-md px-4 gap-1">
-            {loading ? "Actualizando..." : "Actualizar"}
-          </button>
+          <button onClick={() => closeModal("EditarCategoria")} className="flex items-center justify-center text-sm font-medium text-white h-9 bg-red-500 hover:bg-red-500/80 rounded-md px-3">Cancelar</button>
+          <button onClick={handleSubmit} className="flex items-center justify-center text-sm font-medium text-white h-9 bg-green-500 hover:bg-green-500/80 rounded-md px-4">Actualizar</button>
         </div>
       </div>
     </div>

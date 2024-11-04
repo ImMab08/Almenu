@@ -3,7 +3,7 @@ import { useState } from "react";
 import useModalStore from "@/hooks/storeOpenModals";
 import useRestauranteApi from "@/api/Conections/RestauranteApi";
 import UpdateRestaurante from "@/components/Modals/Restaurante/UpdateRestaurante";
-import { IconUpload } from "../../../icons";
+import { IconUpload } from "@/icons/index";
 
 
 export default function Restaurante() {

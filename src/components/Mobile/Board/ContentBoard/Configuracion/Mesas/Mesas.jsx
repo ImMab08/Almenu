@@ -7,7 +7,7 @@ import {
   IconTableFour,
   IconTableSix,
   IconTableHeight,
-} from "./icons";
+} from "@/icons";
 import { mesas } from "./config";
 import { expandedBoard } from "@/hooks/CustomHook";
 

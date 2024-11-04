@@ -2,8 +2,8 @@ export function IconTableFour(props) {
   return (
     <svg
     {...props}
-      width="100px"
-      height="100px"
+      width="70px"
+      height="70px"
       viewBox="0 0 200 200"
       fill="none"
     >

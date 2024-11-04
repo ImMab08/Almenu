@@ -1,30 +1,31 @@
 import React from "react";
-import useModalStore from "@/hooks/storeOpenModals";
-import useProductoApi from "@/api/Conections/ProductoApi";
 
-export default function DeleteProducto({ producto, removeProductoList }) {
+import { eliminar } from "@/utils/eliminar";
+import useModalStore from "@/hooks/storeOpenModals";
+
+export default function DeleteProducto({ producto, setData }) {
   const { closeModal } = useModalStore();
-  const { deleteProducto } = useProductoApi();
 
   // Función para confirmar la eliminación.
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      if (producto && producto.id_producto) {
-        await deleteProducto(producto.id_producto);
-        removeProductoList(producto.id_producto);
-        closeModal();
-      }
-    } catch(error) {
-      console.error("Error al eliminar el producto", error)
-    }
-  }
+
+    await eliminar(`/v01/producto/delete/${producto?.id_producto}`);
+    setData((prev) =>
+      prev.filter((item) => item.id_producto !== producto.id_producto)
+    );
+
+    closeModal();
+  };
 
   return (
     <div className="w-full h-full top-0 left-0 bg-black/70 bg-opacity-60 fixed z-50 flex items-center justify-center">
       <div className="rounded-lg bg-secondary w-[450px] ">
         <div className="flex flex-col space-y-4 p-5">
-          <p className="text-xl text-center text-title">¿Estás seguro que deseas eliminar el producto <span className="font-semibold">{producto.nombre}</span>?</p>
+          <p className="text-xl text-center text-title">
+            ¿Estás seguro que deseas eliminar el producto{" "}
+            <span className="font-semibold">{producto.nombre}</span>?
+          </p>
           <p className="text-xs font-semibold text-subtitle text-center">¡Al hacer esto perderas toda su información!</p>
         </div>
 

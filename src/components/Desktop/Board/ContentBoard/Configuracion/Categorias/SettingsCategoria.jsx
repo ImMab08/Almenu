@@ -1,10 +1,11 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 import Categoria from "./config/Categoria";
 import Subcategoria from "./config/Subcategoria";
-import {IconArrowDown } from "../../icons";
+
 import useLoading from "@/hooks/useLoading";
+import { IconArrowDown } from "@/icons";
 
 export function SettingsCategoria() {
   const loading  = useLoading();

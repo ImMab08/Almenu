@@ -1,38 +1,16 @@
 "use client";
-import ProductsBoard from "@/components/Shared/Products-Board/ProductsBoard";
-import React, { useEffect, useState } from "react";
-import { IconFood } from "../icons";
-import useMenuApi from "@/api/Conections/MenuApi";
-import api from "@/api/api";
 import Link from "next/link";
+import React, { useState } from "react";
+import { useFetch } from "@/hooks/useFetch";
+import ProductsBoard from "@/components/Shared/Products-Board/ProductsBoard";
+
+import { IconFood } from "@/icons";
 
 export function Menu() {
-  const { menu, setMenu } = useMenuApi();
+  const [idCategoria, setIdCategoria] = useState();
   const [selectedCategoria, setSelectedCategoria] = useState();
 
-  // Llama a fetchMenu cada vez que cambia la categoría seleccionada
-  useEffect(() => {
-    const fetchMenu = async (idCategoria) => {
-      try {
-        const response = await api.get(
-          `/v01/menu/usuario/${idCategoria}/productos`
-        );
-
-        if (response.status === 200) {
-          setMenu(response.data);
-          console.log("Datos enviados", response.data);
-        } else {
-          throw new Error("Error al obtener el menú.");
-        }
-      } catch (error) {
-        console.error("Error al obtener el menú del usuario:", error); // Muestra detalles del error
-      }
-    };
-
-    if (selectedCategoria) {
-      fetchMenu(selectedCategoria);
-    }
-  }, [selectedCategoria, setMenu]);
+  const { data: menu } = useFetch(`/v01/menu/usuario/${idCategoria}/productos`)
 
   // Función que se pasa al componente ProductsBoard para capturar la categoría seleccionada
   const handleSelectCategoria = (idCategoria) => {

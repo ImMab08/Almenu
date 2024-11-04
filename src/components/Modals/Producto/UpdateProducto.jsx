@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from "react";
-import useModalStore from "@/hooks/storeOpenModals";
-import useProductoApi from "@/api/Conections/ProductoApi";
-import { IconUpload } from "../icons/IconUpload";
+import React, { useState } from "react";
 
-export default function UpdateProducto({ producto }) {
+import { editar } from "@/utils/editar";
+import { useFetch } from "@/hooks/useFetch";
+import useModalStore from "@/hooks/storeOpenModals";
+
+import { IconUpload } from "@/icons";
+
+export default function UpdateProducto({ producto, setData }) {
   const { closeModal } = useModalStore();
-  const { categoria, subcategoria, updateProducto, fetchCategorias, fetchSubcategorias }  = useProductoApi();
 
   // Estados para el formulario.
   const [ nombre, setNombre ] = useState(producto.nombre);
@@ -14,52 +16,37 @@ export default function UpdateProducto({ producto }) {
   const [ cantidad, setCantidad ] = useState(producto.cantidad);
   const [ imagen, setImagen ] = useState(producto.imagen);
 
-  const [ idCategoria, setIdCategoria ] = useState("");
-  const [ idSubcategoria, setIdSubcategoria ] = useState("");
+  const [ idCategoria, setIdCategoria ] = useState(producto.idCategoria);
+  const [ idSubcategoria, setIdSubcategoria ] = useState(producto.idSubcategoria);
 
-  useEffect(() => {
-    fetchCategorias();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  // Consumir la API.
+  const { data: categorias } = useFetch('/v01/categoria/usuario', 'GET');
+  const { data: subcategorias } = useFetch(`/v01/subcategoria/categoria/${idCategoria}`, 'GET');
 
+  // Función para mostrar las subcategorías dependiendo de la categoría.
   const handleInputChange = async (e) => {
     const selectedCategoria = e.target.value;
     setIdCategoria(selectedCategoria);
-    if (selectedCategoria) {
-      fetchSubcategorias(selectedCategoria); // Obtener las subcategorias de la categoria seleccionada.
-    } else {
-      setIdSubcategoria("");
-    }
   }
 
+  // Función para el envío del formulario.
   const handleSubmit = async (e) => {
     e.preventDefault();
+    await editar(`/v01/producto/update/${producto.id_producto}`, {nombre, descripcion, precio, cantidad, imagen, idCategoria, idSubcategoria});
 
-    console.log(producto)
-
-    const putProducto = { 
-      nombre, 
-      descripcion, 
-      precio: parseFloat(precio), 
-      cantidad: parseInt(cantidad), 
-      imagen: imagen || "url-imagen", 
-      idCategoria: parseInt(idCategoria), 
-      idSubcategoria: parseInt(idSubcategoria) 
-    };
-
-    console.log("Put producto", putProducto)
-
-    try {
-      await updateProducto(producto.id_producto, putProducto);
-      console.log("Envio de datos: ", putProducto)
-    } catch(error) {
-      console.error("Error al crear el producto", error.response?.data || error.menssage);
-    }
+    setData((prev) => 
+      prev.map((item) =>
+        item.id_producto === producto.id_producto
+          ? { ...item, nombre, descripcion, precio, cantidad, imagen, idCategoria, nombreCategoria: categorias.find((categoria) => categoria.id === Number(idCategoria))?.nombre , idSubcategoria, nombreSubcategoria: subcategorias.find((subcategoria) => subcategoria.id === Number(idSubcategoria))?.nombre }
+          : item
+      )
+    );
+    
     closeModal();
   }
 
   return (
-    <div className="w-full h-full top-0 left-0 bg-black/70 bg-opacity-60 fixed z-50 flex ">
+    <div className="w-full h-full text-white top-0 left-0 bg-black/70 bg-opacity-60 fixed z-50 flex ">
       <div className="bg-secondary overflow-auto">
         <div className="flex flex-col space-y-1.5 p-5">
           <h3 className="text-xl text-title font-semibold text-center">Actualizar el producto </h3>
@@ -71,11 +58,11 @@ export default function UpdateProducto({ producto }) {
             <form action="" className="p-2 space-y-4">
 
               <div className="flex flex-col space-y-2">
-                <label className="text-title font-semibold" htmlFor="categoria">Categoria</label>
+                <label className="font-semibold" htmlFor="categoria">Categoria</label>
                 <select className="py-2 px-3 bg-primary rounded-lg cursor-pointer" name="categoria" id="categoria" value={idCategoria} onChange={handleInputChange}>
-                  <option className="py-2 px-4 text-title bg-primary" value="">Selecciona una categoria</option>
-                  {categoria.map((categoria) => (
-                      <option className="py-2 px-4 text-title bg-primary" key={categoria.id} value={categoria.id}>
+                  <option className="py-2 px-4 bg-primary" value="">Selecciona una categoria</option>
+                  {categorias.map((categoria) => (
+                      <option className="py-2 px-4 bg-primary" key={categoria.id} value={categoria.id}>
                         {categoria?.nombre}
                       </option>
                   ))}
@@ -86,7 +73,7 @@ export default function UpdateProducto({ producto }) {
                 <label className="text-title font-semibold" htmlFor="categoria">Subcategoria</label>
                 <select className="py-2 px-3 bg-primary rounded-lg cursor-pointer" name="subcategoria" id="subcategoria" value={idSubcategoria} onChange={(e) => setIdSubcategoria(e.target.value)}>
                   <option className="py-2 px-4 text-title bg-primary" value="">Selecciona una subcategoria</option>
-                  {subcategoria.map((subcategoria) => (
+                  {subcategorias.map((subcategoria) => (
                     <option className="py-2 px-4 text-title bg-primary" key={subcategoria.id} value={subcategoria.id}>
                       {subcategoria?.nombre}
                     </option>
@@ -158,7 +145,7 @@ export default function UpdateProducto({ producto }) {
         </div>
         <div className="flex items-center justify-center p-4 relative space-x-10">
           <button onClick={closeModal} className="flex items-center justify-center text-sm font-medium text-white h-9 bg-red-500 hover:bg-red-500/80 rounded-md px-3 gap-1">Cancelar</button>
-          <button type="submit" onClick={handleSubmit} className="flex items-center justify-center text-sm font-medium text-white h-9 bg-green-500 hover:bg-green-500/80 rounded-md px-4 gap-1">Añadir</button>
+          <button onClick={handleSubmit} className="flex items-center justify-center text-sm font-medium text-white h-9 bg-green-500 hover:bg-green-500/80 rounded-md px-4 gap-1">Añadir</button>
         </div>
       </div>
     </div>

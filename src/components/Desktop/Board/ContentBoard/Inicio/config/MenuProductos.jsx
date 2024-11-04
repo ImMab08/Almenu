@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import { IconFood } from "../../icons";
+import { IconFood } from "@/icons";
 import useMenuApi from "@/api/Conections/MenuApi";
 
 const MenuProductos = ({ idCategoria, handleProductoSelect }) => {
