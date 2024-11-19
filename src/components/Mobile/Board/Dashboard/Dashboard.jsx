@@ -12,7 +12,7 @@ import {
   IconLogout,
   IconStats,
   IconSettings,
-} from "./icons";
+} from "@/icons";
 
 
 const iconMap = {
@@ -64,12 +64,12 @@ export function DashBoard() {
   return (
     <>
       <div className="fixed inset-0 bg-black opacity-70 z-10" onClick={closeMenu}></div>
-      <section className="fixed w-[50%] inset-y-0 left-0 flex flex-col justify-between bg-white py-10 z-10">
+      <section className="fixed w-[50%] inset-y-0 left-0 flex flex-col justify-between bg-primary py-10 z-10">
         <section className="w-full h-full flex flex-col justify-between">
           <div className="absolute top-3 right-3 cursor-pointer" onClick={closeMenu}>
             <IconClose />
           </div>
-          <div className="space-y-10">
+          <div className="space-y-5 ">
             <div className="w-auto h-auto flex justify-center">
               <Image
                 width={60}
@@ -79,10 +79,10 @@ export function DashBoard() {
                 alt="Logo Almenu"
               />
             </div>
-            <div className="w-full border-t border-gray-300 pt-8 p-2">{Menus}</div>
+            <div className="w-full border-t border-border pt-8 p-2">{Menus}</div>
           </div>
 
-          <div className="w-full border-t border-gray-300 pt-8 p-2">{UserSettings}</div>
+          <div className="w-full border-t border-border pt-8 p-2">{UserSettings}</div>
         </section>
       </section>
     </>

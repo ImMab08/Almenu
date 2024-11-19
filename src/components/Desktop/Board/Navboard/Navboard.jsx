@@ -26,7 +26,7 @@ export function Navboard({ Header }) {
   )
 
   return (
-    <section className='w-full h-full flex justify-between items-center px-5 border-[#212121] border-b-[.5px] shadow-sm bg-primary'>
+    <section className='w-full h-full flex justify-between items-center p-5 border-[#212121] border-b-[.5px] shadow-sm bg-primary'>
       <div className='text-[20px] font-semibold'>
         {Header}
       </div>

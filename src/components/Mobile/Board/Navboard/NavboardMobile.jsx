@@ -25,8 +25,8 @@ export function NavboardMobile({ Header }) {
   };
 
   return (
-    <section className=' w-full h-auto flex justify-between items-center p-3 border-gray border-b-[.5px] shadow-sm'>
-      <div className='flex items-center gap-8'>
+    <section className=' w-full h-auto flex justify-between items-center p-3 border-border'>
+      <div className='flex items-center gap-4'>
         <div className='cursor-pointer' onClick={handleClick}>
           <IconBars />
         </div>
@@ -35,7 +35,7 @@ export function NavboardMobile({ Header }) {
           <DashBoard />
         )}
 
-        <div className='text-[20px] font-semibold'>
+        <div className='text-xl font-semibold'>
           {Header}
         </div>
       </div>

@@ -1,31 +1,16 @@
 'use client';
-import React, { useEffect, useState } from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { expandedBoard } from '@/hooks/CustomHook';
-import { menus, userSettings } from './config';
+import React, { useEffect, useState } from 'react';
+
 import { handleLogout } from './authActions';
+import { menus, userSettings } from './config';
+import { expandedBoard } from '@/hooks/CustomHook';
 
-import {
-  IconHome,
-  IconMenu,
-  IconStock,
-  IconLogout,
-  IconStats,
-  IconSettings,
-  IconRightButton,
-  IconLeftButton,
-} from './icons';
+import { IconHome, IconMenu, IconStock, IconLogout, IconStats, IconSettings, IconRightButton, IconLeftButton } from '@/icons';
 
-const iconMap = {
-  IconHome: IconHome,
-  IconMenu: IconMenu,
-  IconStock: IconStock,
-  IconStats: IconStats,
-  IconSettings: IconSettings,
-  IconLogout: IconLogout,
-};
+const iconMap = { IconHome: IconHome, IconMenu: IconMenu, IconStock: IconStock, IconStats: IconStats, IconSettings: IconSettings, IconLogout: IconLogout };
 
 export function DashBoard() {
   const router = useRouter();
@@ -100,11 +85,11 @@ export function DashBoard() {
       <section className="pt-1">
         <div className="w-full h-[10%] flex justify-center">
           <Image
-            width={isExpanded ? 120 : 40}
             height={120}
+            alt="Logo Almenu"
+            width={isExpanded ? 120 : 40}
             className="object-contain transition-all duration-300"
             src={isExpanded ? '/img/logo-almenu.png' : '/img/logo.png'}
-            alt="Logo Almenu"
           />
         </div>
         <div className="w-full h-[70%] p-3">{Menus}</div>

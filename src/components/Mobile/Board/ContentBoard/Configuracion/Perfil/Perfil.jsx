@@ -21,16 +21,16 @@ export function Perfil() {
   }
 
   return (
-    <section className="w-full h-auto bg-primary p-4 md:p-5 space-y-5 rounded-lg">
+    <section className="w-full h-auto bg-primary p-4 space-y-5 rounded-lg">
       <div className="flex cursor-pointer" onClick={handledSumit}>
-        <h1 className="flex-1 text-lg md:text-xl text-title font-semibold">Configuración del Perfil</h1>
+        <h1 className="flex-1 text-lg text-title font-semibold">Configuración del Perfil</h1>
         <div className={`cursor-pointer transform transition-transform duration-300 ${openConfig ? 'rotate-0' : '-rotate-180'}`} onClick={handledSumit}>
           <IconArrowDown />
         </div>
       </div>
 
       {openConfig && 
-        <div className="flex md:grid flex-col md:grid-cols-2 space-y-5 md:space-y-0 w-full md:gap-5">
+        <div className="flex flex-col w-full space-y-5">
           <Restaurante />
           <Usuario />
         </div>

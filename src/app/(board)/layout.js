@@ -10,19 +10,19 @@ export default function Layout({ children, Header }) {
         <DashBoard />
       </section>
       <section className="hidden sm:flex flex-col w-full h-screen overflow-hidden">
-        <nav className="w-full h-[10.7%]">
+        <nav className="w-full h-auto">
           <Navboard Header={Header} />
         </nav>
-        <section className="w-full h-[89.3%] bg-secondary">
+        <section className="w-full h-full bg-secondary">
           {children}
         </section>
       </section>
       
-      <section className=" sm:hidden w-full h-screen">
-        <nav className="w-full h-auto fixed top-0 right-0 bg-primary z-10">
+      <section className="sm:hidden">
+        <nav className="w-full h-auto bg-primary">
           <NavboardMobile Header={Header} />
         </nav>
-        <section className="w-auto h-auto bg-secondary">
+        <section className="w-full h-full bg-secondary">
           {children}
         </section>
       </section>

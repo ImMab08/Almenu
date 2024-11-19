@@ -16,3 +16,12 @@ export * from './IconTableHeight'
 
 export * from './IconFood'
 export * from './IconDefaultProduct'
+
+export * from './IconHome'
+export * from './IconStock'
+export * from './IconStats'
+export * from './IconSettings'
+export * from './IconLogout'
+export * from './IconRightButton'
+export * from './IconLeftButton'
+export * from './IconMenu'

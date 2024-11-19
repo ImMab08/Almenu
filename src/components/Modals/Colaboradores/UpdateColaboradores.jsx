@@ -1,24 +1,12 @@
 import React, { useState } from "react";
-import { Colaborator } from "@/components/Desktop/Board/ContentBoard/Configuracion/Empleados/config";
+
+import { editar } from "@/utils/editar";
 import useModalStore from "@/hooks/storeOpenModals";
-import useColaboradoresApi from "@/api/Conections/EmpleadoApi";
 
-export default function UpdateColaboradores({ colaborador }) {
+import { Colaborator } from "@/components/Desktop/Board/ContentBoard/Configuracion/Empleados/config";
+
+export default function UpdateColaboradores({ colaborador, setColaborador }) {
   const { closeModal } = useModalStore();
-  const { updateColaborador } = useColaboradoresApi();
-
-  // Función para formatear el salario con puntos y el símbolo $
-  const formatCurrency = (value) => {
-    // Remueve cualquier carácter que no sea número
-    let numericValue = value.replace(/\D/g, "");
-
-    // Agrega puntos como separadores de miles
-    numericValue = numericValue.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-
-    // Agrega el símbolo $ al inicio
-    return `$${numericValue}`;
-  };
-
 
   // Treare los datos del usuario seleccionado
   const [ formData, setFormData ] = useState({
@@ -32,35 +20,22 @@ export default function UpdateColaboradores({ colaborador }) {
 
   const handleInputChange  = (e) => {
     const { name, value } = e.target;
-
-    // Formatear salario
-    let formattedValue = value;
-    if (name === "salario") {
-      formattedValue = formatCurrency(value);
-    }
-
     setFormData({
       ...formData,
-      [name]: formattedValue,
+      [name]: value,
     });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault(e)
 
-    const cleanedFormData = {
-      ...formData,
-      salario: formData.salario.replace(/[.$]/g, "").replace("$", ""), // Remueve puntos y símbolo $
-    };
+    const response = await editar(`/v01/colaborador/update/${colaborador.id}`, formData);
+    console.log("datos: ",response.data)
+    setColaborador((prev) => 
+      prev.map((item) => item.id === colaborador.id ? formData : item)
+    );
 
-    try {
-      if (colaborador) {
-        await updateColaborador(colaborador.id, cleanedFormData);
-      }
-    } catch(error) {
-      console.log(error);
-    }
-    closeModal()
+    closeModal();
   };
 
   const formColaborador = Colaborator.map(
@@ -71,13 +46,13 @@ export default function UpdateColaboradores({ colaborador }) {
             {title} <span className="text-red-500">{required}</span>
           </label>
           <input
-            className={`mt-1 border-border border-[1.5px] full w-[250px] h-[40px] p-4 rounded-md bg-transparent text-title`}
+            required
             type="text"
             name={name}
-            value={formData[name] || ""}
-            onChange={handleInputChange}
             placeholder={placeHolder}
-            required
+            onChange={handleInputChange}
+            value={formData[name] || ""}
+            className={`mt-1 border-border border-[1.5px] full w-[250px] h-[40px] p-4 rounded-md bg-transparent text-title`}
           />
         </div>
       );

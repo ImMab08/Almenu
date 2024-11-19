@@ -55,15 +55,15 @@ export default function Subcategoria() {
   }
 
   return (
-    <div className="rounded-lg border border-border">
-      <div className="flex flex-col space-y-1.5 p-5">
-        <h3 className="text-lg font-semibold leading-none text-title">Subcategorías</h3>
-        <p className="text-sm text-muted-foreground border-b border-border text-title pb-3">Gestona las subcategorías de tú menú en caso de ser necesario.</p>
+    <div className="max-w-full rounded-lg border border-border">
+      <div className="flex flex-col space-y-1.5 p-4 md:p-5">
+        <h3 className="text-base md:text-lg font-semibold leading-none text-title">Subcategorías</h3>
+        <p className="text-xs md:text-sm border-b-2 border-border pb-3 text-title">Gestona las subcategorías de tú menú en caso de ser necesario.</p>
       </div>
 
-      <div className="px-6">
-        <div className="w-full h-[300px] overflow-auto">
-          <table className="w-full text-sm">
+      <div className="md:px-6">
+        <div className="md:w-full h-[310px] overflow-auto">
+          <table className="w-full">
             <thead className="sticky top-0">
               <tr className="border-b border-border bg-primary">
                 <th className="h-12 px-4 text-left align-middle font-bold text-title">Nombre</th>
@@ -72,20 +72,22 @@ export default function Subcategoria() {
                 <th className="h-12 px-4 text-left align-middle font-bold text-title">Opciones</th>
               </tr>
             </thead>
-            <tbody className="w-full">
+            <tbody className="">
               {subcategorias?.length > 0 ? (
                 subcategorias.map((subcategoria) => (
                   <tr key={subcategoria?.nombre} className="border-b border-border">
-                    <td className="p-4 align-middle font-semibold text-subtitle">{subcategoria?.nombre}</td>
-                    <td className="p-4 align-middle text-subtitle">{subcategoria?.descripcion}</td>
-                    <td className="p-4 align-middle font-semibold text-subtitle">{subcategoria?.nombreCategoria}</td>
+                    <td className="p-4 text-xs md:text-sm align-middle text-subtitle">{subcategoria?.nombre}</td>
+                    <td className="p-4 text-xs md:text-sm align-middle text-subtitle">{subcategoria?.descripcion}</td>
+                    <td className="p-4 text-xs md:text-sm align-middle text-subtitle">{subcategoria?.nombreCategoria}</td>
 
                     <td className="p-4 align-middle space-x-2">
-                      <button className="inline-flex items-center justify-center rounded-md text-sm font-medium bg-bg hover:bg-bg/80 h-7 w-7" onClick={() => handleOpenModalEdit(subcategoria)}>
-                        <IconPencil />
+                      <button className="inline-flex items-center justify-center rounded-md bg-bg hover:bg-bg/80 w-6 h-6 md:w-7 md:h-7" onClick={() => handleOpenModalEdit(subcategoria)}>
+                        <IconPencil className="hidden md:block" width="18px" height="18px" />
+                        <IconPencil className="block md:hidden" width="14px" height="14px" />
                       </button>
-                      <button className="inline-flex items-center justify-center rounded-md text-sm font-medium bg-red-500 hover:bg-red-500/80 h-7 w-7" onClick={() => handleOpenModalDelete(subcategoria)}>
-                        <IconPapelera />
+                      <button className="inline-flex items-center justify-center rounded-md bg-red-500 hover:bg-red-500/80 w-6 h-6 md:w-7 md:h-7" onClick={() => handleOpenModalDelete(subcategoria)}>
+                        <IconPapelera className="hidden md:block" width="18px" height="18px" />
+                        <IconPapelera className="block md:hidden" width="14px" height="14px" />
                       </button>
                     </td>
 
@@ -102,9 +104,7 @@ export default function Subcategoria() {
       </div>
 
       <div className="flex items-center justify-center p-4">
-        <button className="flex items-center justify-center text-sm font-medium text-white h-9 bg-green-500 hover:bg-green-500/80 rounded-md px-3" onClick={() => openModal("CreateSubcategoria")}>
-          Añadir Subcategoria
-        </button>
+        <button className="flex items-center justify-center text-sm font-medium text-white h-9 bg-green-500 hover:bg-green-500/80 rounded-md px-3" onClick={() => openModal("CreateSubcategoria")}>Añadir Subcategoria</button>
 
         {modals.CreateSubcategoria && <CreateSubcategoria subcategoria={subcategorias} setData={setData} />}
         {modals.EditarSubcategoria && <UpdateSubcategoria subcategoria={selectSubcategoria} setData={setData} />}

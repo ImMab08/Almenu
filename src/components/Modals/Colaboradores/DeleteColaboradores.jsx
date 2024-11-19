@@ -1,26 +1,19 @@
 import React from "react";
-import useModalStore from "@/hooks/storeOpenModals";
-import useColaboradoresApi from "@/api/Conections/EmpleadoApi";
 
-export default function DeleteColaboradores({ colaborador, removeColaboradorList }) {
+import { eliminar } from "@/utils/eliminar";
+import useModalStore from "@/hooks/storeOpenModals";
+
+export default function DeleteColaboradores({ colaborador, setColaborador }) {
   const { closeModal } = useModalStore();
-  const { deleteColaborador } = useColaboradoresApi();
 
   // Función para confirmar la eliminación.
   const handleSubmit = async (e) => {
-    try {
-      // Comprobamos si el colaborador y su id son los mismos.
-      if (colaborador && colaborador.id) {
-        // Llamamos a la API para eliminar al empleado por su ID.
-        await deleteColaborador(colaborador.id);
-        // Llamamos a la prop para remover al empleado de la lista.
-        removeColaboradorList(colaborador.id);
-        // Cerranmos nuestor modal.
-        closeModal();
-      }
-    } catch(error) {
-      console.log(error)
-    }
+    e.preventDefault();
+    await eliminar(`/v01/colaborador/delete/${colaborador.id}`);
+    setColaborador((prev) => 
+      prev.filter((item) => item.id !== colaborador.id)
+    );
+    closeModal();
   }
 
   return (
