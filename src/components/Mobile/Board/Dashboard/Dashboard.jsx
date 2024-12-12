@@ -67,7 +67,7 @@ export function DashBoard() {
       <section className="fixed w-[50%] inset-y-0 left-0 flex flex-col justify-between bg-primary py-10 z-10">
         <section className="w-full h-full flex flex-col justify-between">
           <div className="absolute top-3 right-3 cursor-pointer" onClick={closeMenu}>
-            <IconClose />
+            <IconClose width={24} height={24} />
           </div>
           <div className="space-y-5 ">
             <div className="w-auto h-auto flex justify-center">

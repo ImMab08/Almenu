@@ -26,7 +26,7 @@ const MenuProductos = ({ idCategoria, handleProductoSelect }) => {
                   >
                     <div className="flex space-x-2">
                       <div className="w-[110px] h-[110px] bg-primary rounded-lg flex justify-center items-center cursor-pointer relative">
-                        <IconFood />
+                        <IconFood width={55} height={55} />
                         <span className="absolute rounded-tl-lg p-1 bg-secondary bottom-0 right-0 text-title text-xs">
                           $
                           {producto.precio.toLocaleString("es-CO", {

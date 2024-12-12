@@ -13,7 +13,7 @@ export function HeroMobileNav({ items }) {
         <div className="p-4 flex flex-col space-y-4">
           <div className="flex justify-end border-b-2 pb-2">
             <button onClick={closeMenu} className="focus:outline-none">
-              <IconClose />
+              <IconClose width={24} height={24} />
             </button>
           </div>
           <HeroItemsNav items={items} />

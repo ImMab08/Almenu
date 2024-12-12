@@ -8,7 +8,7 @@ import { handleLogout } from './authActions';
 import { menus, userSettings } from './config';
 import { expandedBoard } from '@/hooks/CustomHook';
 
-import { IconHome, IconMenu, IconStock, IconLogout, IconStats, IconSettings, IconRightButton, IconLeftButton } from '@/icons';
+import { IconHome, IconMenu, IconStock, IconLogout, IconStats, IconSettings, IconArrowRight, IconArrowLeft } from '@/icons';
 
 const iconMap = { IconHome: IconHome, IconMenu: IconMenu, IconStock: IconStock, IconStats: IconStats, IconSettings: IconSettings, IconLogout: IconLogout };
 
@@ -53,8 +53,8 @@ export function DashBoard() {
         } transition-all duration-300`}
         key={url}
       >
-        <Link className="flex text-[16px] decoration no-underline rounded-xl font-medium" href={url}>
-          <div className="ml-[13px] mr-2">{IconComponent ? <IconComponent /> : null}</div>
+        <Link className="flex w-full items-center text-base decoration no-underline rounded-xl font-medium" href={url}>
+          <div className="ml-3 mr-2">{IconComponent ? <IconComponent width={22} height={22} /> : null}</div>
           {isExpanded && <span className={isExpanded ? 'text-visible' : 'text-hidden'}>{text}</span>}
         </Link>
       </div>
@@ -72,8 +72,8 @@ export function DashBoard() {
         key={url}
         onClick={() => handleUserSettingClick(url, action)}
       >
-        <Link className="flex text-[16px] decoration no-underline font-medium" href={url}>
-          <div className="ml-[13px] mr-2">{IconComponent ? <IconComponent /> : null}</div>
+        <Link className="flex w-full items-center text-base decoration no-underline font-medium" href={url}>
+          <div className="ml-3 mr-2">{IconComponent ? <IconComponent width={22} height={22} /> : null}</div>
           {isExpanded && <span className={isExpanded ? 'text-visible' : 'text-hidden'}>{text}</span>}
         </Link>
       </div>
@@ -97,12 +97,12 @@ export function DashBoard() {
       </section>
 
       <button
-        className={`pl-[5px] absolute z-50 bottom-4 ${
-          isExpanded ? 'left-[216px]' : 'left-[72px] hover:w-[50px] hover:pl-[15px]'
-        } bg-primary w-[35px] h-[35px] shadow-lg rounded-r-xl transition-all duration-300`}
+        className={`pl-1 absolute z-50 bottom-4 ${
+          isExpanded ? 'left-[216px]' : 'left-[72px] hover:w-12 hover:pl-4'
+        } bg-primary w-9 h-9 shadow-lg rounded-r-xl transition-all duration-300`}
         onClick={toggleExpanded}
       >
-        {isExpanded ? <IconLeftButton /> : <IconRightButton />}
+        {isExpanded ? <IconArrowLeft width={24} height={24} /> : <IconArrowRight width={24} height={24} />}
       </button>
     </section>
   );

@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { info } from "./config";
-import { IconMapa, IconMapaMobile, IconArrowDown, IconArrowUp } from "./Icons";
+import { IconMapa, IconMapaMobile, IconArrowDown, IconArrowUp } from "@/icons";
 import { expandedItemState } from "@/hooks/CustomHook";
 
 function About() {
@@ -17,7 +17,7 @@ function About() {
       <div className="rounded-lg border border-primary shadow-lg bg-primary" key={id}>
         <div className="container-img py-3 sm:py-5 px-5 sm:px-10 border-b border-primary">
           <div className="absolute p-1 top-2 right-2 bg-secondary rounded-lg cursor-pointer" onClick={() => toggleExpanded(id)}>
-            {isExpanded ? <IconArrowUp /> : <IconArrowDown />}
+            {isExpanded ? <IconArrowUp /> : <IconArrowDown width={28} height={28} />}
           </div>
           <h3 className="text-sm sm:text-lg text-title font-semibold">{number}</h3>
           <p className="text-sm md:text-base text-title">{text}</p>

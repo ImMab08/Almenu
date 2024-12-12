@@ -89,7 +89,7 @@ export default function UpdateRestaurante({ initialData }) {
             <div className="w-auto h-full pt-2">
               <p className="text-sm font-medium text-title">Logo</p>
               <div className="w-[120px] h-[120px] mt-1 flex flex-col items-center justify-center rounded-xl bg-secondary border cursor-pointer">
-                <IconUpload />
+                <IconUpload width={40} height={40} />
                 <p className="text-sm font-medium text-title">Cargar logo</p>
               </div>
             </div>

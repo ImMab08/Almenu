@@ -3,7 +3,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-import { IconRightButton, IconLeftButton } from "./icons";
+import { IconArrowLeft, IconArrowRight } from "@/icons";
 import { expandedBoard } from "@/hooks/CustomHook";
 
 export function InicioMobile() {
@@ -51,7 +51,7 @@ export function InicioMobile() {
         } bg-primary w-[35px] h-[35px] shadow-lg rounded-l-xl transition-all duration-300`}
         onClick={toggleExpanded}
       >
-        {isExpanded ? <IconRightButton /> : <IconLeftButton />}
+        {isExpanded ? <IconArrowRight width={24} height={24} /> : <IconArrowLeft width={24} height={24} />}
       </button>
     </section>
   );

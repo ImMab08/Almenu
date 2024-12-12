@@ -111,7 +111,7 @@ export function Mesas() {
       <div className="flex cursor-pointer" onClick={handleSubmit}>
         <h1 className="flex-1 text-xl text-title font-semibold">Configuración de Mesas</h1>
         <div className={`cursor-pointer transform transition-transform duration-300 ${openConfig ? "rotate-0" : "-rotate-180" }`} onClick={handleSubmit}>
-          <IconArrowDown />
+          <IconArrowDown width={28} height={28} />
         </div>
       </div>
 

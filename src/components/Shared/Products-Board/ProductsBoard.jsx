@@ -9,6 +9,8 @@ export default function ProductsBoard({ handleSelectCategoria }) {
   const [selected, setSelected] = useState(null);
   const { data: categorias } = useFetch('/v01/categoria/usuario');
 
+  console.log("catogorias: ", categorias)
+
   const handleCategoriaClic = (idCategoria) => {    
     // Verificar si la categoría ya está seleccionada
     if (selected === idCategoria) {
@@ -40,7 +42,7 @@ export default function ProductsBoard({ handleSelectCategoria }) {
                   onClick={() => handleCategoriaClic(categoria.id)}
                 >
                   {categoria.nombre}
-                  <IconArrowDown />
+                  <IconArrowDown width={28} height={28} />
                 </li>
               ))
             ) : (
@@ -48,7 +50,7 @@ export default function ProductsBoard({ handleSelectCategoria }) {
             )}
           </ul>
           <div className="relative z-10 flex items-center justify-center px-3 cursor-pointer" onClick={handleClose}>
-            <IconClose />
+            <IconClose width={24} height={24} />
           </div>
         </div>
       </nav>

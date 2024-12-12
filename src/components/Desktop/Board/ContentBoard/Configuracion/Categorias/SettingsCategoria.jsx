@@ -26,7 +26,7 @@ export function SettingsCategoria() {
         <div className="flex cursor-pointer" onClick={handledSumit}>
           <h1 className="flex-1 text-lg md:text-xl text-title font-semibold">Configuración de Categorías</h1>
           <div className={`cursor-pointer transform transition-transform duration-300 ${ openConfig ? "rotate-0" : "-rotate-180"}`}>
-            <IconArrowDown />
+            <IconArrowDown width={28} height={28} />
           </div>
         </div>
 

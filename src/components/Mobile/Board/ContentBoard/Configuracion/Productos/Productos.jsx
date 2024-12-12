@@ -58,7 +58,7 @@ export function Productos() {
               openConfig ? "rotate-0" : "-rotate-180"
             }`}
           >
-            <IconArrowDown />
+            <IconArrowDown width={28} height={28} />
           </div>
         </div>
 
@@ -73,7 +73,7 @@ export function Productos() {
 
                 <div className="relative ml-auto flex-1 md:grow-0 bg-secondary rounded-lg">
                   <div className="absolute left-2 top-2">
-                    <IconSearch />
+                    <IconSearch width={24} height={24} />
                   </div>
                   <input
                     className=" w-full outline-none focus:border-none rounded-4 flex bg-transparent text-title h-10 px-3 py-2 text-sm pl-10 md:w-[200px] lg:w-[336px]"
@@ -133,7 +133,7 @@ export function Productos() {
                             className="border-b border-border"
                           >
                             <td className="p-4 align-middle text-subtitle font-extralight">
-                              <IconDefaultProduct />
+                              <IconDefaultProduct width={24} height={24} />
                             </td>
                             <td className="p-4 align-middle text-subtitle font-extralight">
                               {producto?.nombre}

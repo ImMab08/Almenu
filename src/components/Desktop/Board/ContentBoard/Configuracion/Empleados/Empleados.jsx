@@ -111,7 +111,7 @@ export function Empleados() {
       <div className="flex cursor-pointer" onClick={handleToggleConfig}>
         <h1 className="flex-1 text-xl text-title font-semibold">Configuración de Colaboradores</h1>
         <div className={`cursor-pointer transform transition-transform duration-300 ${openConfig ? 'rotate-0' : '-rotate-180'}`} onClick={handleToggleConfig}>
-          <IconArrowDown />
+          <IconArrowDown width={28} height={28} />
         </div>
       </div>
 
@@ -133,7 +133,7 @@ export function Empleados() {
           <div className="w-[40%] h-[430px] flex flex-col flex-1 items-center border border-border rounded-lg p-2 ml-3 overflow-auto space-y-2">
             <div className="relative w-full ml-auto flex-1 md:grow-0 bg-secondary rounded-lg">
               <div className="absolute left-2 top-2">
-                <IconSearch />
+                <IconSearch width={24} height={24} />
               </div>
               <input className=" w-full outline-none focus:border-none bg-transparent flex text-title h-10 px-3 py-2 text-sm pl-10" placeholder="Busca un colaborador" type="search"/>
             </div>
@@ -154,14 +154,14 @@ export function Empleados() {
 
                       <div className="flex space-x-2">
                         <button className="flex flex-col bg-bg hover:bg-bg/80 px-2 py-2 rounded-md cursor-pointer" onClick={() => handleOpenModalEdit(colaborador)}>
-                          <IconPencil />
+                          <IconPencil width={22} height={22} />
                         </button>
                         <button className="flex flex-col bg-red-500 hover:bg-red-500/80 px-2 py-2 rounded-md cursor-pointer" onClick={() => handleOpenModalDelete(colaborador)}>
-                          <IconPapelera />
+                          <IconPapelera width={22} height={22} />
                         </button>
                         <button className={`flex flex-col bg-green-500 hover:bg-green-500/80 px-1 py-1 rounded-md cursor-pointer `} onClick={() => handleOpenColaborador(colaborador.id)}>
                           <div className={`transform transition-transform duration-300 ${openViewColaborador === colaborador?.id ? 'rotate-0' : 'rotate-180'}`}>
-                            <IconViewMoreUp />
+                            <IconViewMoreUp width={24} height={24} />
                           </div>
                         </button>
                       </div>

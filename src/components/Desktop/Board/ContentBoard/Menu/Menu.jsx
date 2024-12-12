@@ -7,22 +7,27 @@ import ProductsBoard from "@/components/Shared/Products-Board/ProductsBoard";
 import { IconFood } from "@/icons";
 
 export function Menu() {
-  const [idCategoria, setIdCategoria] = useState();
-  const [selectedCategoria, setSelectedCategoria] = useState();
+  const [id, setIdCategoria] = useState(); // Estado para el ID de categoría
+  const [selectedCategoria, setSelectedCategoria] = useState(); // Estado para la categoría seleccionada
 
-  const { data: menu } = useFetch(`/v01/menu/usuario/${idCategoria}/productos`)
+  // Hook para hacer la petición con el ID seleccionado
+  const { data: menu } = useFetch(
+    id ? `/v01/menu/usuario/${id}/productos` : null
+  );
 
   // Función que se pasa al componente ProductsBoard para capturar la categoría seleccionada
-  const handleSelectCategoria = (idCategoria) => {
-    console.log("id seleccionada", idCategoria);
-    setSelectedCategoria(idCategoria);
+  const handleSelectCategoria = (id) => {
+    console.log("id seleccionada", id);
+    setIdCategoria(id); // Actualiza el ID para la petición
+    setSelectedCategoria(id); // Actualiza la categoría seleccionada
   };
 
   return (
     <section className="w-full h-full items-center">
+      {/* Componente para seleccionar categorías */}
       <ProductsBoard handleSelectCategoria={handleSelectCategoria} />
       <div className="p-5 space-y-5 w-full h-full">
-        {!selectedCategoria ? ( // Mostrar mensaje si no hay categoría seleccionada
+        {!selectedCategoria ? ( // Si no hay categoría seleccionada
           <div className="w-full h-full flex items-center justify-center">
             <p className="text-lg text-title font-medium">
               Selecciona una{" "}
@@ -32,7 +37,7 @@ export function Menu() {
               para ver tus productos.
             </p>
           </div>
-        ) : menu.length > 0 ? ( // Si se selecciona una categoria, mostrar su contenido
+        ) : menu && menu.length > 0 ? ( // Si hay categoría seleccionada y productos
           menu.map((subcategoria) => (
             <div key={subcategoria.idSubcategoria}>
               <div className="pb-2">
@@ -44,9 +49,9 @@ export function Menu() {
                 {subcategoria.productosDTO.length > 0 ? (
                   subcategoria.productosDTO.map((producto) => (
                     <div key={producto.id_producto} className="">
-                      <div className="flex space-x-2 ">
+                      <div className="flex space-x-2">
                         <div className="w-[140px] h-[140px] bg-primary rounded-lg flex justify-center items-center cursor-pointer relative">
-                          <IconFood />
+                          <IconFood width={55} height={55} />
                           <span className="absolute rounded-tl-lg p-2 bg-secondary bottom-0 right-0 text-title text-xs">
                             $
                             {producto.precio.toLocaleString("es-CO", {
@@ -78,8 +83,8 @@ export function Menu() {
         ) : (
           <div className="w-full h-full flex items-center text-center justify-center">
             <p className="text-title font-semibold w-[350px]">
-              No has añadido productos o creado subcategorias para
-              estacategoria.
+              No has añadido productos o creado subcategorias para esta
+              categoría.
             </p>
             <Link rel="stylesheet" href="" />
           </div>

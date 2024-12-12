@@ -135,7 +135,7 @@ export default function UpdateProducto({ producto, setData }) {
               <div className="flex flex-col space-y-1.5">
                 <label className="text-title font-semibold" htmlFor="">Imagen</label>
                 <div className="flex flex-col items-center justify-center py-10 border-2 border-dashed rounded-md space-y-4 cursor-pointer">
-                  <IconUpload />
+                  <IconUpload width={40} height={40} />
                   <p className="text-subtitle text-sm w-[180px] text-center">Selecciona o arraste la imagen de tu producto</p>
                 </div>
               </div>

@@ -4,7 +4,7 @@ import useModalStore from "@/hooks/storeOpenModals";
 import useRestauranteApi from "@/api/Conections/RestauranteApi";
 import UpdateRestaurante from "@/components/Modals/Restaurante/UpdateRestaurante";
 
-import { IconUpload } from "@/icons/index";
+import { IconUpload } from "@/icons";
 
 export default function Restaurante() {
   const { restaurante } = useRestauranteApi();
@@ -46,8 +46,8 @@ export default function Restaurante() {
       <div className="hidden md:block w-auto h-full pt-2">
         <p className="text-sm font-medium text-title">Logo </p>
         <div className="w-[120px] h-[120px] mt-1 flex flex-col items-center justify-center rounded-xl bg-secondary border">
-          <IconUpload />
-          <p className="text-sm font-medium text-title">Cargar logo</p>
+          <IconUpload width={40} height={40} />
+          <p className="text-xs font-medium text-title">Cargar logo</p>
         </div>
       </div>
 
