@@ -109,7 +109,7 @@ export function Empleados() {
   return (
     <section className="w-full h-auto p-5 bg-primary rounded-lg space-y-5">
       <div className="flex cursor-pointer" onClick={handleToggleConfig}>
-        <h1 className="flex-1 text-xl text-title font-semibold">Configuración de Colaboradores</h1>
+        <h1 className="flex-1 text-base md:text-lg text-title font-semibold">Configuración de Colaboradores</h1>
         <div className={`cursor-pointer transform transition-transform duration-300 ${openConfig ? 'rotate-0' : '-rotate-180'}`} onClick={handleToggleConfig}>
           <IconArrowDown width={28} height={28} />
         </div>

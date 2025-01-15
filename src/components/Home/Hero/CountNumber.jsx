@@ -9,7 +9,7 @@ const Counter = () => {
     const end = 2000;
     if (start === end) return;
 
-    const incrementTime = (2.75 / end) * 100; // Duration of the animation in seconds / total count
+    const incrementTime = (2.75 / end) * 100 ; // Duration of the animation in seconds / total count
     const timer = setInterval(() => {
       start += 5;
       setCount(start);

@@ -8,15 +8,15 @@ import ModalRegistro from "@/components/Modals/Registro/ModalRegistro";
 import useModalStore from "@/hooks/storeOpenModals";
 
 function FormRegister() {
-  const { modals, openModal } = useModalStore()
+  const { modals, openModal } = useModalStore();
   // Definir el estado inicial del formulario.
   const [formData, setFormData] = useState({
-    nombre: '',
-    apellido: '',
-    celular: '',
-    email: '',
-    password: '',
-    password_confirm: ''
+    nombre: "",
+    apellido: "",
+    celular: "",
+    email: "",
+    password: "",
+    password_confirm: "",
   });
 
   // Define el estado para los errores del formulario.
@@ -25,16 +25,17 @@ function FormRegister() {
   // Maneja los cambios en los campos de entrada del formulario.
   const handleInputChange = (e) => {
     const { name, value } = e.target; // Obtiener el nombre y el valor del campo.
-    setFormData({ 
-      ...formData, 
-      [name]: value // Actualiza el valor del campo correspondiente en el estado.
+    setFormData({
+      ...formData,
+      [name]: value, // Actualiza el valor del campo correspondiente en el estado.
     });
   };
 
   // Maneja el envío del formulario.
   const handleSubmit = async (e) => {
     e.preventDefault(); // Previene el comportamiento por defecto del formulario (recarga de la página).
-    const { nombre, apellido, celular, email, password, password_confirm } = formData;
+    const { nombre, apellido, celular, email, password, password_confirm } =
+      formData;
 
     // Verifica si las contraseñas coinciden.
     if (password !== password_confirm) {
@@ -44,11 +45,18 @@ function FormRegister() {
 
     try {
       // Llama a la función Register para registrar al usuario.
-      const success = await Register(nombre, apellido, celular, email, password, password_confirm);
-      
+      const success = await Register(
+        nombre,
+        apellido,
+        celular,
+        email,
+        password,
+        password_confirm
+      );
+
       if (success) {
         // Abrir modal so el registro fue exitoso.
-        openModal("RegistroExitoso")
+        openModal("RegistroExitoso");
       } else {
         // Muestra un error si el registro falló.
         setErrors({ global: ["Error registering user"] });
@@ -56,7 +64,9 @@ function FormRegister() {
     } catch (error) {
       // Muestra un error general si ocurre una excepción.
       console.log("Error submitting form: ", error);
-      setErrors({ global: ["Error al registrar el usuario. Intentalo nuevamente"] });
+      setErrors({
+        global: ["Error al registrar el usuario. Intentalo nuevamente"],
+      });
     }
   };
 
@@ -83,15 +93,17 @@ function FormRegister() {
   ));
 
   return (
-    <div className="hidden bg-secondary laptop:flex h-full justify-center items-center w-3/5 ">
-      <div className="form-register">
-        <Image
-          width={150}
-          height={150}
-          className="object-contain"
-          src="/img/logo-almenu.png"
-          alt=""
-        />
+    <div className="hidden bg-white 2xl:flex h-full justify-center items-center w-3/5 ">
+      <div className="w-80 h-3/4 p-6 bg-gray-100 rounded-2xl shadow-xl">
+        <div className=" flex items-center justify-center">
+          <Image
+            width={150}
+            height={150}
+            className="object-contain"
+            src="/img/logo-almenu.png"
+            alt=""
+          />
+        </div>
         {/* Formulario de registro */}
         <form onSubmit={handleSubmit}>
           {InputRegister} {/* Renderiza los campos de entrada */}
@@ -100,8 +112,13 @@ function FormRegister() {
               {errors.global[0]}
             </div>
           )}
-          <div className="button-register">
-            <button type="submit">Registrarme</button>
+          <div className="absolute bottom-20 right-[390px]">
+            <button
+              type="submit"
+              className="text-base text-white font-semibold transition scale-105 duration-300 py-2 px-8 flex justify-center rounded-xl bg-gradient-to-r from-blue-600 to-teal-500"
+            >
+              Registrarme
+            </button>
           </div>
         </form>
       </div>

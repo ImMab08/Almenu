@@ -1,8 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
 
 :root {
   --primary-color: #202020;
@@ -29,6 +28,7 @@
   background: #555;
 }
 
+
 /* Personalizar la barra de desplazamiento */
 ul::-webkit-scrollbar {
   width: 2px; /* Cambia este valor según tus necesidades */
@@ -50,7 +50,7 @@ ul::-webkit-scrollbar-thumb:hover {
 
 
 * {
-  font-family: "Poppins", sans-serif;
+  font-family: "Urbanist", sans-serif;
   box-sizing: border-box;
   padding: 0;
   margin: 0;
@@ -206,9 +206,9 @@ ul::-webkit-scrollbar-thumb:hover {
   border-radius: 10px;
   font-size: 14px;
   padding: 0 15px;
-  border: 1px solid var(--secondary-color);
+  border: 1px solid #191e54;
   background: transparent;
-  color: var(--secondary-color);
+  color: #191e54;
   outline: none;
 }
 .input-field label {
@@ -216,7 +216,7 @@ ul::-webkit-scrollbar-thumb:hover {
   top: 50%;
   left: 15px;
   transform: translateY(-50%);
-  color: var(--secondary-color);
+  color: #191e54;
   font-size: 15px;
   pointer-events: none;
   transition: .3s;
@@ -225,17 +225,17 @@ input:focus ~ label,
 input:not(:placeholder-shown) ~ label {
   top: 0;
   left: 10px;
-  font-size: 12px;
+  font-size: 14px;
   padding: 0 5px;
-  background-color: #202020;
-  color: var(--tertiary-color);
+  background-color: #f3f4f6;
+  color: #191e54;
 }
 .input-field input::placeholder {
   color: transparent;
 }
 .input-field input:focus,
 .input-field input:not(:placeholder-shown) {
-  border-color: var(--tertiary-color);
+  border-color: #191e54;
 }
 
 /* BOTTOM FORM */

@@ -17,10 +17,10 @@ export function middleware(request) {
 export const config = {
   // Rutas protegidas.
   matcher: [
-    '/inicio/:path*',
-    '/menu/:path*',
-    '/inventario/:path*',
-    '/balance/:path*',
-    '/configuracion/:path*',
+    // '/inicio/:path*',
+    // '/menu/:path*',
+    // '/inventario/:path*',
+    // '/balance/:path*',
+    // '/configuracion/:path*',
   ]
 }

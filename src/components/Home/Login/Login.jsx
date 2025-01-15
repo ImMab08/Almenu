@@ -5,6 +5,7 @@ import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 
 import { login } from "@/api/auth/login";
+import { IconLogo } from "@/icons";
 
 const Login = () => {
   const [ credentials, setCredentials ] = useState({ email: '', password: ''})
@@ -35,7 +36,7 @@ const Login = () => {
     <main className="w-full h-screen bg-primary">
       <section className="w-full h-full flex flex-col items-center justify-center">
         <div className="w-auto xl:w-1/4 py-5 px-10 md:py-10 md:px-12 bg-gray-100 flex flex-col justify-between items-center rounded-3xl shadow-2xl mt-5 laptop:mt-0 space-y-5">
-          <Image width={180} height={150} src="/img/logo-almenu.png" alt="" />
+          <IconLogo width={200} height={100} />
           <div className="flex justify-between items-center">
             <h2 className="text-2xl xl:text-3xl font-extrabold text-text">Iniciar Sesión</h2>
           </div>

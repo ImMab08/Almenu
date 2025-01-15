@@ -50,9 +50,7 @@ export function Productos() {
     <section className="w-full h-full flex flex-col text-secondary overflow-auto">
       <div className="w-full h-auto bg-primary rounded-lg p-5 space-y-5">
         <div className="flex cursor-pointer" onClick={handledSumit}>
-          <h1 className="flex-1 text-xl font-semibold text-title">
-            Configuración de Productos
-          </h1>
+          <h1 className="flex-1 text-base md:text-lg text-title font-semibold">Configuración de Productos</h1>
           <div
             className={`cursor-pointer transform transition-transform duration-300 ${
               openConfig ? "rotate-0" : "-rotate-180"

@@ -107,9 +107,9 @@ export function Mesas() {
   };
 
   return (
-    <section className="w-full h-full p-5 bg-primary rounded-lg space-y-5">
+    <section className="w-full h-full p-4 md:p-5 space-y-5 bg-primary rounded-lg">
       <div className="flex cursor-pointer" onClick={handleSubmit}>
-        <h1 className="flex-1 text-xl text-title font-semibold">Configuración de Mesas</h1>
+        <h1 className="flex-1 text-base md:text-lg text-title font-semibold">Configuración de Mesas</h1>
         <div className={`cursor-pointer transform transition-transform duration-300 ${openConfig ? "rotate-0" : "-rotate-180" }`} onClick={handleSubmit}>
           <IconArrowDown width={28} height={28} />
         </div>

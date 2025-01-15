@@ -1,3 +1,6 @@
+export * from './IconCheck'
+export * from './IconLogo'
+export * from './IconTouch'
 export * from './IconClose'
 export * from './IconUpload'
 export * from './IconViewMoreUp'
@@ -26,5 +29,6 @@ export * from './IconSettings'
 export * from './IconLogout'
 export * from './IconMenu'
 
+export * from './IconBars'
 export * from './IconMapa'
 export * from './IconMapaMobile'
