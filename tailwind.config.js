@@ -8,13 +8,15 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: "#121212",
+        primary: "#EDEDED",
+        dark_primary: "#121212",
         secondary: "#202020",
         tertiary: "#151515",
         title:"#EDEDED",
         subtitle: "#ADADAD",
         border: "#212121",
         bg: "#1995ed",
+        text: "#191e54",
       },
       screens: {
         'mobileLG': '425px',
