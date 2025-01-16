@@ -17,60 +17,29 @@ function Header() {
         <div className="flex md:hidden w-full justify-between items-center cursor-pointer p-4">
           <IconLogo width={120} height={50} />
           <div className="flex space-x-1">
-            <button className="rounded-full bg-gradient-to-r from-teal-400 to-blue-500 px-3 text-sm text-white">
-              Iniciar Sesión 
-            </button> 
-            <IconBars
-              width={36}
-              height={36}
-              className=""
-              onClick={toggleMenu}
-            />            
+            <Link href="/login" className="px-3 py-2 rounded-full text-sm font-medium text-white bg-gradient-to-r from-blue-600 to-teal-500">Iniciar Sesión</Link> 
+            <IconBars width={36} height={36} className="" onClick={toggleMenu} />            
           </div>
         </div>
 
         <IconLogo width={145} height={100} className="hidden md:block" />
 
         <div className="hidden md:flex items-center space-x-8">
-          <Link
-            href="/"
-            className="py-2 px-5 text-lg text-blue-500 font-semibold hover:scale-110 transition duration-500"
-          >
-            Inicio
-          </Link>
+          <Link href="/" className="py-2 px-5 text-lg text-blue-500 font-semibold hover:scale-110 transition duration-500">Inicio</Link>
           <div className="flex items-center py-2 px-5 space-x-1 hover:scale-110 transition duration-500">
-            <Link href="/register" className="text-lg text-text font-semibold">
-              Software
-            </Link>
+            <Link href="/register" className="text-lg text-text font-semibold">Software</Link>
             <IconArrowDown width={24} height={24} />
           </div>
-          <Link
-            href="/register"
-            className="py-2 px-5 text-lg text-text font-semibold hover:scale-110 transition duration-500"
-          >
-            Planes
-          </Link>
-          <Link
-            href="/about"
-            className="py-2 px-5 text-lg text-text font-semibold hover:scale-110 transition duration-500"
-          >
-            Nosotros
-          </Link>
+          <Link href="/register" className="py-2 px-5 text-lg text-text font-semibold hover:scale-110 transition duration-500">Planes</Link>
+          <Link href="/about" className="py-2 px-5 text-lg text-text font-semibold hover:scale-110 transition duration-500">Nosotros</Link>
         </div>
 
         <div className="hidden md:flex items-center space-x-5">
-          <Link
-            href="/register"
-            className="py-2 px-5 rounded-full text-sm font-medium hover:shadow-lg hover:duration-300 text-white bg-gradient-to-r from-blue-600 to-teal-500"
-          >
-            ¡Empieza GRATIS!
-          </Link>
+          <Link href="/register" className="py-2 px-5 rounded-full text-sm font-medium hover:shadow-lg hover:duration-300 text-white bg-gradient-to-r from-blue-600 to-teal-500">¡Empieza GRATIS!</Link>
 
           <div class="rounded-full bg-gradient-to-r from-teal-400 to-blue-500 p-[1.5px]">
             <div class="flexl items-center py-1 px-5 justify-center bg-white rounded-full">
-              <Link href="/login" className="text-sm font-medium text-text">
-                Iniciar Sesión
-              </Link>
+              <Link href="/login" className="text-sm font-medium text-text">Iniciar Sesión</Link>
             </div>
           </div>
         </div>
