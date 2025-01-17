@@ -10,7 +10,7 @@ import { Productos } from "./Productos";
 export function Configuracion() {
 
   return (
-    <section className="w-full h-auto p-5 space-y-4 bg-secondary">
+    <section className="p-5 space-y-4 bg-secondary">
       <Perfil />
       <Mesas />
       <SettingsCategoria />

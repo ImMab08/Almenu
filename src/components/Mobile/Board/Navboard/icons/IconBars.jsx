@@ -3,7 +3,7 @@ export function IconBars(props) {
     <svg
       width="32px"
       height="32px"
-      fill="#EDEDED"
+      fill="#191e54"
       viewBox="0 -960 960 960"
       xmlns="http://www.w3.org/2000/svg"
     >

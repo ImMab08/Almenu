@@ -3,7 +3,7 @@ export function IconPapelera({ width, height, ...props }) {
     <svg
       width={width}
       height={height}
-      fill="#EDEDED"
+      fill="#191e54"
       viewBox="0 -960 960 960"
       xmlns="http://www.w3.org/2000/svg"
       {...props}

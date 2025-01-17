@@ -6,16 +6,16 @@ export default function Layout({ children, Header }) {
   return (
     <main className="w-full h-auto flex ">
 
-      <section className='hidden sm:flex w-auto h-full border-border border-r-[.5px] shadow-lg'>
+      <section className='hidden sm:flex w-auto h-full border-secondary border-r-[1px] shadow-lg'>
         <DashBoard />
       </section>
       <section className="hidden sm:flex flex-col w-full h-screen overflow-hidden">
         <nav className="w-full h-auto">
           <Navboard Header={Header} />
         </nav>
-        <section className="w-full h-full bg-secondary">
+        <div className="h-full bg-secondary overflow-auto">
           {children}
-        </section>
+        </div>
       </section>
       
       <section className="sm:hidden">

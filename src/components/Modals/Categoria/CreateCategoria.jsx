@@ -50,7 +50,7 @@ export default function CreateCategoria({ categorias, setData }) {
                   value={nombre}
                   onChange={(e) => setNombre(e.target.value)}
                   placeholder="Añade un nombre a la categoría"
-                  className="flex px-3 py-2 text-sm text-title bg-primary min-w-72 rounded-lg focus:outline-none"
+                  className="flex px-3 py-2 text-sm bg-primary min-w-72 rounded-lg focus:outline-none"
                 />
               </div>
 
@@ -64,7 +64,7 @@ export default function CreateCategoria({ categorias, setData }) {
                   value={descripcion}
                   placeholder="Añade una descripción corta"
                   onChange={(e) => setDescripcion(e.target.value)}
-                  className="flex px-3 py-2 text-sm text-title bg-primary w-auto rounded-lg focus:outline-none"
+                  className="flex px-3 py-2 text-sm bg-primary w-auto rounded-lg focus:outline-none"
                 />
               </div>
             </form>

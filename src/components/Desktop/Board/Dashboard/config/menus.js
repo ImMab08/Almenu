@@ -2,6 +2,7 @@ import { handleLogout } from '../authActions';
 
 export const menus = [
   { url: "/inicio", text: "Inicio", icon: "IconHome" },
+  { url: "/reservas", text: "Reservas", icon: "IconCalendar" },
   { url: "/menu", text: "Menú", icon: "IconMenu" },
   { url: "/inventario", text: "Inventario", icon: "IconStock" },
   { url: "/balance", text: "Balance", icon: "IconStats" },

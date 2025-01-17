@@ -38,7 +38,7 @@ function Hero() {
         <div className="w-full h-auto flex flex-col justify-center items-center ">
           <div className="flex flex-col justify-center items-center">
             <h1 className="text-4xl 2xl:text-[4rem] 2xl:leading-[72px] font-extrabold text-text ">Revolución</h1>
-            <h2 className="text-5xl 2xl:text-[5rem] leading-10 2xl:leading-[50px] font-black mb-[5px] text-text "><span className="text-blue-600">Digital</span> Para</h2>
+            <h2 className="text-5xl 2xl:text-[5rem] leading-10t 2xl:leading-[50px] font-black mb-[5px] text-text "><span className="text-blue-600">Digital</span> Para</h2>
             <h3 className="text-4xl 2xl:text-[3.5rem] 2xl:leading-[72px] pl-[20px] tablet:pl-[32px] laptop:pl-[30px] font-extrabold text-text">Restaurantes</h3>
           </div>
           <p className="text-text text-md leading-5 text-center w-full 2xl:w-[500px] mt-6 2xl:mt-0">
@@ -68,10 +68,7 @@ function Hero() {
               nisi. Aliquip commodo reprehenderit reprehenderit aliqua nostrud
               reprehenderit labore culpa magna veniam ea voluptate.
             </p>
-            <Link
-              href="/register"
-              className="flex space-x-10 py-2 px-5 rounded-lg text-white text-lg justify-center font-bold hover:shadow-lg hover:duration-300 bg-gradient-to-r from-blue-600 to-teal-500"
-            >
+            <Link href="/register" className="flex space-x-10 py-2 px-5 rounded-lg text-white text-lg justify-center font-bold hover:shadow-lg hover:duration-300 bg-gradient-to-r from-blue-600 to-teal-500">
               Registrate ¡GRATIS!
               <IconTouch className="ml-2 mt-0.5" width={22} height={22} />
             </Link>

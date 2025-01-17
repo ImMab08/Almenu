@@ -8,7 +8,7 @@ export function Navboard({ Header }) {
   const { usuario } = useUsuarioApi();
 
   if (loading) return (
-    <section className='w-full h-full flex justify-between items-center p-5 border-[#212121] border-b-[.5px] shadow-sm bg-primary'>
+    <section className='w-full h-full flex justify-between items-center p-5 border-secondary border-b-[.5px] shadow-sm bg-primary'>
       <div className='text-[20px] font-semibold'>
         <p className='bg-secondary w-[180px] h-[25px] animate-pulse'></p>
       </div>
@@ -25,17 +25,17 @@ export function Navboard({ Header }) {
   )
 
   return (
-    <section className='w-full h-full flex justify-between items-center p-5 border-[#212121] border-b-[.5px] shadow-sm bg-primary'>
+    <section className='w-full h-full flex justify-between items-center p-5 border-secondary border-b-[.5px] shadow-sm bg-primary'>
       <div className='text-lg font-semibold'>
         {Header}
       </div>
       <div className='flex items-center'>
         <div className='mr-3'>
           <div className='flex space-x-1'>
-            <p className='text-title text-sm font-semibold leading-4'>{usuario?.nombre}</p>
-            <p className='text-title text-sm font-semibold leading-4'>{usuario?.apellido}</p>
+            <p className='text-tertiary text-sm font-semibold leading-4'>{usuario?.nombre}</p>
+            <p className='text-tertiary text-sm font-semibold leading-4'>{usuario?.apellido}</p>
           </div>
-          <p className='text-title text-right text-xs font-medium'>{usuario?.plan}</p>
+          <p className='text-tertiary text-right text-xs font-medium'>{usuario?.plan}</p>
         </div>
       </div>
     </section>

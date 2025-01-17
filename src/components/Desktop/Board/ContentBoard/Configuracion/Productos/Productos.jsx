@@ -47,10 +47,10 @@ export function Productos() {
   );
 
   return (
-    <section className="w-full h-full flex flex-col text-secondary overflow-auto">
+    <section className="w-full h-auto flex flex-col text-secondary overflow-auto">
       <div className="w-full h-auto bg-primary rounded-lg p-5 space-y-5">
         <div className="flex cursor-pointer" onClick={handledSumit}>
-          <h1 className="flex-1 text-base md:text-lg text-title font-semibold">Configuración de Productos</h1>
+          <h1 className="flex-1 text-text text-base md:text-lg font-semibold">Configuración de Productos</h1>
           <div
             className={`cursor-pointer transform transition-transform duration-300 ${
               openConfig ? "rotate-0" : "-rotate-180"
@@ -65,8 +65,8 @@ export function Productos() {
             <div className="rounded-lg border-border border">
               <div className="flex items-center p-6 ">
                 <div className="flex flex-col space-y-1.5">
-                  <h3 className="whitespace-nowrap text-2xl font-semibold leading-none tracking-tight text-title">Productos</h3>
-                  <p className="text-sm text-muted-foreground text-title">Administra tus productos.</p>
+                  <h3 className="text-text text-2xl font-semibold leading-none">Productos</h3>
+                  <p className="text-text/80 text-sm">Administra tus productos.</p>
                 </div>
 
                 <div className="relative ml-auto flex-1 md:grow-0 bg-secondary rounded-lg">
@@ -74,7 +74,7 @@ export function Productos() {
                     <IconSearch width={24} height={24} />
                   </div>
                   <input
-                    className=" w-full outline-none focus:border-none rounded-4 flex bg-transparent text-title h-10 px-3 py-2 text-sm pl-10 md:w-[200px] lg:w-[336px]"
+                    className="w-full h-10 flex outline-none focus:border-none rounded-4 bg-transparent text-text px-3 py-2 text-sm pl-10 md:w-[200px] lg:w-[336px]"
                     onChange={(e) => setSearch(e.target.value)}
                     placeholder="Buscar"
                     value={search}
@@ -97,30 +97,14 @@ export function Productos() {
                   <table className="w-full caption-bottom text-sm">
                     <thead className="">
                       <tr className="border-b border-border transition-colors hover:bg-muted/50">
-                        <th className="h-12 px-4 text-left align-middle font-bold text-title">
-                          Imagen
-                        </th>
-                        <th className="h-12 px-4 text-left align-middle font-bold text-title">
-                          Nombre
-                        </th>
-                        <th className="h-12 px-4 text-left align-middle font-bold text-title">
-                          Descripción
-                        </th>
-                        <th className="h-12 px-4 text-left align-middle font-bold text-title">
-                          Precio
-                        </th>
-                        <th className="h-12 px-4 text-left align-middle font-bold text-title">
-                          Cantidad
-                        </th>
-                        <th className="h-12 px-4 text-left align-middle font-bold text-title">
-                          Categoría
-                        </th>
-                        <th className="h-12 px-4 text-left align-middle font-bold text-title">
-                          Subcategoria
-                        </th>
-                        <th className="h-12 px-4 text-left align-middle font-bold text-title">
-                          Opciones
-                        </th>
+                        <th className="h-12 px-4 text-left align-middle font-bold text-text">Imagen</th>
+                        <th className="h-12 px-4 text-left align-middle font-bold text-text">Nombre</th>
+                        <th className="h-12 px-4 text-left align-middle font-bold text-text">Descripción</th>
+                        <th className="h-12 px-4 text-left align-middle font-bold text-text">Precio</th>
+                        <th className="h-12 px-4 text-left align-middle font-bold text-text">Cantidad</th>
+                        <th className="h-12 px-4 text-left align-middle font-bold text-text">Categoría</th>
+                        <th className="h-12 px-4 text-left align-middle font-bold text-text">Subcategoria</th>
+                        <th className="h-12 px-4 text-left align-middle font-bold text-text">Opciones</th>
                       </tr>
                     </thead>
                     <tbody className="">
@@ -130,30 +114,17 @@ export function Productos() {
                             key={producto?.id_producto}
                             className="border-b border-border"
                           >
-                            <td className="p-4 align-middle text-subtitle font-extralight">
-                              <IconDefaultProduct width={24} height={24} />
-                            </td>
-                            <td className="p-4 align-middle text-subtitle font-extralight">
-                              {producto?.nombre}
-                            </td>
-                            <td className="p-4 align-middle text-subtitle font-extralight">
-                              {producto?.descripcion}
-                            </td>
-                            <td className="p-4 align-middle text-subtitle font-extralight">
-                              $
+                            <td className="p-4 align-middle text-text/90 font-extralight"><IconDefaultProduct width={24} height={24} /></td>
+                            <td className="p-4 align-middle text-text/90 font-extralight">{producto?.nombre}</td>
+                            <td className="p-4 align-middle text-text/90 font-extralight">{producto?.descripcion}</td>
+                            <td className="p-4 align-middle text-text/90 font-extralight">$
                               {producto?.precio.toLocaleString("es-CO", {
                                 maximumFractionDigits: 2,
                               })}
                             </td>
-                            <td className="p-4 align-middle text-subtitle font-extralight">
-                              {producto?.cantidad}
-                            </td>
-                            <td className="p-4 align-middle text-subtitle font-extralight">
-                              {producto?.nombreCategoria}
-                            </td>
-                            <td className="p-4 align-middle text-subtitle font-extralight">
-                              {producto?.nombreSubcategoria}
-                            </td>
+                            <td className="p-4 align-middle text-text/90 font-extralight">{producto?.cantidad}</td>
+                            <td className="p-4 align-middle text-text/90 font-extralight">{producto?.nombreCategoria}</td>
+                            <td className="p-4 align-middle text-text/90 font-extralight">{producto?.nombreSubcategoria}</td>
 
                             <td className="p-4 align-middle space-x-2">
                               <button
@@ -174,7 +145,7 @@ export function Productos() {
                         ))
                       ) : (
                         <tr className="h-[200px]">
-                          <td colSpan="8" className="text-center text-title font-semibold p-4">No hay productos agregados</td>
+                          <td colSpan="8" className="text-center text-text/50 font-semibold p-4">No hay productos agregados</td>
                         </tr>
                       )}
                     </tbody>

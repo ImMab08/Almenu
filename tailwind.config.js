@@ -8,15 +8,20 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: "#EDEDED",
-        dark_primary: "#121212",
-        secondary: "#202020",
-        tertiary: "#151515",
+        primary: "#FFFFFF",
+        secondary: "#e1e1ef",
+        tertiary: "#959cb6",
+        // primary: "#121212",
+        // secondary: "#202020",
+        // tertiary: "#151515",
         title:"#EDEDED",
         subtitle: "#ADADAD",
-        border: "#212121",
+        border: "#e1e1ef",
+        // border: "#212121",
         bg: "#1995ed",
         text: "#191e54",
+        tertiary: "#0E569E",
+        hover: '#e1e1ef'
       },
       screens: {
         'mobileLG': '425px',

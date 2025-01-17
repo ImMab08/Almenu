@@ -77,7 +77,7 @@ export default function CreateSubcategoria({ subcategoria, setData }) {
               <div className="flex flex-col space-y-1.5">
                 <label htmlFor="">Nombre</label>
                 <input
-                  className="flex px-3 py-2 text-sm text-title bg-primary w-[300px] rounded-lg focus:outline-none"
+                  className="flex px-3 py-2 text-sm bg-primary w-[300px] rounded-lg focus:outline-none"
                   placeholder="Añade un nombre a la categoría"
                   type="text"
                   value={nombre}
@@ -91,7 +91,7 @@ export default function CreateSubcategoria({ subcategoria, setData }) {
               <div className="flex flex-col space-y-1.5">
                 <label htmlFor="">Descripción</label>
                 <textarea
-                  className="flex px-3 py-2 text-sm text-title bg-primary w-[300px] rounded-lg focus:outline-none"
+                  className="flex px-3 py-2 text-sm bg-primary w-[300px] rounded-lg focus:outline-none"
                   placeholder="Añade una descrión corta"
                   value={descripcion}
                   onChange={(e) => setDescripcion(e.target.value)}

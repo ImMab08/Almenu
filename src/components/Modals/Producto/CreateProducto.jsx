@@ -55,15 +55,15 @@ export default function CreateProducto({ productos, setData }) {
   };
 
   return (
-    <div className="w-full text-white h-full top-0 left-0 bg-black/70 bg-opacity-60 fixed z-50 flex ">
+    <div className="w-full h-full top-0 left-0 bg-black/70 bg-opacity-60 fixed z-50 flex ">
       <div className="bg-secondary overflow-auto">
         <div className="flex flex-col space-y-1.5 p-5">
-          <h3 className="text-xl font-semibold text-center">Añade un nuevo producto</h3>
+          <h3 className="text-xl text-text font-semibold text-center">Añade un nuevo producto</h3>
         </div>
 
         <div className="px-6 over">
           <div className="w-full h-auto overflow-auto">
-            <form onSubmit={handleSubmit} action="" className="p-2 space-y-4">
+            <form onSubmit={handleSubmit} action="" className="p-2 space-y-4 text-text">
               <div className="flex flex-col space-y-2">
                 <label className="font-semibold" htmlFor="categoria">Categoria</label>
                 <select
@@ -87,7 +87,7 @@ export default function CreateProducto({ productos, setData }) {
               </div>
 
               <div className="flex flex-col space-y-2">
-                <label className="text-title font-semibold" htmlFor="categoria">Subcategoria</label>
+                <label className="font-semibold" htmlFor="categoria">Subcategoria</label>
                 <select
                   className="py-2 px-3 bg-primary rounded-lg cursor-pointer focus:outline-none"
                   onChange={(e) => setIdSubcategoria(e.target.value)}
@@ -109,21 +109,20 @@ export default function CreateProducto({ productos, setData }) {
               </div>
 
               <div className="flex flex-col space-y-2">
-                <label className="text-title font-semibold" htmlFor="">Nombre</label>
+                <label className="font-semibold" htmlFor="">Nombre</label>
                 <input
-                  className="flex border px-3 py-2 text-sm text-title bg-primary w-[300px] border-border rounded-lg focus:outline-none"
+                  className="flex border px-3 py-2 text-sm bg-primary w-[300px] border-border rounded-lg focus:outline-none"
                   onChange={(e) => setNombre(e.target.value)}
                   value={nombre}
-                  type="search"
                   required
                 />
               </div>
 
-              <div className="flex  space-x-5">
+              <div className="flex space-x-5">
                 <div className="flex flex-col space-y-2">
-                  <label className="text-title font-semibold" htmlFor="">Precio</label>
+                  <label className="font-semibold" htmlFor="">Precio</label>
                   <input
-                    className="flex border px-3 py-2 text-sm text-title bg-primary w-[140px] border-border rounded-lg focus:outline-none"
+                    className="flex border px-3 py-2 text-sm bg-primary w-[140px] border-border rounded-lg focus:outline-none"
                     onChange={(e) => setPrecio(e.target.value)}
                     value={precio}
                     required
@@ -131,9 +130,9 @@ export default function CreateProducto({ productos, setData }) {
                 </div>
 
                 <div className="flex flex-col space-y-1.5">
-                  <label className="text-title font-semibold" htmlFor="">Cantidad</label>
+                  <label className="font-semibold" htmlFor="">Cantidad</label>
                   <input
-                    className="flex border px-3 py-2 text-sm text-title bg-primary w-[140px] border-border rounded-lg focus:outline-none"
+                    className="flex border px-3 py-2 text-sm bg-primary w-[140px] border-border rounded-lg focus:outline-none"
                     onChange={(e) => setCantidad(e.target.value)}
                     value={cantidad}
                     required
@@ -142,9 +141,9 @@ export default function CreateProducto({ productos, setData }) {
               </div>
 
               <div className="flex flex-col space-y-1.5">
-                <label className="text-title font-semibold" htmlFor="">Descripción</label>
+                <label className="font-semibold" htmlFor="">Descripción</label>
                 <textarea
-                  className="flex border px-3 py-2 text-sm text-title bg-primary w-[300px] border-border rounded-lg focus:outline-none"
+                  className="flex border px-3 py-2 text-sm bg-primary w-[300px] border-border rounded-lg focus:outline-none"
                   onChange={(e) => setDescripcion(e.target.value)}
                   value={descripcion}
                   type="search"
@@ -155,10 +154,10 @@ export default function CreateProducto({ productos, setData }) {
               </div>
 
               <div className="flex flex-col space-y-1.5">
-                <label className="text-title font-semibold" htmlFor="">Imagen</label>
-                <div className="flex flex-col items-center justify-center py-10 border-2 border-dashed rounded-md space-y-4 cursor-pointer">
-                  <IconUpload />
-                  <p className="text-subtitle text-sm w-[180px] text-center">Selecciona o arraste la imagen de tu producto</p>
+                <label className="font-semibold" htmlFor="">Imagen</label>
+                <div className="flex flex-col items-center justify-center py-10 border-2 border-tertiary border-dashed rounded-md space-y-2 cursor-pointer">
+                  <IconUpload width={48} height={48} />
+                  <p className="text-text/80 text-xs w-[180px] text-center">Selecciona o arraste la imagen de tu producto</p>
                 </div>
               </div>
 

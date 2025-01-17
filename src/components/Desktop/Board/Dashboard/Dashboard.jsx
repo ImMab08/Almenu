@@ -1,6 +1,5 @@
 'use client';
 import Link from 'next/link';
-import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 
@@ -8,9 +7,9 @@ import { handleLogout } from './authActions';
 import { menus, userSettings } from './config';
 import { expandedBoard } from '@/hooks/CustomHook';
 
-import { IconHome, IconMenu, IconStock, IconLogout, IconStats, IconSettings, IconArrowRight, IconArrowLeft } from '@/icons';
+import { IconHome, IconMenu, IconStock, IconLogout, IconStats, IconSettings, IconArrowRight, IconArrowLeft, IconLogo, IconLogoShort, IconCalendar } from '@/icons';
+const iconMap = { IconHome: IconHome, IconMenu: IconMenu, IconStock: IconStock, IconStats: IconStats, IconSettings: IconSettings, IconLogout: IconLogout, IconCalendar: IconCalendar };
 
-const iconMap = { IconHome: IconHome, IconMenu: IconMenu, IconStock: IconStock, IconStats: IconStats, IconSettings: IconSettings, IconLogout: IconLogout };
 
 export function DashBoard() {
   const router = useRouter();
@@ -48,7 +47,7 @@ export function DashBoard() {
     return (
       <div
         onClick={() => {handledClick(url)}}
-        className={`flex items-center my-[10px] ${isSelected ? 'bg-secondary' : ' bg-primary'} hover:bg-secondary active:bg-secondary text-title py-1 rounded-md ${
+        className={`flex items-center my-2 ${isSelected ? 'bg-hover' : ' bg-primary'} hover:bg-hover active:bg-hover text-text py-1 rounded-md ${
           isExpanded ? 'w-48' : 'w-12'
         } transition-all duration-300`}
         key={url}
@@ -66,7 +65,7 @@ export function DashBoard() {
     const IconComponent = iconMap[icon];
     return (
       <div
-        className={`flex items-center my-[10px] ${isSelected ? 'bg-secondary' : 'bg-primary'} hover:bg-secondary active:bg-secondary text-title py-1 rounded-md ${
+        className={`flex items-center my-2 ${isSelected ? 'bg-hover' : 'bg-primary'} hover:bg-hover active:bg-hover text-text py-1 rounded-md ${
           isExpanded ? 'w-48' : 'w-12'
         } transition-all duration-300`}
         key={url}
@@ -82,16 +81,11 @@ export function DashBoard() {
 
   return (
     <section className="hidden sm:flex w-full h-screen bg-primary">
-      <section className="pt-1">
-        <div className="w-full h-[10%] flex justify-center">
-          <Image
-            height={120}
-            alt="Logo Almenu"
-            width={isExpanded ? 120 : 40}
-            className="object-contain transition-all duration-300"
-            src={isExpanded ? '/img/logo-almenu.png' : '/img/logo.png'}
-          />
-        </div>
+      <section className="w-full h-full pt-1 flex flex-col items-center">
+        {isExpanded ? 
+          <IconLogo width={110} height={70} /> 
+          : <IconLogoShort width={40} height={70} className='' />
+        }
         <div className="w-full h-[70%] p-3">{Menus}</div>
         <div className="w-full h-[20%] p-3">{UserSettings}</div>
       </section>

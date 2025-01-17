@@ -90,7 +90,7 @@ export function Empleados() {
   const formColaborador = Colaborator.map(({title, required, placeHolder, name}) => {
     return (
       <div key={title} className="flex flex-col">
-        <label className="text-sm font-semibold text-title">
+        <label className="text-sm font-semibold text-text">
           {title} <span className="text-red-500">{required}</span>
         </label>
         <input
@@ -107,9 +107,9 @@ export function Empleados() {
   })
 
   return (
-    <section className="w-full h-auto p-5 bg-primary rounded-lg space-y-5">
+    <section className="w-full h-auto p-5 bg-primary rounded-lg space-y-5 border-secondary border">
       <div className="flex cursor-pointer" onClick={handleToggleConfig}>
-        <h1 className="flex-1 text-base md:text-lg text-title font-semibold">Configuración de Colaboradores</h1>
+        <h1 className="flex-1 text-base md:text-lg text-text font-semibold">Configuración de Colaboradores</h1>
         <div className={`cursor-pointer transform transition-transform duration-300 ${openConfig ? 'rotate-0' : '-rotate-180'}`} onClick={handleToggleConfig}>
           <IconArrowDown width={28} height={28} />
         </div>
@@ -135,7 +135,7 @@ export function Empleados() {
               <div className="absolute left-2 top-2">
                 <IconSearch width={24} height={24} />
               </div>
-              <input className=" w-full outline-none focus:border-none bg-transparent flex text-title h-10 px-3 py-2 text-sm pl-10" placeholder="Busca un colaborador" type="search"/>
+              <input className="w-full outline-none focus:border-none bg-transparent flex text-text h-10 px-3 py-2 text-sm pl-10" placeholder="Busca un colaborador" type="search"/>
             </div>
 
             <div className="w-full h-full space-y-2 overflow-auto">
@@ -189,7 +189,7 @@ export function Empleados() {
                 ))
               ) : (
                 <div className="w-full h-full flex justify-center items-center">
-                  <p className="text-center text-title font-semibold">No has añadido colaboradores aún</p>
+                  <p className="text-center text-text/50 font-semibold">No has añadido colaboradores aún</p>
                 </div>
               )}
             </div>

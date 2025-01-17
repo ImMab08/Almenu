@@ -1,5 +1,7 @@
 export * from './IconCheck'
 export * from './IconLogo'
+export * from './IconLogoShort'
+export * from './IconCalendar'
 export * from './IconTouch'
 export * from './IconClose'
 export * from './IconUpload'
