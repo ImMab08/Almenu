@@ -1,36 +1,11 @@
 "use client";
 import Link from "next/link";
-import React, { useState } from "react";
-import { useRouter } from "next/navigation";
+import React from "react";
 
-import { IconRightArrow } from "./Icons";
-import { login } from "@/api/auth/login";
 import { IconTouch } from "@/icons";
 import Image from "next/image";
 
 function Hero() {
-  const [credentials, setCredentials] = useState({ email: '', password: '',});
-  const [error, setError] = useState('');
-  const router = useRouter();
-
-  const handleChange = (e) => {
-    setCredentials({
-      ...credentials,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-    const isAuthenticated = await login(credentials.email, credentials.password);
-
-    if (isAuthenticated) {
-      router.push('/inicio'); 
-    } else {
-      setError('El correo o la contraseña son incorrectos.');
-    }
-
-  }
 
   return (
     <main>

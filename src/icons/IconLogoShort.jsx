@@ -10,7 +10,7 @@ export function IconLogoShort({ width, height, ...props }) {
       viewBox="0 0 264 261"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <path d="M259 14L173 20.5" stroke="#042F59" stroke-width="12" />
+      <path d="M259 14L173 20.5" stroke="#042F59" strokeWidth="12" />
       <path
         d="M98.9999 152C155 152 177.5 185.5 180.5 236.5L18.0003 237.5C12.6748 196.5 42.9998 152 98.9999 152Z"
         fill="#008DEF"
@@ -19,7 +19,7 @@ export function IconLogoShort({ width, height, ...props }) {
         d="M102 27.0002H256V253H188.5C175.713 182.039 161.399 152.646 102 149.5V27.0002Z"
         fill="white"
       />
-      <path d="M251 253L250 27" stroke="#0C3B6A" stroke-width="12" />
+      <path d="M251 253L250 27" stroke="#0C3B6A" strokeWidth="12" />
       <rect x="8" y="243" width="187" height="10" fill="#1995EB" />
       <circle cx="98.5" cy="141.5" r="7.5" fill="#1995EB" />
       <path

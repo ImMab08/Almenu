@@ -1,4 +1,4 @@
-import { IconFacebook, IconInstagram, IconTiktok } from "../icons";
+import { IconFacebook, IconInstagram, IconTikTok } from "@/icons";
 
 export const links = [
   {
@@ -24,10 +24,12 @@ export const links = [
       { text: 'Política y privacidad', href: '/privacidad' },
     ],
   },
+  {
+    title: 'Siguenos',
+    links: [
+      { icon: <IconFacebook width={12} height={12} /> , text: 'Facebook', href: 'https://www.facebook.com/almenu' },
+      { icon: <IconInstagram width={12} height={12} /> , text: 'Instagram', href: 'https://www.instagram.com/almenu' },
+      { icon: <IconTikTok width={12} height={12} /> , text: 'TikTok', href: 'https://www.tiktok.com/almenu'}
+    ]
+  },
 ];
-
-export const icons = [
-  { icon: <IconFacebook />, href: 'www.facebook.com' },
-  { icon: <IconInstagram />, href: 'www.instagram.com' },
-  { icon: <IconTiktok />, href: 'www.tiktok.com' },
-]

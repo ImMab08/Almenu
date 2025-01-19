@@ -21,6 +21,10 @@ export * from './IconTableFour'
 export * from './IconTableSix'
 export * from './IconTableHeight'
 
+export * from './IconTikTok'
+export * from './IconFacebook'
+export * from './IconInstagram'
+
 export * from './IconFood'
 export * from './IconDefaultProduct'
 

@@ -37,8 +37,8 @@ function Header() {
         <div className="hidden md:flex items-center space-x-5">
           <Link href="/register" className="py-2 px-5 rounded-full text-sm font-medium hover:shadow-lg hover:duration-300 text-white bg-gradient-to-r from-blue-600 to-teal-500">¡Empieza GRATIS!</Link>
 
-          <div class="rounded-full bg-gradient-to-r from-teal-400 to-blue-500 p-[1.5px]">
-            <div class="flexl items-center py-1 px-5 justify-center bg-white rounded-full">
+          <div className="rounded-full bg-gradient-to-r from-teal-400 to-blue-500 p-[1.5px]">
+            <div className="flexl items-center py-1 px-5 justify-center bg-white rounded-full">
               <Link href="/login" className="text-sm font-medium text-text">Iniciar Sesión</Link>
             </div>
           </div>
