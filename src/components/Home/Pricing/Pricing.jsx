@@ -1,5 +1,4 @@
 import React from "react";
-import { IconCheckPlans } from "../Hero/Icons";
 
 function Pricing() {
   return (
@@ -21,19 +20,19 @@ function Pricing() {
               <div className="space-y-5">
                 <div className="flex space-x-2">
                   <div className="bg-secondary p-[1px] sm:p-[2px] rounded-full">
-                    <IconCheckPlans />
+                    {/* <IconCheckPlans /> */}
                   </div>
                   <p className="text-sm sm:text-base text-subtitle">Lorem ipsum dolor sit amet.</p>
                 </div>
                 <div className="flex space-x-2">
                   <div className="bg-secondary p-[1px] sm:p-[2px] rounded-full">
-                    <IconCheckPlans />
+                    {/* <IconCheckPlans /> */}
                   </div>
                   <p className="text-sm sm:text-base text-subtitle">Lorem ipsum dolor sit amet.</p>
                 </div>
                 <div className="flex space-x-2">
                   <div className="bg-secondary p-[1px] sm:p-[2px] rounded-full">
-                    <IconCheckPlans />
+                    {/* <IconCheckPlans /> */}
                   </div>
                   <p className="text-sm sm:text-base text-subtitle">Lorem ipsum dolor sit amet.</p>
                 </div>
@@ -59,43 +58,43 @@ function Pricing() {
               <div className="space-y-5">
                 <div className="flex space-x-2">
                   <div className="bg-secondary p-[1px] sm:p-[2px] rounded-full">
-                    <IconCheckPlans />
+                    {/* <IconCheckPlans /> */}
                   </div>
                   <p className="text-sm sm:text-base text-subtitle">Lorem ipsum dolor sit amet.</p>
                 </div>
                 <div className="flex space-x-2">
                   <div className="bg-secondary p-[1px] sm:p-[2px] rounded-full">
-                    <IconCheckPlans />
+                    {/* <IconCheckPlans /> */}
                   </div>
                   <p className="text-sm sm:text-base text-subtitle">Lorem ipsum dolor sit amet.</p>
                 </div>
                 <div className="flex space-x-2">
                   <div className="bg-secondary p-[1px] sm:p-[2px] rounded-full">
-                    <IconCheckPlans />
+                    {/* <IconCheckPlans /> */}
                   </div>
                   <p className="text-sm sm:text-base text-subtitle">Lorem ipsum dolor sit amet.</p>
                 </div>
                 <div className="flex space-x-2">
                   <div className="bg-secondary p-[1px] sm:p-[2px] rounded-full">
-                    <IconCheckPlans />
+                    {/* <IconCheckPlans /> */}
                   </div>
                   <p className="text-sm sm:text-base text-subtitle">Lorem ipsum dolor sit amet.</p>
                 </div>
                 <div className="flex space-x-2">
                   <div className="bg-secondary p-[1px] sm:p-[2px] rounded-full">
-                    <IconCheckPlans />
+                    {/* <IconCheckPlans /> */}
                   </div>
                   <p className="text-sm sm:text-base text-subtitle">Lorem ipsum dolor sit amet.</p>
                 </div>
                 <div className="flex space-x-2">
                   <div className="bg-secondary p-[1px] sm:p-[2px] rounded-full">
-                    <IconCheckPlans />
+                    {/* <IconCheckPlans /> */}
                   </div>
                   <p className="text-sm sm:text-base text-subtitle">Lorem ipsum dolor sit amet.</p>
                 </div>
                 <div className="flex space-x-2">
                   <div className="bg-secondary p-[1px] sm:p-[2px] rounded-full">
-                    <IconCheckPlans />
+                    {/* <IconCheckPlans /> */}
                   </div>
                   <p className="text-sm sm:text-base text-subtitle">Lorem ipsum dolor sit amet.</p>
                 </div>
@@ -119,25 +118,25 @@ function Pricing() {
               <div className="space-y-5">
                 <div className="flex space-x-2">
                   <div className="bg-secondary p-[1px] sm:p-[2px] rounded-full">
-                    <IconCheckPlans />
+                    {/* <IconCheckPlans /> */}
                   </div>
                   <p className="text-sm sm:text-base text-subtitle">Lorem ipsum dolor sit amet.</p>
                 </div>
                 <div className="flex space-x-2">
                   <div className="bg-secondary p-[1px] sm:p-[2px] rounded-full">
-                    <IconCheckPlans />
+                    {/* <IconCheckPlans /> */}
                   </div>
                   <p className="text-sm sm:text-base text-subtitle">Lorem ipsum dolor sit amet.</p>
                 </div>
                 <div className="flex space-x-2">
                   <div className="bg-secondary p-[1px] sm:p-[2px] rounded-full">
-                    <IconCheckPlans />
+                    {/* <IconCheckPlans /> */}
                   </div>
                   <p className="text-sm sm:text-base text-subtitle">Lorem ipsum dolor sit amet.</p>
                 </div>
                 <div className="flex space-x-2">
                   <div className="bg-secondary p-[1px] sm:p-[2px] rounded-full">
-                    <IconCheckPlans />
+                    {/* <IconCheckPlans /> */}
                   </div>
                   <p className="text-sm sm:text-base text-subtitle">Lorem ipsum dolor sit amet.</p>
                 </div>
