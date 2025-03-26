@@ -56,6 +56,18 @@ ul::-webkit-scrollbar-thumb:hover {
   margin: 0;
 }
 
+/*  */
+.rbc-agenda-empty {
+  height: 100%;
+  border: #959cb6 1px solid;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #959cb6;
+  font-weight: 600;
+}
+
 .hero {
   position: relative;
   overflow: hidden;

@@ -19,31 +19,31 @@ export default function Usuario() {
   
   return (
     <div className="w-full border-border border-[1px] h-full bg-primary rounded-lg px-4 py-6 flex flex-col">
-      <h1 className="text-title text-lg font-semibold border-b border-border pb-2 mb-3">Información del perfil</h1>
+      <h1 className="text-text text-lg font-semibold border-b border-border pb-2 mb-3">Información del perfil</h1>
 
       <div className="space-y-4">
 
         <div className="flex flex-col">
-          <h2 className="text-base font-medium text-title">Nombre Completo</h2>
+          <h2 className="text-base font-medium text-text">Nombre Completo</h2>
           <div className="flex space-x-1 border-border">
-            <p className="text-sm text-subtitle">{usuario?.nombre}</p>
-            <p className="text-sm text-subtitle">{usuario?.apellido}</p>
+            <p className="text-sm text-text/70">{usuario?.nombre}</p>
+            <p className="text-sm text-text/70">{usuario?.apellido}</p>
           </div>
         </div>
 
         <div className="flex flex-col">
-          <h2 className="text-base font-medium text-title">Correo Eléctronico</h2>
-          <p className="text-sm text-subtitle border-border">{usuario?.email}</p>
+          <h2 className="text-base font-medium text-text">Correo Eléctronico</h2>
+          <p className="text-sm text-text/70 border-border">{usuario?.email}</p>
         </div>
 
         <div className="flex flex-col">
-          <h2 className="text-base font-medium text-title">Celular</h2>
-          <p className="text-sm text-subtitle border-border">{usuario?.celular}</p>
+          <h2 className="text-base font-medium text-text">Celular</h2>
+          <p className="text-sm text-text/70 border-border">{usuario?.celular}</p>
         </div>
 
         <div className="flex flex-col">
-          <h2 className="text-base font-medium text-title">Plan</h2>
-          <p className="text-sm text-subtitle border-border">{usuario?.plan}</p>
+          <h2 className="text-base font-medium text-text">Plan</h2>
+          <p className="text-sm text-text/70 border-border">{usuario?.plan}</p>
         </div>
 
       </div>    

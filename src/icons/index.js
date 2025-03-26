@@ -38,3 +38,5 @@ export * from './IconMenu'
 export * from './IconBars'
 export * from './IconMapa'
 export * from './IconMapaMobile'
+
+export * from './IconGoogle'
