@@ -72,7 +72,7 @@ const Login = () => {
               </div>
 
               <div className="text-center text-white bg-gradient-to-r from-blue-600 to-teal-500 py-2 rounded-xl hover:scale-105 transition duration-300">
-                <button type="submit" className="text-base font-semibold">
+                <button type="submit" className="text-white text-base font-semibold">
                   Iniciar sesión
                 </button>
               </div>
